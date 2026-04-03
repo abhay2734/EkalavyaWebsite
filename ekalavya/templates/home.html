@@ -1,0 +1,164 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<!-- HERO SLIDER -->
+
+<div class="hero-wrapper">
+
+<div class="hero-container">
+
+{% for slide in sliders %}
+
+<div class="hero-slide {% if forloop.first %}active{% endif %}">
+
+<img src="{{ slide.image.url }}" class="hero-image">
+
+<div class="hero-overlay"></div>
+
+</div>
+
+{% endfor %}
+
+<button class="hero-arrow left" id="prevSlide">&#10094;</button>
+<button class="hero-arrow right" id="nextSlide">&#10095;</button>
+
+<div class="hero-indicators">
+
+{% for slide in sliders %}
+
+<span class="indicator {% if forloop.first %}active{% endif %}" data-index="{{ forloop.counter0 }}"></span>
+
+{% endfor %}
+
+</div>
+
+</div>
+
+</div>
+
+<!-- HERO CTA SECTION (Below Slider) -->
+<div class="hero-cta-section">
+<div class="container">
+<a href="#intro-video" class="hero-cta-button">
+▶ Before You Start IT Career — Watch This (3 Min)
+</a>
+<p class="hero-micro-text">This 3-minute video may save your 1–2 years of confusion.</p>
+</div>
+</div>
+
+<!-- POWER LINE -->
+<p class="power-line">Don't start preparation blindly… Start with clarity.</p>
+
+
+<!-- VIDEO SECTION -->
+
+<section class="video-section" id="intro-video">
+
+<div class="container">
+
+<p class="video-hook">Most students are preparing in the WRONG way… without realizing it.</p>
+
+<h2 class="video-title">5 Shocking Truths Every IT Aspirant Must Know</h2>
+
+<div class="video-divider"></div>
+
+<p class="video-subtitle">
+Discover how Ekalavya Universys transforms your career
+</p>
+
+
+{% if video %}
+<div class="video-card" id="videoTrigger">
+
+<img src="{{ video.thumbnail.url }}" class="video-thumb">
+
+<div class="video-overlay"></div>
+
+<div class="play-button">▶</div>
+
+</div>
+{% else %}
+<div class="video-card">
+<p style="color: #B8A898; padding: 40px;">Video coming soon...</p>
+</div>
+{% endif %}
+
+</div>
+
+</section>
+
+
+<!-- NEXT STEPS FUNNEL SECTION -->
+
+<section class="funnel-section">
+
+<div class="container">
+
+<h2 class="funnel-title">Next Steps</h2>
+
+<div class="funnel-divider"></div>
+
+<div class="funnel-accordion">
+
+{% for step in funnel_steps %}
+
+<!-- STEP {{ forloop.counter }} -->
+<div class="funnel-card {% if forloop.first %}active{% endif %}" data-step="{{ forloop.counter }}">
+<div class="funnel-card-header">
+<div class="funnel-card-number">{{ forloop.counter }}</div>
+<div class="funnel-card-title-wrapper">
+<h3 class="funnel-card-title">{{ step.title }}</h3>
+<div class="funnel-card-type">{{ step.get_step_type_display }}</div>
+</div>
+<div class="funnel-card-icon">
+<span class="icon-plus">+</span>
+<span class="icon-minus">−</span>
+</div>
+</div>
+<div class="funnel-card-content">
+<p class="funnel-card-description">{{ step.description }}</p>
+<a href="{{ step.button_url }}" class="funnel-btn">▶ {{ step.button_text }}</a>
+</div>
+</div>
+
+{% endfor %}
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- VIDEO MODAL -->
+
+{% if video %}
+<div class="video-modal" id="videoModal">
+
+<div class="video-modal-content">
+
+<button class="close-video" id="closeVideo">✕</button>
+
+{% if video.video_type == 'youtube' %}
+<iframe
+id="videoFrame"
+src=""
+data-src="{{ video.youtube_url }}"
+allow="autoplay; encrypted-media"
+allowfullscreen>
+</iframe>
+{% else %}
+<video id="videoPlayer" controls>
+<source src="{{ video.uploaded_video.url }}" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+{% endif %}
+
+</div>
+
+</div>
+{% endif %}
+
+{% endblock %}

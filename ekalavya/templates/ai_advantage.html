@@ -1,0 +1,193 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+{% if ai_advantage_page %}
+<!-- AI FEAR VS AI ADVANTAGE SECTION -->
+<section class="ai-advantage-section py-5">
+<div class="container">
+
+<!-- SECTION HEADER -->
+<div class="row justify-content-center mb-5">
+<div class="col-lg-10 text-center">
+
+<div class="ai-header-card">
+<h1 class="ai-advantage-title">{{ ai_advantage_page.title }}</h1>
+<div class="ai-advantage-divider"></div>
+</div>
+
+<div class="ai-subtitle-badge">
+<span class="ai-badge-icon">&#x2728;</span>
+<p class="ai-advantage-subtitle">{{ ai_advantage_page.subtitle }}</p>
+</div>
+
+<div class="ai-description-card">
+<div class="ai-desc-accent"></div>
+<p class="ai-advantage-description">{{ ai_advantage_page.description }}</p>
+</div>
+
+</div>
+</div>
+
+<!-- TWO COLUMN LAYOUT -->
+<div class="ai-side-by-side">
+
+<!-- LEFT COLUMN - IMAGE -->
+<div class="ai-side-image">
+<div class="ai-video-title-card">
+<span class="ai-video-title-icon">&#x26A1;</span>
+<h3 class="ai-video-title">AI Reality Check</h3>
+<span class="ai-video-title-tag">Fear vs Advantage — Understanding the Truth About AI</span>
+</div>
+<div class="ai-advantage-image-wrapper">
+<img src="{{ ai_advantage_page.image.url }}" class="img-fluid ai-advantage-image" alt="{{ ai_advantage_page.title }}">
+</div>
+</div>
+
+<!-- RIGHT COLUMN - VIDEO -->
+<div class="ai-side-video">
+<div class="ai-video-wrapper">
+
+<div class="ai-video-title-card">
+<span class="ai-video-title-icon">&#x1F9A0;</span>
+<h3 class="ai-video-title">The Truth About AI</h3>
+<span class="ai-video-title-tag">Watch this short explanation to understand the reality behind AI</span>
+</div>
+
+<div class="ai-video-thumbnail video-card" id="aiVideoTrigger" data-video-type="{{ ai_advantage_page.video_type }}" data-video-src="{% if ai_advantage_page.video_type == 'youtube' %}{{ ai_advantage_page.youtube_url }}{% else %}{{ ai_advantage_page.uploaded_video.url }}{% endif %}">
+<img src="{{ ai_advantage_page.video_thumbnail.url }}" class="img-fluid video-thumb rounded" alt="{{ ai_advantage_page.video_title }}">
+<div class="video-overlay"></div>
+<div class="play-button video-play-button">
+<span class="play-icon">&#x25B6;</span>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- VIDEO MODAL -->
+<div class="video-modal" id="aiVideoModal">
+<div class="video-modal-content">
+<button class="close-video" id="closeAiVideo">✕</button>
+<div id="videoContainer">
+<!-- Video will be dynamically inserted here -->
+</div>
+</div>
+</div>
+
+{% else %}
+<!-- FALLBACK CONTENT IF NO DATA -->
+<section class="ai-advantage-section py-5">
+<div class="container">
+<div class="row justify-content-center mb-5">
+<div class="col-lg-10 text-center">
+
+<div class="ai-header-card">
+<h1 class="ai-advantage-title">AI Reality</h1>
+<div class="ai-advantage-divider"></div>
+</div>
+
+<div class="ai-subtitle-badge">
+<span class="ai-badge-icon">&#x2728;</span>
+<p class="ai-advantage-subtitle">AI is not replacing people — it is empowering those who learn how to use it.</p>
+</div>
+
+<div class="ai-description-card">
+<div class="ai-desc-accent"></div>
+<p class="ai-advantage-description">We are living in a powerful technological shift. Many people fear that artificial intelligence will replace them, while others are learning how to use it as a tool to grow faster. The difference is not intelligence or talent — it is clarity and direction.</p>
+</div>
+
+</div>
+</div>
+</section>
+{% endif %}
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const videoTrigger = document.getElementById("aiVideoTrigger");
+    const videoModal = document.getElementById("aiVideoModal");
+    const closeVideo = document.getElementById("closeAiVideo");
+    const videoContainer = document.getElementById("videoContainer");
+    
+    if (videoTrigger && videoModal) {
+        videoTrigger.addEventListener("click", function() {
+            const videoType = videoTrigger.getAttribute("data-video-type");
+            const videoSrc = videoTrigger.getAttribute("data-video-src");
+            
+            console.log("Video Type:", videoType);
+            console.log("Video Source:", videoSrc);
+            
+            // Clear previous video
+            videoContainer.innerHTML = "";
+            
+            if (videoType === "youtube") {
+                // Create YouTube iframe
+                const iframe = document.createElement("iframe");
+                iframe.id = "aiVideoFrame";
+                iframe.src = videoSrc + (videoSrc.includes("?") ? "&" : "?") + "autoplay=1";
+                iframe.allow = "autoplay; encrypted-media";
+                iframe.allowFullscreen = true;
+                iframe.style.width = "100%";
+                iframe.style.height = "500px";
+                iframe.style.border = "none";
+                videoContainer.appendChild(iframe);
+            } else {
+                // Create HTML5 video player
+                const video = document.createElement("video");
+                video.id = "aiVideoPlayer";
+                video.controls = true;
+                video.autoplay = true;
+                video.preload = "auto";
+                video.style.width = "100%";
+                video.style.height = "500px";
+                
+                const source = document.createElement("source");
+                source.src = videoSrc;
+                source.type = "video/mp4";
+                
+                video.appendChild(source);
+                videoContainer.appendChild(video);
+                
+                // Force load and play
+                video.load();
+                video.play().catch(function(error) {
+                    console.log("Video autoplay failed:", error);
+                });
+                
+                // Add error handling
+                video.addEventListener("error", function(e) {
+                    console.log("Video error:", e);
+                    console.log("Video error code:", video.error ? video.error.code : "unknown");
+                    console.log("Video error message:", video.error ? video.error.message : "unknown");
+                });
+            }
+            
+            // Show modal
+            videoModal.style.display = "flex";
+        });
+        
+        if (closeVideo) {
+            closeVideo.addEventListener("click", function() {
+                videoModal.style.display = "none";
+                videoContainer.innerHTML = "";
+            });
+        }
+        
+        videoModal.addEventListener("click", function(e) {
+            if (e.target === videoModal) {
+                videoModal.style.display = "none";
+                videoContainer.innerHTML = "";
+            }
+        });
+    }
+});
+</script>
+{% endblock %}

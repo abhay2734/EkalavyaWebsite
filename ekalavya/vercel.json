@@ -1,0 +1,17 @@
+{
+  "buildCommand": "python manage.py collectstatic --noinput",
+  "outputDirectory": "ekalavya/staticfiles",
+  "framework": null,
+  "installCommand": "pip install -r requirements.txt",
+  "routes": [
+    {
+      "src": "/static/(.*)",
+      "dest": "/static/$1"
+    },
+    {
+      "src": "/media/(.*)",
+      "dest": "/media/$1"
+    }
+  ],
+  "pythonVersion": "3.11"
+}
