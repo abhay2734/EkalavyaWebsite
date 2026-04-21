@@ -1,10 +1,10 @@
 from django.shortcuts import render
-from .models import Slider, HomeVideo, FunnelStep, AIAdvantagePage, SkillTestPage, LearningSystemPage, CareerRoadmapPage, CareerCapsulesPage, LanguageBarrierPage
+from .models import HeroImage, HomeVideo, FunnelStep, AIAdvantagePage, SkillTestPage, LearningSystemPage, CareerRoadmapPage, CareerCapsulesPage, LanguageBarrierPage, ReadyForTestPage, TestBeforeTrustPage
 
 
 def home(request):
 
-    sliders = Slider.objects.filter(active=True).order_by("order")
+    sliders = HeroImage.objects.filter(active=True).order_by("id")
 
     video = HomeVideo.objects.filter(active=True).first()
 

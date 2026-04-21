@@ -1,26 +1,38 @@
 from django.db import models
 
 
-class Slider(models.Model):
+class HeroImage(models.Model):
+    """Single hero image for the homepage"""
 
-    title = models.CharField(max_length=200, blank=True)
-
-    image = models.ImageField(upload_to="sliders/")
-
-    order = models.PositiveIntegerField(default=0)
+    image = models.ImageField(upload_to="hero/")
 
     active = models.BooleanField(default=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        ordering = ["order"]
+        verbose_name = "Hero Image"
+        verbose_name_plural = "Hero Image"
 
     def __str__(self):
-        if self.title:
-            return self.title
-        return f"Slider {self.id}"
+        return "Hero Image"
 
+
+class TopBanner(models.Model):
+    """Top banner image for the website"""
+
+    image = models.ImageField(upload_to="banner/")
+
+    active = models.BooleanField(default=True)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = "Top Banner"
+        verbose_name_plural = "Top Banner"
+
+    def __str__(self):
+        return "Top Banner"
 
 
 class HomeVideo(models.Model):
@@ -160,7 +172,7 @@ class AIAdvantagePage(models.Model):
 class SkillTestPage(models.Model):
     """Dynamic Skill Test page content"""
 
-    title = models.CharField(max_length=200, default="Skill Test")
+    title = models.CharField(max_length=200, default="Conceptual Communication")
 
     subtitle = models.CharField(
         max_length=300,
@@ -169,11 +181,6 @@ class SkillTestPage(models.Model):
 
     description = models.TextField(
         default="Assess your abilities and understand where you stand."
-    )
-
-    image = models.ImageField(
-        upload_to="skill_test/",
-        help_text="Main image for the Skill Test section"
     )
 
     video_title = models.CharField(max_length=200, default="Watch Now")
@@ -213,8 +220,8 @@ class SkillTestPage(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        verbose_name = "Skill Test Page"
-        verbose_name_plural = "Skill Test Page"
+        verbose_name = "Conceptual Communication"
+        verbose_name_plural = "Conceptual Communication"
 
     def __str__(self):
         return self.title
@@ -223,7 +230,7 @@ class SkillTestPage(models.Model):
 class CareerRoadmapPage(models.Model):
     """Dynamic Career Roadmap page content"""
 
-    title = models.CharField(max_length=200, default="Career Roadmap")
+    title = models.CharField(max_length=200, default="IT Aspirant")
 
     subtitle = models.CharField(
         max_length=300,
@@ -276,8 +283,8 @@ class CareerRoadmapPage(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        verbose_name = "Career Roadmap Page"
-        verbose_name_plural = "Career Roadmap Page"
+        verbose_name = "IT Aspirant"
+        verbose_name_plural = "IT Aspirant"
 
     def __str__(self):
         return self.title
@@ -286,7 +293,7 @@ class CareerRoadmapPage(models.Model):
 class LanguageBarrierPage(models.Model):
     """Dynamic Language Barrier page content"""
 
-    title = models.CharField(max_length=200, default="Language Barrier")
+    title = models.CharField(max_length=200, default="3 Career Paths")
 
     subtitle = models.CharField(
         max_length=300,
@@ -297,15 +304,65 @@ class LanguageBarrierPage(models.Model):
         default="Break through language barriers in your career."
     )
 
-    image = models.ImageField(
-        upload_to="language_barrier/",
-        help_text="Main image for the Language Barrier section"
+    background_image = models.ImageField(
+        upload_to="language_barrier/background/",
+        blank=True,
+        null=True,
+        help_text="Background image with three Explore This Path buttons"
+    )
+
+    VIDEO_TYPE_CHOICES = [
+        ("youtube", "YouTube Link"),
+        ("upload", "Upload Video"),
+    ]
+
+    video_1_title = models.CharField(max_length=200, default="Left Video", blank=True)
+    video_1_type = models.CharField(max_length=10, choices=VIDEO_TYPE_CHOICES, default="youtube")
+    video_1_youtube_url = models.URLField(blank=True, default="", help_text="YouTube video URL for left button")
+    video_1_uploaded = models.FileField(upload_to="language_barrier/videos/1/", blank=True, null=True)
+
+    video_2_title = models.CharField(max_length=200, default="Center Video", blank=True)
+    video_2_type = models.CharField(max_length=10, choices=VIDEO_TYPE_CHOICES, default="youtube")
+    video_2_youtube_url = models.URLField(blank=True, default="", help_text="YouTube video URL for center button")
+    video_2_uploaded = models.FileField(upload_to="language_barrier/videos/2/", blank=True, null=True)
+
+    video_3_title = models.CharField(max_length=200, default="Right Video", blank=True)
+    video_3_type = models.CharField(max_length=10, choices=VIDEO_TYPE_CHOICES, default="youtube")
+    video_3_youtube_url = models.URLField(blank=True, default="", help_text="YouTube video URL for right button")
+    video_3_uploaded = models.FileField(upload_to="language_barrier/videos/3/", blank=True, null=True)
+
+    active = models.BooleanField(default=True)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = "3 Career Paths"
+        verbose_name_plural = "3 Career Paths"
+
+    def __str__(self):
+        return self.title
+
+
+class ReadyForTestPage(models.Model):
+    """Dynamic Ready For Test page content"""
+
+    title = models.CharField(max_length=200, default="Ready for Test")
+
+    subtitle = models.CharField(
+        max_length=300,
+        default="Test your readiness"
+    )
+
+    description = models.TextField(
+        default="Check if you're ready for the next step."
     )
 
     video_title = models.CharField(max_length=200, default="Watch Now")
 
     video_thumbnail = models.ImageField(
-        upload_to="language_barrier/thumbnails/",
+        upload_to="ready_for_test/thumbnails/",
         help_text="Video thumbnail image"
     )
 
@@ -326,7 +383,7 @@ class LanguageBarrierPage(models.Model):
     )
 
     uploaded_video = models.FileField(
-        upload_to="language_barrier/videos/",
+        upload_to="ready_for_test/videos/",
         blank=True,
         null=True,
         help_text="Upload video file if not using YouTube"
@@ -339,8 +396,63 @@ class LanguageBarrierPage(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        verbose_name = "Language Barrier Page"
-        verbose_name_plural = "Language Barrier Page"
+        verbose_name = "Ready For Test Page"
+        verbose_name_plural = "Ready For Test Page"
+
+    def __str__(self):
+        return self.title
+
+
+class TestBeforeTrustPage(models.Model):
+    """Dynamic Test Before Trust page content"""
+
+    title = models.CharField(max_length=200, default="Test Before You Trust")
+
+    subtitle = models.CharField(
+        max_length=300,
+        default="Verify before you commit"
+    )
+
+    description = models.TextField(
+        default="Test our system before you trust us completely."
+    )
+
+    background_image = models.ImageField(
+        upload_to="test_before_trust/background/",
+        blank=True,
+        null=True,
+        help_text="Background image with three Explore This Path buttons"
+    )
+
+    VIDEO_TYPE_CHOICES = [
+        ("youtube", "YouTube Link"),
+        ("upload", "Upload Video"),
+    ]
+
+    video_1_title = models.CharField(max_length=200, default="Left Video", blank=True)
+    video_1_type = models.CharField(max_length=10, choices=VIDEO_TYPE_CHOICES, default="youtube")
+    video_1_youtube_url = models.URLField(blank=True, default="", help_text="YouTube video URL for left button")
+    video_1_uploaded = models.FileField(upload_to="test_before_trust/videos/1/", blank=True, null=True)
+
+    video_2_title = models.CharField(max_length=200, default="Center Video", blank=True)
+    video_2_type = models.CharField(max_length=10, choices=VIDEO_TYPE_CHOICES, default="youtube")
+    video_2_youtube_url = models.URLField(blank=True, default="", help_text="YouTube video URL for center button")
+    video_2_uploaded = models.FileField(upload_to="test_before_trust/videos/2/", blank=True, null=True)
+
+    video_3_title = models.CharField(max_length=200, default="Right Video", blank=True)
+    video_3_type = models.CharField(max_length=10, choices=VIDEO_TYPE_CHOICES, default="youtube")
+    video_3_youtube_url = models.URLField(blank=True, default="", help_text="YouTube video URL for right button")
+    video_3_uploaded = models.FileField(upload_to="test_before_trust/videos/3/", blank=True, null=True)
+
+    active = models.BooleanField(default=True)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = "Test Before Trust Page"
+        verbose_name_plural = "Test Before Trust Page"
 
     def __str__(self):
         return self.title
@@ -349,7 +461,7 @@ class LanguageBarrierPage(models.Model):
 class CareerCapsulesPage(models.Model):
     """Dynamic Career Capsules page content"""
 
-    title = models.CharField(max_length=200, default="Career Capsules")
+    title = models.CharField(max_length=200, default="From Zero to Industry Ready")
 
     subtitle = models.CharField(
         max_length=300,
@@ -412,7 +524,7 @@ class CareerCapsulesPage(models.Model):
 class LearningSystemPage(models.Model):
     """Dynamic Learning System page content"""
 
-    title = models.CharField(max_length=200, default="Learning System")
+    title = models.CharField(max_length=200, default="30 Minutes a day")
 
     subtitle = models.CharField(
         max_length=300,
