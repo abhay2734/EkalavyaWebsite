@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import HeroImage, HomeVideo, FunnelStep, AIAdvantagePage, SkillTestPage, LearningSystemPage, CareerRoadmapPage, CareerCapsulesPage, LanguageBarrierPage, ReadyForTestPage, TestBeforeTrustPage
+from .models import HeroImage, HomeVideo, FunnelStep, AIAdvantagePage, TheSystemPage, SkillTestPage, LearningSystemPage, CareerRoadmapPage, CareerCapsulesPage, LanguageBarrierPage, ReadyForTestPage, TestBeforeTrustPage
 
 
 @admin.register(HeroImage)
@@ -33,6 +33,31 @@ class FunnelStepAdmin(admin.ModelAdmin):
 
 @admin.register(AIAdvantagePage)
 class AIAdvantagePageAdmin(admin.ModelAdmin):
+    list_display = ["title", "video_title", "active", "updated_at"]
+    list_filter = ["active"]
+    fieldsets = (
+        ("Section Content", {
+            "fields": ("title", "subtitle", "description")
+        }),
+        ("Video Section", {
+            "fields": ("video_thumbnail", "video_title", "video_type", "youtube_url", "uploaded_video")
+        }),
+        ("Status", {
+            "fields": ("active",)
+        }),
+    )
+
+    class Media:
+        js = ("js/admin_video_toggle.js",)
+
+    def has_add_permission(self, request):
+        if self.model.objects.count() >= 1:
+            return False
+        return super().has_add_permission(request)
+
+
+@admin.register(TheSystemPage)
+class TheSystemPageAdmin(admin.ModelAdmin):
     list_display = ["title", "video_title", "active", "updated_at"]
     list_filter = ["active"]
     fieldsets = (
@@ -225,6 +250,9 @@ class TestBeforeTrustPageAdmin(admin.ModelAdmin):
         }),
         ("Video Section", {
             "fields": ("video_thumbnail", "video_title", "video_type", "youtube_url", "uploaded_video")
+        }),
+        ("Preview Buttons Videos", {
+            "fields": ("youtube_url_1", "uploaded_video_1", "youtube_url_2", "uploaded_video_2", "youtube_url_3", "uploaded_video_3")
         }),
         ("Status", {
             "fields": ("active",)

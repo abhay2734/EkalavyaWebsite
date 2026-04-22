@@ -147,6 +147,64 @@ class AIAdvantagePage(models.Model):
         return self.title
 
 
+class TheSystemPage(models.Model):
+    """Dynamic The System page content - exact copy of AI Advantage page"""
+
+    title = models.CharField(max_length=200, default="The System")
+
+    subtitle = models.CharField(
+        max_length=300,
+        default="AI is not replacing people — it is empowering those who learn how to use it."
+    )
+
+    description = models.TextField(
+        default="We are living in a powerful technological shift. Many people fear that artificial intelligence will replace them, while others are learning how to use it as a tool to grow faster. The difference is not intelligence or talent — it is clarity and direction."
+    )
+
+    video_title = models.CharField(max_length=200, default="Watch Now")
+
+    video_thumbnail = models.ImageField(
+        upload_to="the_system/thumbnails/",
+        help_text="Video thumbnail image"
+    )
+
+    VIDEO_TYPE_CHOICES = [
+        ("youtube", "YouTube Link"),
+        ("upload", "Upload Video"),
+    ]
+
+    video_type = models.CharField(
+        max_length=10,
+        choices=VIDEO_TYPE_CHOICES,
+        default="youtube"
+    )
+
+    youtube_url = models.URLField(
+        blank=True,
+        help_text="YouTube video URL (e.g., https://www.youtube.com/watch?v=...)"
+    )
+
+    uploaded_video = models.FileField(
+        upload_to="the_system/videos/",
+        blank=True,
+        null=True,
+        help_text="Upload video file if not using YouTube"
+    )
+
+    active = models.BooleanField(default=True)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = "The System"
+        verbose_name_plural = "The System"
+
+    def __str__(self):
+        return self.title
+
+
 class SkillTestPage(models.Model):
     """Dynamic Skill Test page content"""
 
@@ -584,6 +642,42 @@ class TestBeforeTrustPage(models.Model):
         blank=True,
         null=True,
         help_text="Upload video file if not using YouTube"
+    )
+
+    youtube_url_1 = models.URLField(
+        blank=True,
+        help_text="YouTube video URL for left button"
+    )
+
+    uploaded_video_1 = models.FileField(
+        upload_to="test_before_trust/videos/",
+        blank=True,
+        null=True,
+        help_text="Upload video file for left button"
+    )
+
+    youtube_url_2 = models.URLField(
+        blank=True,
+        help_text="YouTube video URL for center button"
+    )
+
+    uploaded_video_2 = models.FileField(
+        upload_to="test_before_trust/videos/",
+        blank=True,
+        null=True,
+        help_text="Upload video file for center button"
+    )
+
+    youtube_url_3 = models.URLField(
+        blank=True,
+        help_text="YouTube video URL for right button"
+    )
+
+    uploaded_video_3 = models.FileField(
+        upload_to="test_before_trust/videos/",
+        blank=True,
+        null=True,
+        help_text="Upload video file for right button"
     )
 
     active = models.BooleanField(default=True)

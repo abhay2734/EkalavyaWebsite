@@ -84,6 +84,56 @@
     </div>
 </section>
 
+<!-- THE SYSTEM SECTION -->
+<section class="ai-advantage-section py-5" id="the-system">
+    <div class="container">
+        {% if the_system_page %}
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-10 text-center">
+                <div class="ai-header-card">
+                    <h1 class="ai-advantage-title">{{ the_system_page.title }}</h1>
+                    <div class="ai-advantage-divider"></div>
+                </div>
+                <div class="ai-subtitle-badge">
+                    <span class="ai-badge-icon">✨</span>
+                    <p class="ai-advantage-subtitle">{{ the_system_page.subtitle }}</p>
+                </div>
+                <div class="ai-description-card">
+                    <div class="ai-desc-accent"></div>
+                    <p class="ai-advantage-description">{{ the_system_page.description }}</p>
+                </div>
+            </div>
+        </div>
+        {% if the_system_page.video_thumbnail %}
+        <div class="video-card" id="theSystemVideoTrigger"
+            data-video-type="{{ the_system_page.video_type }}"
+            data-video-src="{% if the_system_page.video_type == 'youtube' %}{{ the_system_page.youtube_url }}{% elif the_system_page.uploaded_video %}{{ the_system_page.uploaded_video.url }}{% endif %}">
+            <img src="{{ the_system_page.video_thumbnail.url }}" class="video-thumb">
+            <div class="video-overlay"></div>
+            <div class="play-button">▶</div>
+        </div>
+        {% endif %}
+        {% else %}
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-10 text-center">
+                <div class="ai-header-card">
+                    <h1 class="ai-advantage-title">The System</h1>
+                    <div class="ai-advantage-divider"></div>
+                </div>
+                <div class="ai-subtitle-badge">
+                    <span class="ai-badge-icon">✨</span>
+                    <p class="ai-advantage-subtitle">AI is not replacing people — it is empowering those who learn how to use it.</p>
+                </div>
+                <div class="ai-description-card">
+                    <div class="ai-desc-accent"></div>
+                    <p class="ai-advantage-description">We are living in a powerful technological shift. Many people fear that artificial intelligence will replace them, while others are learning how to use it as a tool to grow faster. The difference is not intelligence or talent — it is clarity and direction.</p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
 <!-- AI ADVANTAGE SECTION -->
 <section class="ai-advantage-section py-5" id="ai-advantage">
     <div class="container">
@@ -260,7 +310,7 @@
             data-video-src="{% if career_roadmap_page.video_type == 'youtube' %}{{ career_roadmap_page.youtube_url }}{% elif career_roadmap_page.uploaded_video %}{{ career_roadmap_page.uploaded_video.url }}{% endif %}">
             <img src="{{ career_roadmap_page.video_thumbnail.url }}" class="video-thumb">
             <div class="video-overlay"></div>
-            <div class="play-button">▶</div>
+            <div class="play-button-red"></div>
         </div>
         {% endif %}
         {% else %}
@@ -470,7 +520,21 @@
             data-video-type="{{ test_before_trust_page.video_type }}"
             data-video-src="{% if test_before_trust_page.video_type == 'youtube' %}{{ test_before_trust_page.youtube_url }}{% elif test_before_trust_page.uploaded_video %}{{ test_before_trust_page.uploaded_video.url }}{% endif %}">
             <img src="{{ test_before_trust_page.video_thumbnail.url }}" class="video-thumb-a4">
-            <div class="play-button-a4">▶</div>
+            <button class="preview-btn preview-btn-left" 
+                data-video-type="{{ test_before_trust_page.video_type }}" 
+                data-video-src="{% if test_before_trust_page.video_type == 'youtube' %}{{ test_before_trust_page.youtube_url_1 }}{% elif test_before_trust_page.uploaded_video_1 %}{{ test_before_trust_page.uploaded_video_1.url }}{% endif %}">
+                <span class="preview-btn-text">▶ Preview</span>
+            </button>
+            <button class="preview-btn preview-btn-center" 
+                data-video-type="{{ test_before_trust_page.video_type }}" 
+                data-video-src="{% if test_before_trust_page.video_type == 'youtube' %}{{ test_before_trust_page.youtube_url_2 }}{% elif test_before_trust_page.uploaded_video_2 %}{{ test_before_trust_page.uploaded_video_2.url }}{% endif %}">
+                <span class="preview-btn-text">▶ Preview</span>
+            </button>
+            <button class="preview-btn preview-btn-right" 
+                data-video-type="{{ test_before_trust_page.video_type }}" 
+                data-video-src="{% if test_before_trust_page.video_type == 'youtube' %}{{ test_before_trust_page.youtube_url_3 }}{% elif test_before_trust_page.uploaded_video_3 %}{{ test_before_trust_page.uploaded_video_3.url }}{% endif %}">
+                <span class="preview-btn-text">▶ Preview</span>
+            </button>
         </div>
         {% endif %}
         {% else %}
@@ -499,7 +563,7 @@
 {% block extra_js %}
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-    // Home Video Modal
+// Home Video Modal
     const homeVideoTrigger = document.getElementById("homeVideoTrigger");
     const homeVideoModal = document.getElementById("videoModal");
     const homeVideoContainer = document.getElementById("videoContainer");
@@ -512,23 +576,28 @@ document.addEventListener("DOMContentLoaded", function() {
 
             homeVideoContainer.innerHTML = "";
 
-            if (videoType === "youtube" && videoSrc && videoSrc.trim() !== "") {
-                let embedUrl = videoSrc;
-                if (videoSrc.includes("youtube.com/watch")) {
+            if (videoType === "youtube" && videoSrc && videoSrc.trim() !== "" && (videoSrc.includes("youtube") || videoSrc.includes("youtu.be"))) {
+                let videoId = "";
+                if (videoSrc.includes("youtu.be/")) {
+                    const match = videoSrc.match(/youtu\.be\/([a-zA-Z0-9_-]+)/);
+                    if (match) videoId = match[1];
+                } else if (videoSrc.includes("v=")) {
                     const match = videoSrc.match(/[?&]v=([^&]+)/);
-                    if (match) {
-                        embedUrl = "https://www.youtube.com/embed/" + match[1];
-                    }
+                    if (match) videoId = match[1];
                 }
-                const iframe = document.createElement("iframe");
-                iframe.id = "homeVideoFrame";
-                iframe.src = embedUrl + (embedUrl.includes("?") ? "&" : "?") + "autoplay=1";
-                iframe.allow = "autoplay; encrypted-media";
-                iframe.allowFullscreen = true;
-                iframe.style.width = "100%";
-                iframe.style.height = "500px";
-                iframe.style.border = "none";
-                homeVideoContainer.appendChild(iframe);
+                if (videoId) {
+                    const iframe = document.createElement("iframe");
+                    iframe.src = "https://www.youtube.com/embed/" + videoId + "?autoplay=1&rel=0";
+                    iframe.allow = "autoplay; encrypted-media; picture-in-picture; web-share";
+                    iframe.referrerPolicy = "strict-origin-when-cross-origin";
+                    iframe.allowFullscreen = true;
+                    iframe.style.width = "100%";
+                    iframe.style.height = "500px";
+                    iframe.style.border = "none";
+                    homeVideoContainer.appendChild(iframe);
+                } else if (videoSrc && videoSrc.trim() !== "") {
+                    console.log("Invalid YouTube URL, falling back to upload");
+                }
             } else if (videoSrc && videoSrc.trim() !== "") {
                 console.log("Loading video from URL:", videoSrc);
                 const video = document.createElement("video");
@@ -599,33 +668,43 @@ document.addEventListener("DOMContentLoaded", function() {
     const aiAdvantageVideoModal = document.getElementById("aiVideoModal");
     const aiVideoContainer = document.getElementById("aiVideoContainer");
     const closeAiVideo = document.getElementById("closeAiVideo");
+    let aiCurrentVideo = null;
+    let aiCurrentIframe = null;
 
-    if (aiAdvantageVideoTrigger && aiAdvantageVideoModal) {
+if (aiAdvantageVideoTrigger && aiAdvantageVideoModal) {
         aiAdvantageVideoTrigger.addEventListener("click", function() {
             const videoType = aiAdvantageVideoTrigger.getAttribute("data-video-type");
             const videoSrc = aiAdvantageVideoTrigger.getAttribute("data-video-src");
+            console.log("AI Advantage - videoType:", videoType);
+            console.log("AI Advantage - videoSrc:", videoSrc);
             aiVideoContainer.innerHTML = "";
+            aiCurrentVideo = null;
+            aiCurrentIframe = null;
 
-            if (videoType === "youtube") {
-                let embedUrl = videoSrc;
-                if (videoSrc.includes("youtube.com/watch")) {
+            if (videoSrc && videoSrc.trim() !== "" && (videoType === "youtube" || videoSrc.includes("youtube") || videoSrc.includes("youtu.be"))) {
+                let videoId = "";
+                if (videoSrc.includes("youtu.be/")) {
+                    const match = videoSrc.match(/youtu\.be\/([a-zA-Z0-9_-]+)/);
+                    if (match) videoId = match[1];
+                } else if (videoSrc.includes("v=")) {
                     const match = videoSrc.match(/[?&]v=([^&]+)/);
-                    if (match) {
-                        embedUrl = "https://www.youtube.com/embed/" + match[1];
-                    }
+                    if (match) videoId = match[1];
                 }
-                const iframe = document.createElement("iframe");
-                iframe.id = "aiVideoFrame";
-                iframe.src = embedUrl + (embedUrl.includes("?") ? "&" : "?") + "autoplay=1";
-                iframe.allow = "autoplay; encrypted-media";
-                iframe.allowFullscreen = true;
-                iframe.style.width = "100%";
-                iframe.style.height = "500px";
-                iframe.style.border = "none";
-                aiVideoContainer.appendChild(iframe);
-            } else {
+                console.log("AI Advantage - extracted videoId:", videoId);
+                if (videoId) {
+                    const iframe = document.createElement("iframe");
+                    iframe.src = "https://www.youtube.com/embed/" + videoId + "?autoplay=1&rel=0";
+                    iframe.allow = "autoplay; encrypted-media; picture-in-picture; web-share";
+                    iframe.referrerPolicy = "strict-origin-when-cross-origin";
+                    iframe.allowFullscreen = true;
+                    iframe.style.width = "100%";
+                    iframe.style.height = "500px";
+                    iframe.style.border = "none";
+                    aiCurrentIframe = iframe;
+                    aiVideoContainer.appendChild(iframe);
+                }
+            } else if (videoSrc) {
                 const video = document.createElement("video");
-                video.id = "aiVideoPlayer";
                 video.controls = true;
                 video.autoplay = true;
                 video.preload = "auto";
@@ -635,6 +714,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 source.src = videoSrc;
                 source.type = "video/mp4";
                 video.appendChild(source);
+                aiCurrentVideo = video;
                 aiVideoContainer.appendChild(video);
                 video.load();
                 video.play().catch(function(error) { console.log("Video autoplay failed:", error); });
@@ -644,14 +724,116 @@ document.addEventListener("DOMContentLoaded", function() {
 
         if (closeAiVideo) {
             closeAiVideo.addEventListener("click", function() {
+                if (aiCurrentIframe) aiCurrentIframe.src = "about:blank";
+                if (aiCurrentVideo) {
+                    aiCurrentVideo.pause();
+                    aiCurrentVideo.src = "";
+                    aiCurrentVideo.load();
+                }
                 aiAdvantageVideoModal.style.display = "none";
                 aiVideoContainer.innerHTML = "";
+                aiCurrentVideo = null;
+                aiCurrentIframe = null;
             });
         }
         aiAdvantageVideoModal.addEventListener("click", function(e) {
             if (e.target === aiAdvantageVideoModal) {
+                if (aiCurrentIframe) aiCurrentIframe.src = "about:blank";
+                if (aiCurrentVideo) {
+                    aiCurrentVideo.pause();
+                    aiCurrentVideo.src = "";
+                    aiCurrentVideo.load();
+                }
                 aiAdvantageVideoModal.style.display = "none";
                 aiVideoContainer.innerHTML = "";
+                aiCurrentVideo = null;
+                aiCurrentIframe = null;
+            }
+        });
+    }
+
+    // The System Video Modal
+    const theSystemVideoTrigger = document.getElementById("theSystemVideoTrigger");
+    const theSystemVideoModal = document.getElementById("theSystemVideoModal");
+    const theSystemVideoContainer = document.getElementById("theSystemVideoContainer");
+    const closeTheSystemVideo = document.getElementById("closeTheSystemVideo");
+    let tsCurrentVideo = null;
+    let tsCurrentIframe = null;
+
+    if (theSystemVideoTrigger && theSystemVideoModal) {
+        theSystemVideoTrigger.addEventListener("click", function() {
+            const videoType = theSystemVideoTrigger.getAttribute("data-video-type");
+            const videoSrc = theSystemVideoTrigger.getAttribute("data-video-src");
+            theSystemVideoContainer.innerHTML = "";
+            tsCurrentVideo = null;
+            tsCurrentIframe = null;
+
+            if (videoSrc && videoSrc.trim() !== "" && (videoType === "youtube" || videoSrc.includes("youtube") || videoSrc.includes("youtu.be"))) {
+                let videoId = "";
+                if (videoSrc.includes("youtu.be/")) {
+                    const match = videoSrc.match(/youtu\.be\/([a-zA-Z0-9_-]+)/);
+                    if (match) videoId = match[1];
+                } else if (videoSrc.includes("v=")) {
+                    const match = videoSrc.match(/[?&]v=([^&]+)/);
+                    if (match) videoId = match[1];
+                }
+                if (videoId) {
+                    const iframe = document.createElement("iframe");
+                    iframe.src = "https://www.youtube.com/embed/" + videoId + "?autoplay=1&rel=0";
+                    iframe.allow = "autoplay; encrypted-media; picture-in-picture; web-share";
+                    iframe.referrerPolicy = "strict-origin-when-cross-origin";
+                    iframe.allowFullscreen = true;
+                    iframe.style.width = "100%";
+                    iframe.style.height = "500px";
+                    iframe.style.border = "none";
+                    tsCurrentIframe = iframe;
+                    theSystemVideoContainer.appendChild(iframe);
+                }
+            } else if (videoSrc && videoSrc.trim() !== "") {
+                const video = document.createElement("video");
+                video.controls = true;
+                video.autoplay = true;
+                video.preload = "auto";
+                video.style.width = "100%";
+                video.style.height = "500px";
+                const source = document.createElement("source");
+                source.src = videoSrc;
+                source.type = "video/mp4";
+                video.appendChild(source);
+                tsCurrentVideo = video;
+                theSystemVideoContainer.appendChild(video);
+                video.load();
+                video.play().catch(function(error) { console.log("Video autoplay failed:", error); });
+            }
+            theSystemVideoModal.style.display = "flex";
+        });
+
+        if (closeTheSystemVideo) {
+            closeTheSystemVideo.addEventListener("click", function() {
+                if (tsCurrentIframe) tsCurrentIframe.src = "about:blank";
+                if (tsCurrentVideo) {
+                    tsCurrentVideo.pause();
+                    tsCurrentVideo.src = "";
+                    tsCurrentVideo.load();
+                }
+                theSystemVideoModal.style.display = "none";
+                theSystemVideoContainer.innerHTML = "";
+                tsCurrentVideo = null;
+                tsCurrentIframe = null;
+            });
+        }
+        theSystemVideoModal.addEventListener("click", function(e) {
+            if (e.target === theSystemVideoModal) {
+                if (tsCurrentIframe) tsCurrentIframe.src = "about:blank";
+                if (tsCurrentVideo) {
+                    tsCurrentVideo.pause();
+                    tsCurrentVideo.src = "";
+                    tsCurrentVideo.load();
+                }
+                theSystemVideoModal.style.display = "none";
+                theSystemVideoContainer.innerHTML = "";
+                tsCurrentVideo = null;
+                tsCurrentIframe = null;
             }
         });
     }
@@ -661,32 +843,40 @@ document.addEventListener("DOMContentLoaded", function() {
     const skillTestVideoModal = document.getElementById("skillTestVideoModal");
     const skillTestVideoContainer = document.getElementById("skillTestVideoContainer");
     const closeSkillTestVideo = document.getElementById("closeSkillTestVideo");
+    let stCurrentVideo = null;
+    let stCurrentIframe = null;
 
     if (skillTestVideoTrigger && skillTestVideoModal) {
         skillTestVideoTrigger.addEventListener("click", function() {
             const videoType = skillTestVideoTrigger.getAttribute("data-video-type");
             const videoSrc = skillTestVideoTrigger.getAttribute("data-video-src");
             skillTestVideoContainer.innerHTML = "";
-            if (videoType === "youtube") {
-                let embedUrl = videoSrc;
-                if (videoSrc.includes("youtube.com/watch")) {
+            stCurrentVideo = null;
+            stCurrentIframe = null;
+
+            if (videoSrc && videoSrc.trim() !== "" && (videoType === "youtube" || videoSrc.includes("youtube") || videoSrc.includes("youtu.be"))) {
+                let videoId = "";
+                if (videoSrc.includes("youtu.be/")) {
+                    const match = videoSrc.match(/youtu\.be\/([a-zA-Z0-9_-]+)/);
+                    if (match) videoId = match[1];
+                } else if (videoSrc.includes("v=")) {
                     const match = videoSrc.match(/[?&]v=([^&]+)/);
-                    if (match) {
-                        embedUrl = "https://www.youtube.com/embed/" + match[1];
-                    }
+                    if (match) videoId = match[1];
                 }
-                const iframe = document.createElement("iframe");
-                iframe.id = "skillTestVideoFrame";
-                iframe.src = embedUrl + (embedUrl.includes("?") ? "&" : "?") + "autoplay=1";
-                iframe.allow = "autoplay; encrypted-media";
-                iframe.allowFullscreen = true;
-                iframe.style.width = "100%";
-                iframe.style.height = "500px";
-                iframe.style.border = "none";
-                skillTestVideoContainer.appendChild(iframe);
+                if (videoId) {
+                    const iframe = document.createElement("iframe");
+                    iframe.src = "https://www.youtube.com/embed/" + videoId + "?autoplay=1";
+                    iframe.allow = "autoplay; encrypted-media; picture-in-picture; web-share";
+                    iframe.referrerPolicy = "strict-origin-when-cross-origin";
+                    iframe.allowFullscreen = true;
+                    iframe.style.width = "100%";
+                    iframe.style.height = "500px";
+                    iframe.style.border = "none";
+                    stCurrentIframe = iframe;
+                    skillTestVideoContainer.appendChild(iframe);
+                }
             } else {
                 const video = document.createElement("video");
-                video.id = "skillTestVideoPlayer";
                 video.controls = true;
                 video.autoplay = true;
                 video.preload = "auto";
@@ -696,6 +886,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 source.src = videoSrc;
                 source.type = "video/mp4";
                 video.appendChild(source);
+                stCurrentVideo = video;
                 skillTestVideoContainer.appendChild(video);
                 video.load();
                 video.play().catch(function(error) { console.log("Video autoplay failed:", error); });
@@ -705,14 +896,30 @@ document.addEventListener("DOMContentLoaded", function() {
 
         if (closeSkillTestVideo) {
             closeSkillTestVideo.addEventListener("click", function() {
+                if (stCurrentIframe) stCurrentIframe.src = "about:blank";
+                if (stCurrentVideo) {
+                    stCurrentVideo.pause();
+                    stCurrentVideo.src = "";
+                    stCurrentVideo.load();
+                }
                 skillTestVideoModal.style.display = "none";
                 skillTestVideoContainer.innerHTML = "";
+                stCurrentVideo = null;
+                stCurrentIframe = null;
             });
         }
         skillTestVideoModal.addEventListener("click", function(e) {
             if (e.target === skillTestVideoModal) {
+                if (stCurrentIframe) stCurrentIframe.src = "about:blank";
+                if (stCurrentVideo) {
+                    stCurrentVideo.pause();
+                    stCurrentVideo.src = "";
+                    stCurrentVideo.load();
+                }
                 skillTestVideoModal.style.display = "none";
                 skillTestVideoContainer.innerHTML = "";
+                stCurrentVideo = null;
+                stCurrentIframe = null;
             }
         });
     }
@@ -722,32 +929,40 @@ document.addEventListener("DOMContentLoaded", function() {
     const learningSystemVideoModal = document.getElementById("learningSystemVideoModal");
     const learningSystemVideoContainer = document.getElementById("learningSystemVideoContainer");
     const closeLearningSystemVideo = document.getElementById("closeLearningSystemVideo");
+    let lsCurrentVideo = null;
+    let lsCurrentIframe = null;
 
     if (learningSystemVideoTrigger && learningSystemVideoModal) {
         learningSystemVideoTrigger.addEventListener("click", function() {
             const videoType = learningSystemVideoTrigger.getAttribute("data-video-type");
             const videoSrc = learningSystemVideoTrigger.getAttribute("data-video-src");
             learningSystemVideoContainer.innerHTML = "";
-            if (videoType === "youtube") {
-                let embedUrl = videoSrc;
-                if (videoSrc.includes("youtube.com/watch")) {
+            lsCurrentVideo = null;
+            lsCurrentIframe = null;
+
+            if (videoSrc && videoSrc.trim() !== "" && (videoType === "youtube" || videoSrc.includes("youtube") || videoSrc.includes("youtu.be"))) {
+                let videoId = "";
+                if (videoSrc.includes("youtu.be/")) {
+                    const match = videoSrc.match(/youtu\.be\/([a-zA-Z0-9_-]+)/);
+                    if (match) videoId = match[1];
+                } else if (videoSrc.includes("v=")) {
                     const match = videoSrc.match(/[?&]v=([^&]+)/);
-                    if (match) {
-                        embedUrl = "https://www.youtube.com/embed/" + match[1];
-                    }
+                    if (match) videoId = match[1];
                 }
-                const iframe = document.createElement("iframe");
-                iframe.id = "learningSystemVideoFrame";
-                iframe.src = embedUrl + (embedUrl.includes("?") ? "&" : "?") + "autoplay=1";
-                iframe.allow = "autoplay; encrypted-media";
-                iframe.allowFullscreen = true;
-                iframe.style.width = "100%";
-                iframe.style.height = "500px";
-                iframe.style.border = "none";
-                learningSystemVideoContainer.appendChild(iframe);
+                if (videoId) {
+                    const iframe = document.createElement("iframe");
+                    iframe.src = "https://www.youtube.com/embed/" + videoId + "?autoplay=1";
+                    iframe.allow = "autoplay; encrypted-media; picture-in-picture; web-share";
+                    iframe.referrerPolicy = "strict-origin-when-cross-origin";
+                    iframe.allowFullscreen = true;
+                    iframe.style.width = "100%";
+                    iframe.style.height = "500px";
+                    iframe.style.border = "none";
+                    lsCurrentIframe = iframe;
+                    learningSystemVideoContainer.appendChild(iframe);
+                }
             } else {
                 const video = document.createElement("video");
-                video.id = "learningSystemVideoPlayer";
                 video.controls = true;
                 video.autoplay = true;
                 video.preload = "auto";
@@ -757,6 +972,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 source.src = videoSrc;
                 source.type = "video/mp4";
                 video.appendChild(source);
+                lsCurrentVideo = video;
                 learningSystemVideoContainer.appendChild(video);
                 video.load();
                 video.play().catch(function(error) { console.log("Video autoplay failed:", error); });
@@ -766,14 +982,30 @@ document.addEventListener("DOMContentLoaded", function() {
 
         if (closeLearningSystemVideo) {
             closeLearningSystemVideo.addEventListener("click", function() {
+                if (lsCurrentIframe) lsCurrentIframe.src = "about:blank";
+                if (lsCurrentVideo) {
+                    lsCurrentVideo.pause();
+                    lsCurrentVideo.src = "";
+                    lsCurrentVideo.load();
+                }
                 learningSystemVideoModal.style.display = "none";
                 learningSystemVideoContainer.innerHTML = "";
+                lsCurrentVideo = null;
+                lsCurrentIframe = null;
             });
         }
         learningSystemVideoModal.addEventListener("click", function(e) {
             if (e.target === learningSystemVideoModal) {
+                if (lsCurrentIframe) lsCurrentIframe.src = "about:blank";
+                if (lsCurrentVideo) {
+                    lsCurrentVideo.pause();
+                    lsCurrentVideo.src = "";
+                    lsCurrentVideo.load();
+                }
                 learningSystemVideoModal.style.display = "none";
                 learningSystemVideoContainer.innerHTML = "";
+                lsCurrentVideo = null;
+                lsCurrentIframe = null;
             }
         });
     }
@@ -783,32 +1015,40 @@ document.addEventListener("DOMContentLoaded", function() {
     const careerRoadmapVideoModal = document.getElementById("careerRoadmapVideoModal");
     const careerRoadmapVideoContainer = document.getElementById("careerRoadmapVideoContainer");
     const closeCareerRoadmapVideo = document.getElementById("closeCareerRoadmapVideo");
+    let crCurrentVideo = null;
+    let crCurrentIframe = null;
 
     if (careerRoadmapVideoTrigger && careerRoadmapVideoModal) {
         careerRoadmapVideoTrigger.addEventListener("click", function() {
             const videoType = careerRoadmapVideoTrigger.getAttribute("data-video-type");
             const videoSrc = careerRoadmapVideoTrigger.getAttribute("data-video-src");
             careerRoadmapVideoContainer.innerHTML = "";
-            if (videoType === "youtube") {
-                let embedUrl = videoSrc;
-                if (videoSrc.includes("youtube.com/watch")) {
+            crCurrentVideo = null;
+            crCurrentIframe = null;
+
+            if (videoSrc && videoSrc.trim() !== "" && (videoType === "youtube" || videoSrc.includes("youtube") || videoSrc.includes("youtu.be"))) {
+                let videoId = "";
+                if (videoSrc.includes("youtu.be/")) {
+                    const match = videoSrc.match(/youtu\.be\/([a-zA-Z0-9_-]+)/);
+                    if (match) videoId = match[1];
+                } else if (videoSrc.includes("v=")) {
                     const match = videoSrc.match(/[?&]v=([^&]+)/);
-                    if (match) {
-                        embedUrl = "https://www.youtube.com/embed/" + match[1];
-                    }
+                    if (match) videoId = match[1];
                 }
-                const iframe = document.createElement("iframe");
-                iframe.id = "careerRoadmapVideoFrame";
-                iframe.src = embedUrl + (embedUrl.includes("?") ? "&" : "?") + "autoplay=1";
-                iframe.allow = "autoplay; encrypted-media";
-                iframe.allowFullscreen = true;
-                iframe.style.width = "100%";
-                iframe.style.height = "500px";
-                iframe.style.border = "none";
-                careerRoadmapVideoContainer.appendChild(iframe);
+                if (videoId) {
+                    const iframe = document.createElement("iframe");
+                    iframe.src = "https://www.youtube.com/embed/" + videoId + "?autoplay=1";
+                    iframe.allow = "autoplay; encrypted-media; picture-in-picture; web-share";
+                    iframe.referrerPolicy = "strict-origin-when-cross-origin";
+                    iframe.allowFullscreen = true;
+                    iframe.style.width = "100%";
+                    iframe.style.height = "500px";
+                    iframe.style.border = "none";
+                    crCurrentIframe = iframe;
+                    careerRoadmapVideoContainer.appendChild(iframe);
+                }
             } else {
                 const video = document.createElement("video");
-                video.id = "careerRoadmapVideoPlayer";
                 video.controls = true;
                 video.autoplay = true;
                 video.preload = "auto";
@@ -818,6 +1058,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 source.src = videoSrc;
                 source.type = "video/mp4";
                 video.appendChild(source);
+                crCurrentVideo = video;
                 careerRoadmapVideoContainer.appendChild(video);
                 video.load();
                 video.play().catch(function(error) { console.log("Video autoplay failed:", error); });
@@ -827,14 +1068,30 @@ document.addEventListener("DOMContentLoaded", function() {
 
         if (closeCareerRoadmapVideo) {
             closeCareerRoadmapVideo.addEventListener("click", function() {
+                if (crCurrentIframe) crCurrentIframe.src = "about:blank";
+                if (crCurrentVideo) {
+                    crCurrentVideo.pause();
+                    crCurrentVideo.src = "";
+                    crCurrentVideo.load();
+                }
                 careerRoadmapVideoModal.style.display = "none";
                 careerRoadmapVideoContainer.innerHTML = "";
+                crCurrentVideo = null;
+                crCurrentIframe = null;
             });
         }
         careerRoadmapVideoModal.addEventListener("click", function(e) {
             if (e.target === careerRoadmapVideoModal) {
+                if (crCurrentIframe) crCurrentIframe.src = "about:blank";
+                if (crCurrentVideo) {
+                    crCurrentVideo.pause();
+                    crCurrentVideo.src = "";
+                    crCurrentVideo.load();
+                }
                 careerRoadmapVideoModal.style.display = "none";
                 careerRoadmapVideoContainer.innerHTML = "";
+                crCurrentVideo = null;
+                crCurrentIframe = null;
             }
         });
     }
@@ -844,32 +1101,40 @@ document.addEventListener("DOMContentLoaded", function() {
     const careerCapsulesVideoModal = document.getElementById("careerCapsulesVideoModal");
     const careerCapsulesVideoContainer = document.getElementById("careerCapsulesVideoContainer");
     const closeCareerCapsulesVideo = document.getElementById("closeCareerCapsulesVideo");
+    let ccCurrentVideo = null;
+    let ccCurrentIframe = null;
 
     if (careerCapsulesVideoTrigger && careerCapsulesVideoModal) {
         careerCapsulesVideoTrigger.addEventListener("click", function() {
             const videoType = careerCapsulesVideoTrigger.getAttribute("data-video-type");
             const videoSrc = careerCapsulesVideoTrigger.getAttribute("data-video-src");
             careerCapsulesVideoContainer.innerHTML = "";
-            if (videoType === "youtube") {
-                let embedUrl = videoSrc;
-                if (videoSrc.includes("youtube.com/watch")) {
+            ccCurrentVideo = null;
+            ccCurrentIframe = null;
+
+            if (videoSrc && videoSrc.trim() !== "" && (videoType === "youtube" || videoSrc.includes("youtube") || videoSrc.includes("youtu.be"))) {
+                let videoId = "";
+                if (videoSrc.includes("youtu.be/")) {
+                    const match = videoSrc.match(/youtu\.be\/([a-zA-Z0-9_-]+)/);
+                    if (match) videoId = match[1];
+                } else if (videoSrc.includes("v=")) {
                     const match = videoSrc.match(/[?&]v=([^&]+)/);
-                    if (match) {
-                        embedUrl = "https://www.youtube.com/embed/" + match[1];
-                    }
+                    if (match) videoId = match[1];
                 }
-                const iframe = document.createElement("iframe");
-                iframe.id = "careerCapsulesVideoFrame";
-                iframe.src = embedUrl + (embedUrl.includes("?") ? "&" : "?") + "autoplay=1";
-                iframe.allow = "autoplay; encrypted-media";
-                iframe.allowFullscreen = true;
-                iframe.style.width = "100%";
-                iframe.style.height = "500px";
-                iframe.style.border = "none";
-                careerCapsulesVideoContainer.appendChild(iframe);
+                if (videoId) {
+                    const iframe = document.createElement("iframe");
+                    iframe.src = "https://www.youtube.com/embed/" + videoId + "?autoplay=1";
+                    iframe.allow = "autoplay; encrypted-media; picture-in-picture; web-share";
+                    iframe.referrerPolicy = "strict-origin-when-cross-origin";
+                    iframe.allowFullscreen = true;
+                    iframe.style.width = "100%";
+                    iframe.style.height = "500px";
+                    iframe.style.border = "none";
+                    ccCurrentIframe = iframe;
+                    careerCapsulesVideoContainer.appendChild(iframe);
+                }
             } else {
                 const video = document.createElement("video");
-                video.id = "careerCapsulesVideoPlayer";
                 video.controls = true;
                 video.autoplay = true;
                 video.preload = "auto";
@@ -879,6 +1144,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 source.src = videoSrc;
                 source.type = "video/mp4";
                 video.appendChild(source);
+                ccCurrentVideo = video;
                 careerCapsulesVideoContainer.appendChild(video);
                 video.load();
                 video.play().catch(function(error) { console.log("Video autoplay failed:", error); });
@@ -888,14 +1154,119 @@ document.addEventListener("DOMContentLoaded", function() {
 
         if (closeCareerCapsulesVideo) {
             closeCareerCapsulesVideo.addEventListener("click", function() {
+                if (ccCurrentIframe) ccCurrentIframe.src = "about:blank";
+                if (ccCurrentVideo) {
+                    ccCurrentVideo.pause();
+                    ccCurrentVideo.src = "";
+                    ccCurrentVideo.load();
+                }
                 careerCapsulesVideoModal.style.display = "none";
                 careerCapsulesVideoContainer.innerHTML = "";
+                ccCurrentVideo = null;
+                ccCurrentIframe = null;
             });
         }
         careerCapsulesVideoModal.addEventListener("click", function(e) {
             if (e.target === careerCapsulesVideoModal) {
+                if (ccCurrentIframe) ccCurrentIframe.src = "about:blank";
+                if (ccCurrentVideo) {
+                    ccCurrentVideo.pause();
+                    ccCurrentVideo.src = "";
+                    ccCurrentVideo.load();
+                }
                 careerCapsulesVideoModal.style.display = "none";
                 careerCapsulesVideoContainer.innerHTML = "";
+                ccCurrentVideo = null;
+                ccCurrentIframe = null;
+            }
+        });
+    }
+
+    // Ready for Test Video Modal
+    const readyForTestVideoTrigger = document.getElementById("readyForTestVideoTrigger");
+    const readyForTestVideoModal = document.getElementById("readyForTestVideoModal");
+    const readyForTestVideoContainer = document.getElementById("readyForTestVideoContainer");
+    const closeReadyForTestVideo = document.getElementById("closeReadyForTestVideo");
+    let rfCurrentVideo = null;
+    let rfCurrentIframe = null;
+
+if (readyForTestVideoTrigger && readyForTestVideoModal) {
+        readyForTestVideoTrigger.addEventListener("click", function() {
+            const videoType = readyForTestVideoTrigger.getAttribute("data-video-type");
+            const videoSrc = readyForTestVideoTrigger.getAttribute("data-video-src");
+            
+            readyForTestVideoContainer.innerHTML = "";
+            rfCurrentVideo = null;
+            rfCurrentIframe = null;
+
+            if (videoSrc && videoSrc.trim() !== "" && (videoType === "youtube" || videoSrc.includes("youtube") || videoSrc.includes("youtu.be"))) {
+                let videoId = "";
+                if (videoSrc.includes("youtu.be/")) {
+                    const match = videoSrc.match(/youtu\.be\/([a-zA-Z0-9_-]+)/);
+                    if (match) videoId = match[1];
+                } else if (videoSrc.includes("v=")) {
+                    const match = videoSrc.match(/[?&]v=([^&]+)/);
+                    if (match) videoId = match[1];
+                }
+                if (videoId) {
+                    const iframe = document.createElement("iframe");
+                    iframe.src = "https://www.youtube.com/embed/" + videoId + "?autoplay=1";
+                    iframe.allow = "autoplay; encrypted-media; picture-in-picture; web-share";
+                    iframe.referrerPolicy = "strict-origin-when-cross-origin";
+                    iframe.allowFullscreen = true;
+                    iframe.style.width = "100%";
+                    iframe.style.height = "500px";
+                    iframe.style.border = "none";
+                    rfCurrentIframe = iframe;
+                    readyForTestVideoContainer.appendChild(iframe);
+                }
+            } else if (videoSrc && videoSrc.trim() !== "") {
+                const video = document.createElement("video");
+                video.controls = true;
+                video.autoplay = true;
+                video.preload = "auto";
+                video.style.width = "100%";
+                video.style.height = "500px";
+                const source = document.createElement("source");
+                source.src = videoSrc;
+                source.type = "video/mp4";
+                video.appendChild(source);
+                rfCurrentVideo = video;
+                readyForTestVideoContainer.appendChild(video);
+                video.load();
+                video.play().catch(function(error) { console.log("Video autoplay failed:", error); });
+            } else {
+                readyForTestVideoContainer.innerHTML = '<div style="color:#B8A898;padding:40px;text-align:center;"><p>No video configured yet</p><p style="font-size:14px;color:#888;">Add a YouTube URL or upload a video in admin</p></div>';
+            }
+            readyForTestVideoModal.style.display = "flex";
+        });
+
+        if (closeReadyForTestVideo) {
+            closeReadyForTestVideo.addEventListener("click", function() {
+                if (rfCurrentIframe) rfCurrentIframe.src = "about:blank";
+                if (rfCurrentVideo) {
+                    rfCurrentVideo.pause();
+                    rfCurrentVideo.src = "";
+                    rfCurrentVideo.load();
+                }
+                readyForTestVideoModal.style.display = "none";
+                readyForTestVideoContainer.innerHTML = "";
+                rfCurrentVideo = null;
+                rfCurrentIframe = null;
+            });
+        }
+        readyForTestVideoModal.addEventListener("click", function(e) {
+            if (e.target === readyForTestVideoModal) {
+                if (rfCurrentIframe) rfCurrentIframe.src = "about:blank";
+                if (rfCurrentVideo) {
+                    rfCurrentVideo.pause();
+                    rfCurrentVideo.src = "";
+                    rfCurrentVideo.load();
+                }
+                readyForTestVideoModal.style.display = "none";
+                readyForTestVideoContainer.innerHTML = "";
+                rfCurrentVideo = null;
+                rfCurrentIframe = null;
             }
         });
     }
@@ -905,6 +1276,8 @@ document.addEventListener("DOMContentLoaded", function() {
     const languageBarrierVideoModal = document.getElementById("languageBarrierVideoModal");
     const languageBarrierVideoContainer = document.getElementById("languageBarrierVideoContainer");
     const closeLanguageBarrierVideo = document.getElementById("closeLanguageBarrierVideo");
+    let lbCurrentVideo = null;
+    let lbCurrentIframe = null;
 
     console.log("Career path buttons found:", careerPathButtons.length);
     console.log("Modal found:", !!languageBarrierVideoModal);
@@ -927,27 +1300,32 @@ document.addEventListener("DOMContentLoaded", function() {
             }
             
             languageBarrierVideoContainer.innerHTML = "";
+            lbCurrentVideo = null;
+            lbCurrentIframe = null;
             
-            if (videoType === "youtube" || videoSrc.includes("youtube.com")) {
-                let embedUrl = videoSrc;
-                if (videoSrc.includes("youtube.com/watch")) {
+            if (videoSrc && videoSrc.trim() !== "" && (videoType === "youtube" || videoSrc.includes("youtube") || videoSrc.includes("youtu.be"))) {
+                let videoId = "";
+                if (videoSrc.includes("youtu.be/")) {
+                    const match = videoSrc.match(/youtu\.be\/([a-zA-Z0-9_-]+)/);
+                    if (match) videoId = match[1];
+                } else if (videoSrc.includes("v=")) {
                     const match = videoSrc.match(/[?&]v=([^&]+)/);
-                    if (match) {
-                        embedUrl = "https://www.youtube.com/embed/" + match[1];
-                    }
+                    if (match) videoId = match[1];
                 }
-                const iframe = document.createElement("iframe");
-                iframe.id = "languageBarrierVideoFrame";
-                iframe.src = embedUrl + (embedUrl.includes("?") ? "&" : "?") + "autoplay=1";
-                iframe.allow = "autoplay; encrypted-media";
-                iframe.allowFullscreen = true;
-                iframe.style.width = "100%";
-                iframe.style.height = "500px";
-                iframe.style.border = "none";
-                languageBarrierVideoContainer.appendChild(iframe);
+                if (videoId) {
+                    const iframe = document.createElement("iframe");
+                    iframe.src = "https://www.youtube.com/embed/" + videoId + "?autoplay=1";
+                    iframe.allow = "autoplay; encrypted-media; picture-in-picture; web-share";
+                    iframe.referrerPolicy = "strict-origin-when-cross-origin";
+                    iframe.allowFullscreen = true;
+                    iframe.style.width = "100%";
+                    iframe.style.height = "500px";
+                    iframe.style.border = "none";
+                    lbCurrentIframe = iframe;
+                    languageBarrierVideoContainer.appendChild(iframe);
+                }
             } else {
                 const video = document.createElement("video");
-                video.id = "languageBarrierVideoPlayer";
                 video.controls = true;
                 video.autoplay = true;
                 video.preload = "auto";
@@ -957,6 +1335,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 source.src = videoSrc;
                 source.type = "video/mp4";
                 video.appendChild(source);
+                lbCurrentVideo = video;
                 languageBarrierVideoContainer.appendChild(video);
                 video.load();
                 video.play().catch(function(error) { console.log("Video autoplay failed:", error); });
@@ -967,17 +1346,138 @@ document.addEventListener("DOMContentLoaded", function() {
 
     if (closeLanguageBarrierVideo) {
         closeLanguageBarrierVideo.addEventListener("click", function() {
+            if (lbCurrentIframe) lbCurrentIframe.src = "about:blank";
+            if (lbCurrentVideo) {
+                lbCurrentVideo.pause();
+                lbCurrentVideo.src = "";
+                lbCurrentVideo.load();
+            }
             languageBarrierVideoModal.style.display = "none";
             languageBarrierVideoContainer.innerHTML = "";
+            lbCurrentVideo = null;
+            lbCurrentIframe = null;
         });
     }
     
     languageBarrierVideoModal.addEventListener("click", function(e) {
         if (e.target === languageBarrierVideoModal) {
+            if (lbCurrentIframe) lbCurrentIframe.src = "about:blank";
+            if (lbCurrentVideo) {
+                lbCurrentVideo.pause();
+                lbCurrentVideo.src = "";
+                lbCurrentVideo.load();
+            }
             languageBarrierVideoModal.style.display = "none";
             languageBarrierVideoContainer.innerHTML = "";
+            lbCurrentVideo = null;
+            lbCurrentIframe = null;
         }
     });
+
+    // A4 Thumbnail Preview Buttons
+    const previewButtons = document.querySelectorAll(".preview-btn");
+    const testBeforeTrustVideoModal = document.getElementById("testBeforeTrustVideoModal");
+    const testBeforeTrustVideoContainer = document.getElementById("testBeforeTrustVideoContainer");
+    const closeTestBeforeTrustVideo = document.getElementById("closeTestBeforeTrustVideo");
+    let tbCurrentVideo = null;
+    let tbCurrentIframe = null;
+
+    console.log("Preview buttons found:", previewButtons.length);
+    console.log("A4 Modal found:", !!testBeforeTrustVideoModal);
+    console.log("A4 Container found:", !!testBeforeTrustVideoContainer);
+
+    previewButtons.forEach(function(btn) {
+        btn.addEventListener("click", function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log("Preview button clicked");
+            console.log("Video type:", btn.getAttribute("data-video-type"));
+            console.log("Video src:", btn.getAttribute("data-video-src"));
+            
+            const videoType = btn.getAttribute("data-video-type");
+            const videoSrc = btn.getAttribute("data-video-src");
+            
+            if (!videoSrc || videoSrc.trim() === "") {
+                alert("Please add a video URL in admin for this preview");
+                return;
+            }
+            
+            testBeforeTrustVideoContainer.innerHTML = "";
+            tbCurrentVideo = null;
+            tbCurrentIframe = null;
+            
+            if (videoSrc && videoSrc.trim() !== "" && (videoType === "youtube" || videoSrc.includes("youtube") || videoSrc.includes("youtu.be"))) {
+                let videoId = "";
+                if (videoSrc.includes("youtu.be/")) {
+                    const match = videoSrc.match(/youtu\.be\/([a-zA-Z0-9_-]+)/);
+                    if (match) videoId = match[1];
+                } else if (videoSrc.includes("v=")) {
+                    const match = videoSrc.match(/[?&]v=([^&]+)/);
+                    if (match) videoId = match[1];
+                }
+                if (videoId) {
+                    const iframe = document.createElement("iframe");
+                    iframe.src = "https://www.youtube.com/embed/" + videoId + "?autoplay=1";
+                    iframe.allow = "autoplay; encrypted-media; picture-in-picture; web-share";
+                    iframe.referrerPolicy = "strict-origin-when-cross-origin";
+                    iframe.allowFullscreen = true;
+                    iframe.style.width = "100%";
+                    iframe.style.height = "500px";
+                    iframe.style.border = "none";
+                    tbCurrentIframe = iframe;
+                    testBeforeTrustVideoContainer.appendChild(iframe);
+                }
+            } else {
+                const video = document.createElement("video");
+                video.controls = true;
+                video.autoplay = true;
+                video.preload = "auto";
+                video.style.width = "100%";
+                video.style.height = "500px";
+                const source = document.createElement("source");
+                source.src = videoSrc;
+                source.type = "video/mp4";
+                video.appendChild(source);
+                tbCurrentVideo = video;
+                testBeforeTrustVideoContainer.appendChild(video);
+                video.load();
+                video.play().catch(function(error) { console.log("Video autoplay failed:", error); });
+            }
+            testBeforeTrustVideoModal.style.display = "flex";
+        });
+    });
+
+    if (closeTestBeforeTrustVideo) {
+        closeTestBeforeTrustVideo.addEventListener("click", function() {
+            if (tbCurrentIframe) tbCurrentIframe.src = "about:blank";
+            if (tbCurrentVideo) {
+                tbCurrentVideo.pause();
+                tbCurrentVideo.src = "";
+                tbCurrentVideo.load();
+            }
+            testBeforeTrustVideoModal.style.display = "none";
+            testBeforeTrustVideoContainer.innerHTML = "";
+            tbCurrentVideo = null;
+            tbCurrentIframe = null;
+        });
+    }
+    
+    if (testBeforeTrustVideoModal) {
+        testBeforeTrustVideoModal.addEventListener("click", function(e) {
+            if (e.target === testBeforeTrustVideoModal) {
+                if (tbCurrentIframe) tbCurrentIframe.src = "about:blank";
+                if (tbCurrentVideo) {
+                    tbCurrentVideo.pause();
+                    tbCurrentVideo.src = "";
+                    tbCurrentVideo.load();
+                }
+                testBeforeTrustVideoModal.style.display = "none";
+                testBeforeTrustVideoContainer.innerHTML = "";
+                tbCurrentVideo = null;
+                tbCurrentIframe = null;
+            }
+        });
+    }
 });
 </script>
 {% endblock %}

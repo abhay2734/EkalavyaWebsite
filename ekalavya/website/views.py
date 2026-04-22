@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import HeroImage, HomeVideo, FunnelStep, AIAdvantagePage, SkillTestPage, LearningSystemPage, CareerRoadmapPage, CareerCapsulesPage, LanguageBarrierPage, ReadyForTestPage, TestBeforeTrustPage
+from .models import HeroImage, HomeVideo, FunnelStep, AIAdvantagePage, TheSystemPage, SkillTestPage, LearningSystemPage, CareerRoadmapPage, CareerCapsulesPage, LanguageBarrierPage, ReadyForTestPage, TestBeforeTrustPage
 
 
 def home(request):
@@ -8,6 +8,7 @@ def home(request):
     funnel_steps = FunnelStep.objects.filter(active=True).order_by("order")
 
     ai_advantage_page = AIAdvantagePage.objects.filter(active=True).first()
+    the_system_page = TheSystemPage.objects.filter(active=True).first()
     skill_test_page = SkillTestPage.objects.filter(active=True).first()
     learning_system_page = LearningSystemPage.objects.filter(active=True).first()
     career_roadmap_page = CareerRoadmapPage.objects.filter(active=True).first()
@@ -21,6 +22,7 @@ def home(request):
         "video": video,
         "funnel_steps": funnel_steps,
         "ai_advantage_page": ai_advantage_page,
+        "the_system_page": the_system_page,
         "skill_test_page": skill_test_page,
         "learning_system_page": learning_system_page,
         "career_roadmap_page": career_roadmap_page,

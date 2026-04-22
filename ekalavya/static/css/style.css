@@ -170,18 +170,29 @@ body {
 /* HERO IMAGE */
 .hero-image {
     width: 100%;
-    height: 500px; /* Thinner height */
+    height: auto;
+    max-height: 500px;
     object-fit: contain; /* Show full image without cropping */
     object-position: center;
-    background-color: #3B2F2F; /* Match site background to avoid black spaces */
+    background-color: #3B2F2F;
 }
 
 /* Hero mobile */
 @media (max-width: 576px) {
+    .hero-wrapper {
+        padding: 8px;
+    }
+    
+    .hero-container {
+        border-radius: 12px;
+    }
+    
     .hero-image {
-        height: 250px;
-        object-fit: contain;
-        background-color: #3B2F2F;
+        width: 100%;
+        height: auto;
+        max-height: 180px;
+        object-fit: fill;
+        object-position: center;
     }
 }
 
@@ -275,6 +286,11 @@ body {
     box-shadow: 0 0 80px rgba(230, 169, 60, 0.5);
 }
 
+.video-card:active,
+.ai-video-thumbnail:active {
+    transform: scale(0.98);
+}
+
 /* VIDEO THUMB - Fill container */
 .video-thumb,
 .ai-video-thumbnail img {
@@ -348,6 +364,89 @@ body {
     transform: translate(-50%, -50%) scale(1.1);
 }
 
+/* PREVIEW BUTTONS FOR A4 THUMBNAIL */
+.preview-btn {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 35px;
+    background: #e53935;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.preview-btn .preview-btn-text {
+    color: white;
+    font-size: 11px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.preview-btn-left {
+    top: 72%;
+    left: 22%;
+}
+
+.preview-btn-center {
+    top: 72%;
+    left: 50%;
+}
+
+.preview-btn-right {
+    top: 72%;
+    left: 78%;
+}
+
+.video-card-a4:hover .preview-btn {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.1);
+    box-shadow: 0 4px 20px rgba(229, 57, 53, 0.5);
+}
+
+.preview-btn:hover {
+    background: #d32f2f;
+    transform: translate(-50%, -50%) scale(1.15);
+    box-shadow: 0 6px 25px rgba(229, 57, 53, 0.6);
+}
+
+.preview-btn:active {
+    transform: translate(-50%, -50%) scale(1.05);
+}
+
+@media (max-width: 768px) {
+    .preview-btn-left {
+        top: 85%;
+        left: 22%;
+    }
+    
+    .preview-btn-center {
+        top: 85%;
+        left: 50%;
+    }
+    
+    .preview-btn-right {
+        top: 85%;
+        left: 78%;
+    }
+    
+    .preview-btn {
+        width: 70px;
+        height: 30px;
+    }
+    
+    .preview-btn .preview-btn-text {
+        font-size: 10px;
+    }
+}
+
 /* CAREER PATHS IMAGE WRAPPER */
 .career-paths-image-wrapper {
     position: relative;
@@ -364,72 +463,94 @@ body {
     display: block;
 }
 
-/* CAREER PATH BUTTONS */
+/* CAREER PATH BUTTONS - Rectangle shaped, appear on hover */
 .career-path-btn {
     position: absolute;
     transform: translate(-50%, -50%);
-    width: 150px;
-    height: 35px;
-    background: transparent;
+    width: 130px;
+    height: 40px;
+    background: #e53935;
     border: none;
-    border-radius: 8px;
+    border-radius: 6px;
     cursor: pointer;
-    color: transparent;
-    font-size: 14px;
-    font-weight: bold;
     transition: all 0.3s ease;
     z-index: 10;
     display: flex;
     align-items: center;
     justify-content: center;
+    opacity: 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.career-path-btn::before {
+    content: "";
+    width: 0;
+    height: 0;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-left: 12px solid white;
+    margin-right: 8px;
+    display: block;
 }
 
 .career-path-btn .btn-text {
-    color: transparent;
-    transition: all 0.3s ease;
-}
-
-.career-path-btn:hover {
-    transform: translate(-50%, -50%) scale(1.15);
-    background: rgba(220, 53, 69, 0.95);
-    box-shadow: 0 0 25px rgba(220, 53, 69, 0.9), 0 0 50px rgba(220, 53, 69, 0.5);
-    border-radius: 10px;
-}
-
-.career-path-btn:hover .btn-text {
     color: white;
+    font-size: 11px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+/* Show buttons on hover */
+.career-paths-image-wrapper:hover .career-path-btn {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.1);
+    box-shadow: 0 4px 20px rgba(229, 57, 53, 0.5);
 }
 
 .career-path-btn:hover {
-    transform: translate(-50%, -50%) scale(1.1);
-    background: linear-gradient(135deg, #E6A93C, #FFB347);
-    box-shadow: 0 6px 25px rgba(230, 169, 60, 0.6);
+    background: #d32f2f;
+    transform: translate(-50%, -50%) scale(1.15);
+    box-shadow: 0 6px 25px rgba(229, 57, 53, 0.6);
+}
+
+.career-path-btn:active {
+    transform: translate(-50%, -50%) scale(1.05);
 }
 
 .career-path-btn-left {
-    top: 80%;
-    left: 20%;
+    top: 78%;
+    left: 22%;
 }
 
 .career-path-btn-center {
-    top: 80%;
+    top: 78%;
     left: 50%;
 }
 
 .career-path-btn-right {
-    top: 80%;
-    left: 80%;
+    top: 78%;
+    left: 78%;
 }
 
 /* Responsive adjustment */
 @media (max-width: 768px) {
     .career-path-btn {
-        width: 80px;
-        height: 25px;
+        width: 100px;
+        height: 35px;
+    }
+    
+    .career-path-btn .btn-text {
+        font-size: 10px;
+    }
+    
+    .career-path-btn::before {
+        border-left-width: 10px;
+        border-top: 7px solid transparent;
+        border-bottom: 7px solid transparent;
     }
     
     .career-path-btn-left {
-        left: 18%;
+        left: 20%;
     }
     
     .career-path-btn-center {
@@ -437,7 +558,7 @@ body {
     }
     
     .career-path-btn-right {
-        left: 82%;
+        left: 80%;
     }
 }
 
@@ -467,6 +588,53 @@ body {
     background: transparent;
     color: transparent;
     transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* RED PLAY BUTTON - IT Aspirant / Career Roadmap Section - YouTube Style */
+.play-button-red {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 80px;
+    background: rgba(220, 20, 60, 0.95);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 1;
+    transition: all 0.3s ease;
+    z-index: 20;
+    border: none;
+    -webkit-tap-highlight-color: transparent;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.play-button-red::before {
+    content: "";
+    width: 0;
+    height: 0;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-left: 24px solid #fff;
+    margin-left: 6px;
+}
+
+.play-button-red:hover {
+    background: rgba(220, 20, 60, 1);
+    transform: translate(-50%, -50%) scale(1.1);
+    box-shadow: 0 8px 30px rgba(220, 20, 60, 0.6);
+}
+
+.play-button-red:active {
+    transform: translate(-50%, -50%) scale(0.95);
+}
+
+.video-card:hover .play-button-red,
+.video-card:active .play-button-red {
+    opacity: 1;
 }
 
 /* VIDEO MODAL */
@@ -508,6 +676,23 @@ body {
     justify-content: center;
 }
 
+/* All section video containers - same as #videoContainer */
+#aiVideoContainer,
+#theSystemVideoContainer,
+#skillTestVideoContainer,
+#learningSystemVideoContainer,
+#careerRoadmapVideoContainer,
+#careerCapsulesVideoContainer,
+#languageBarrierVideoContainer,
+#readyForTestVideoContainer,
+#testBeforeTrustVideoContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 /* VIDEO CONTAINER - Ensure video is visible */
 #videoContainer video,
 #videoContainer iframe {
@@ -517,8 +702,9 @@ body {
 
 /* VIDEO MODAL CONTENT */
 .video-modal-content {
-    width: 80%;
+    width: 90%;
     max-width: 1000px;
+    max-height: 85vh;
     position: relative;
     display: flex;
     align-items: center;
@@ -529,6 +715,7 @@ body {
 .video-modal iframe {
     width: 100%;
     height: 500px;
+    max-height: 70vh;
     border: 2px solid #E6A93C;
     border-radius: 10px;
     background: #000;
@@ -2205,6 +2392,55 @@ body {
         height: 60px;
         font-size: 22px;
     }
+    
+    /* MOBILE VIDEO CARD - keep original size, no zoom */
+    .video-card,
+    .ai-video-thumbnail {
+        width: 90% !important;
+        max-width: 300px;
+        height: auto !important;
+        border-radius: 12px;
+        margin: 0 auto;
+    }
+    
+    .video-thumb,
+    .ai-video-thumbnail img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+    
+    .play-button-red {
+        width: 50px;
+        height: 50px;
+        opacity: 0.85;
+    }
+    
+    .play-button-red::before {
+        border-top: 8px solid transparent;
+        border-bottom: 8px solid transparent;
+        border-left: 12px solid #fff;
+    }
+    
+    .video-card-a4 {
+        width: 100% !important;
+        max-width: 100%;
+        height: auto;
+        border-radius: 12px;
+    }
+    
+    .video-card-a4 .video-thumb-a4 {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+    
+    .play-button-a4 {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+        opacity: 0.9;
+    }
 }
 
 /* Small mobile */
@@ -2352,6 +2588,19 @@ body {
     .video-modal video {
         height: 250px;
         max-height: 60vh;
+    }
+    
+    /* All section video containers */
+    #aiVideoContainer,
+    #theSystemVideoContainer,
+    #skillTestVideoContainer,
+    #learningSystemVideoContainer,
+    #careerRoadmapVideoContainer,
+    #careerCapsulesVideoContainer,
+    #languageBarrierVideoContainer,
+    #readyForTestVideoContainer,
+    #testBeforeTrustVideoContainer {
+        height: auto;
     }
     
     .close-video {
