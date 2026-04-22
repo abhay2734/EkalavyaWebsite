@@ -10,3 +10,4 @@ staticfiles/
 .env
 .DS_Store
 *.egg-info/
+nul
