@@ -3,162 +3,981 @@
 
 {% block content %}
 
-<!-- HERO SLIDER -->
+<!-- HERO SECTION -->
 
-<div class="hero-wrapper">
+<section class="hero-wrapper" id="hero">
+    <div class="hero-container">
+        {% if hero_image %}
+        <div class="hero-slide active">
+            {% if hero_image.image %}<img src="{{ hero_image.image.url }}" class="hero-image" alt="{{ hero_image }}">{% endif %}
+            <div class="hero-overlay"></div>
+        </div>
+        {% else %}
+        <div class="hero-slide active">
+            <img src="{% static 'images/default-hero.jpg' %}" class="hero-image" alt="Default Hero">
+            <div class="hero-overlay"></div>
+        </div>
+        {% endif %}
+    </div>
+</section>
 
-<div class="hero-container">
-
-{% for slide in sliders %}
-
-<div class="hero-slide {% if forloop.first %}active{% endif %}">
-
-<img src="{{ slide.image.url }}" class="hero-image">
-
-<div class="hero-overlay"></div>
-
-</div>
-
-{% endfor %}
-
-<button class="hero-arrow left" id="prevSlide">&#10094;</button>
-<button class="hero-arrow right" id="nextSlide">&#10095;</button>
-
-<div class="hero-indicators">
-
-{% for slide in sliders %}
-
-<span class="indicator {% if forloop.first %}active{% endif %}" data-index="{{ forloop.counter0 }}"></span>
-
-{% endfor %}
-
-</div>
-
-</div>
-
-</div>
-
-<!-- HERO CTA SECTION (Below Slider) -->
+<!-- HERO CTA SECTION -->
 <div class="hero-cta-section">
-<div class="container">
-<a href="#intro-video" class="hero-cta-button">
-▶ Before You Start IT Career — Watch This (3 Min)
-</a>
-<p class="hero-micro-text">This 3-minute video may save your 1–2 years of confusion.</p>
-</div>
+    <div class="container">
+        <a href="#intro-video" class="hero-cta-button">
+            ▶ Before You Start IT Career — Watch This (3 Min)
+        </a>
+        <p class="hero-micro-text">This 3-minute video may save your 1–2 years of confusion.</p>
+    </div>
 </div>
 
 <!-- POWER LINE -->
 <p class="power-line">Don't start preparation blindly… Start with clarity.</p>
 
-
 <!-- VIDEO SECTION -->
-
 <section class="video-section" id="intro-video">
-
-<div class="container">
-
-<p class="video-hook">Most students are preparing in the WRONG way… without realizing it.</p>
-
-<h2 class="video-title">5 Shocking Truths Every IT Aspirant Must Know</h2>
-
-<div class="video-divider"></div>
-
-<p class="video-subtitle">
-Discover how Ekalavya Universys transforms your career
-</p>
-
-
-{% if video %}
-<div class="video-card" id="videoTrigger">
-
-<img src="{{ video.thumbnail.url }}" class="video-thumb">
-
-<div class="video-overlay"></div>
-
-<div class="play-button">▶</div>
-
-</div>
-{% else %}
-<div class="video-card">
-<p style="color: #B8A898; padding: 40px;">Video coming soon...</p>
-</div>
-{% endif %}
-
-</div>
-
+    <div class="container">
+        <p class="video-hook">Most students are preparing in the WRONG way… without realizing it.</p>
+        <h2 class="video-title">Before You Start AI</h2>
+        <div class="video-divider"></div>
+        <p class="video-subtitle">Discover how Ekalavya Universys transforms your career</p>
+        {% if video %}
+        <div class="video-card" id="homeVideoTrigger"
+            data-video-type="{{ video.video_type }}"
+            data-video-src="{% if video.video_type == 'youtube' %}{{ video.youtube_url }}{% elif video.uploaded_video %}{{ video.uploaded_video.url }}{% endif %}">
+            {% if video.thumbnail %}<img src="{{ video.thumbnail.url }}" class="video-thumb">{% endif %}
+            <div class="video-overlay"></div>
+            <div class="play-button">▶</div>
+        </div>
+        {% else %}
+        <div class="video-card"><p style="color: #B8A898; padding: 40px;">Video coming soon...</p></div>
+        {% endif %}
+    </div>
 </section>
-
 
 <!-- NEXT STEPS FUNNEL SECTION -->
-
 <section class="funnel-section">
-
-<div class="container">
-
-<h2 class="funnel-title">Next Steps</h2>
-
-<div class="funnel-divider"></div>
-
-<div class="funnel-accordion">
-
-{% for step in funnel_steps %}
-
-<!-- STEP {{ forloop.counter }} -->
-<div class="funnel-card {% if forloop.first %}active{% endif %}" data-step="{{ forloop.counter }}">
-<div class="funnel-card-header">
-<div class="funnel-card-number">{{ forloop.counter }}</div>
-<div class="funnel-card-title-wrapper">
-<h3 class="funnel-card-title">{{ step.title }}</h3>
-<div class="funnel-card-type">{{ step.get_step_type_display }}</div>
-</div>
-<div class="funnel-card-icon">
-<span class="icon-plus">+</span>
-<span class="icon-minus">−</span>
-</div>
-</div>
-<div class="funnel-card-content">
-<p class="funnel-card-description">{{ step.description }}</p>
-<a href="{{ step.button_url }}" class="funnel-btn">▶ {{ step.button_text }}</a>
-</div>
-</div>
-
-{% endfor %}
-
-</div>
-
-</div>
-
+    <div class="container">
+        <h2 class="funnel-title">Next Steps</h2>
+        <div class="funnel-divider"></div>
+        <div class="funnel-accordion">
+            {% for step in funnel_steps %}
+            <div class="funnel-card {% if forloop.first %}active{% endif %}" data-step="{{ forloop.counter }}">
+                <div class="funnel-card-header">
+                    <div class="funnel-card-number">{{ forloop.counter }}</div>
+                    <div class="funnel-card-title-wrapper">
+                        <h3 class="funnel-card-title">{{ step.title }}</h3>
+                        <div class="funnel-card-type">{{ step.get_step_type_display }}</div>
+                    </div>
+                    <div class="funnel-card-icon">
+                        <span class="icon-plus">+</span>
+                        <span class="icon-minus">−</span>
+                    </div>
+                </div>
+                <div class="funnel-card-content">
+                    <p class="funnel-card-description">{{ step.description }}</p>
+                    <a href="{{ step.button_url }}" class="funnel-btn">▶ {{ step.button_text }}</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
 </section>
 
+<!-- AI ADVANTAGE SECTION -->
+<section class="ai-advantage-section py-5" id="ai-advantage">
+    <div class="container">
+        {% if ai_advantage_page %}
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-10 text-center">
+                <div class="ai-header-card">
+                    <h1 class="ai-advantage-title">{{ ai_advantage_page.title }}</h1>
+                    <div class="ai-advantage-divider"></div>
+                </div>
+                <div class="ai-subtitle-badge">
+                    <span class="ai-badge-icon">✨</span>
+                    <p class="ai-advantage-subtitle">{{ ai_advantage_page.subtitle }}</p>
+                </div>
+                <div class="ai-description-card">
+                    <div class="ai-desc-accent"></div>
+                    <p class="ai-advantage-description">{{ ai_advantage_page.description }}</p>
+                </div>
+            </div>
+        </div>
+        {% if ai_advantage_page.video_thumbnail %}
+        <div class="video-card" id="aiAdvantageVideoTrigger"
+            data-video-type="{{ ai_advantage_page.video_type }}"
+            data-video-src="{% if ai_advantage_page.video_type == 'youtube' %}{{ ai_advantage_page.youtube_url }}{% elif ai_advantage_page.uploaded_video %}{{ ai_advantage_page.uploaded_video.url }}{% endif %}">
+            <img src="{{ ai_advantage_page.video_thumbnail.url }}" class="video-thumb">
+            <div class="video-overlay"></div>
+            <div class="play-button">▶</div>
+        </div>
+        {% endif %}
+        {% else %}
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-10 text-center">
+                <div class="ai-header-card">
+                    <h1 class="ai-advantage-title">AI Reality</h1>
+                    <div class="ai-advantage-divider"></div>
+                </div>
+                <div class="ai-subtitle-badge">
+                    <span class="ai-badge-icon">✨</span>
+                    <p class="ai-advantage-subtitle">AI is not replacing people — it is empowering those who learn how to use it.</p>
+                </div>
+                <div class="ai-description-card">
+                    <div class="ai-desc-accent"></div>
+                    <p class="ai-advantage-description">We are living in a powerful technological shift. Many people fear that artificial intelligence will replace them, while others are learning how to use it as a tool to grow faster. The difference is not intelligence or talent — it is clarity and direction.</p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>
 
-<!-- VIDEO MODAL -->
+<!-- SKILL TEST SECTION -->
+<section class="ai-advantage-section py-5" id="skill-test">
+    <div class="container">
+        {% if skill_test_page %}
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-10 text-center">
+                <div class="ai-header-card">
+                    <h1 class="ai-advantage-title">{{ skill_test_page.title }}</h1>
+                    <div class="ai-advantage-divider"></div>
+                </div>
+                <div class="ai-subtitle-badge">
+                    <span class="ai-badge-icon">✨</span>
+                    <p class="ai-advantage-subtitle">{{ skill_test_page.subtitle }}</p>
+                </div>
+                <div class="ai-description-card">
+                    <div class="ai-desc-accent"></div>
+                    <p class="ai-advantage-description">{{ skill_test_page.description }}</p>
+                </div>
+            </div>
+        </div>
+        {% if skill_test_page.video_thumbnail %}
+        <div class="video-card" id="skillTestVideoTrigger"
+            data-video-type="{{ skill_test_page.video_type }}"
+            data-video-src="{% if skill_test_page.video_type == 'youtube' %}{{ skill_test_page.youtube_url }}{% elif skill_test_page.uploaded_video %}{{ skill_test_page.uploaded_video.url }}{% endif %}">
+            <img src="{{ skill_test_page.video_thumbnail.url }}" class="video-thumb">
+            <div class="video-overlay"></div>
+            <div class="play-button">▶</div>
+        </div>
+        {% endif %}
+        {% else %}
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-10 text-center">
+                <div class="ai-header-card">
+                    <h1 class="ai-advantage-title">Skill Test</h1>
+                    <div class="ai-advantage-divider"></div>
+                </div>
+                <div class="ai-subtitle-badge">
+                    <span class="ai-badge-icon">✨</span>
+                    <p class="ai-advantage-subtitle">Test your skills and knowledge</p>
+                </div>
+                <div class="ai-description-card">
+                    <div class="ai-desc-accent"></div>
+                    <p class="ai-advantage-description">Assess your abilities and understand where you stand.</p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>
 
-{% if video %}
-<div class="video-modal" id="videoModal">
+<!-- LEARNING SYSTEM SECTION -->
+<section class="ai-advantage-section py-5" id="learning-system">
+    <div class="container">
+        {% if learning_system_page %}
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-10 text-center">
+                <div class="ai-header-card">
+                    <h1 class="ai-advantage-title">{{ learning_system_page.title }}</h1>
+                    <div class="ai-advantage-divider"></div>
+                </div>
+                <div class="ai-subtitle-badge">
+                    <span class="ai-badge-icon">✨</span>
+                    <p class="ai-advantage-subtitle">{{ learning_system_page.subtitle }}</p>
+                </div>
+                <div class="ai-description-card">
+                    <div class="ai-desc-accent"></div>
+                    <p class="ai-advantage-description">{{ learning_system_page.description }}</p>
+                </div>
+            </div>
+        </div>
+        {% if learning_system_page.video_thumbnail %}
+        <div class="video-card" id="learningSystemVideoTrigger"
+            data-video-type="{{ learning_system_page.video_type }}"
+            data-video-src="{% if learning_system_page.video_type == 'youtube' %}{{ learning_system_page.youtube_url }}{% elif learning_system_page.uploaded_video %}{{ learning_system_page.uploaded_video.url }}{% endif %}">
+            <img src="{{ learning_system_page.video_thumbnail.url }}" class="video-thumb">
+            <div class="video-overlay"></div>
+            <div class="play-button">▶</div>
+        </div>
+        {% endif %}
+        {% else %}
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-10 text-center">
+                <div class="ai-header-card">
+                    <h1 class="ai-advantage-title">Learning System</h1>
+                    <div class="ai-advantage-divider"></div>
+                </div>
+                <div class="ai-subtitle-badge">
+                    <span class="ai-badge-icon">✨</span>
+                    <p class="ai-advantage-subtitle">Learn the right way</p>
+                </div>
+                <div class="ai-description-card">
+                    <div class="ai-desc-accent"></div>
+                    <p class="ai-advantage-description">Master the skills you need for your career.</p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>
 
-<div class="video-modal-content">
+<!-- CAREER ROADMAP SECTION -->
+<section class="ai-advantage-section py-5" id="career-roadmap">
+    <div class="container">
+        {% if career_roadmap_page %}
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-10 text-center">
+                <div class="ai-header-card">
+                    <h1 class="ai-advantage-title">{{ career_roadmap_page.title }}</h1>
+                    <div class="ai-advantage-divider"></div>
+                </div>
+                <div class="ai-subtitle-badge">
+                    <span class="ai-badge-icon">✨</span>
+                    <p class="ai-advantage-subtitle">{{ career_roadmap_page.subtitle }}</p>
+                </div>
+                <div class="ai-description-card">
+                    <div class="ai-desc-accent"></div>
+                    <p class="ai-advantage-description">{{ career_roadmap_page.description }}</p>
+                </div>
+            </div>
+        </div>
+        {% if career_roadmap_page.video_thumbnail %}
+        <div class="video-card" id="careerRoadmapVideoTrigger"
+            data-video-type="{{ career_roadmap_page.video_type }}"
+            data-video-src="{% if career_roadmap_page.video_type == 'youtube' %}{{ career_roadmap_page.youtube_url }}{% elif career_roadmap_page.uploaded_video %}{{ career_roadmap_page.uploaded_video.url }}{% endif %}">
+            <img src="{{ career_roadmap_page.video_thumbnail.url }}" class="video-thumb">
+            <div class="video-overlay"></div>
+            <div class="play-button">▶</div>
+        </div>
+        {% endif %}
+        {% else %}
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-10 text-center">
+                <div class="ai-header-card">
+                    <h1 class="ai-advantage-title">Career Roadmap</h1>
+                    <div class="ai-advantage-divider"></div>
+                </div>
+                <div class="ai-subtitle-badge">
+                    <span class="ai-badge-icon">✨</span>
+                    <p class="ai-advantage-subtitle">Every successful career begins with a clear path</p>
+                </div>
+                <div class="ai-description-card">
+                    <div class="ai-desc-accent"></div>
+                    <p class="ai-advantage-description">This roadmap provides a simple and structured journey from zero knowledge to industry readiness.</p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>
 
-<button class="close-video" id="closeVideo">✕</button>
+<!-- CAREER CAPSULES SECTION -->
+<section class="ai-advantage-section py-5" id="career-capsules">
+    <div class="container">
+        {% if career_capsules_page %}
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-10 text-center">
+                <div class="ai-header-card">
+                    <h1 class="ai-advantage-title">{{ career_capsules_page.title }}</h1>
+                    <div class="ai-advantage-divider"></div>
+                </div>
+                <div class="ai-subtitle-badge">
+                    <span class="ai-badge-icon">✨</span>
+                    <p class="ai-advantage-subtitle">{{ career_capsules_page.subtitle }}</p>
+                </div>
+                <div class="ai-description-card">
+                    <div class="ai-desc-accent"></div>
+                    <p class="ai-advantage-description">{{ career_capsules_page.description }}</p>
+                </div>
+            </div>
+        </div>
+        {% if career_capsules_page.video_thumbnail %}
+        <div class="video-card" id="careerCapsulesVideoTrigger"
+            data-video-type="{{ career_capsules_page.video_type }}"
+            data-video-src="{% if career_capsules_page.video_type == 'youtube' %}{{ career_capsules_page.youtube_url }}{% elif career_capsules_page.uploaded_video %}{{ career_capsules_page.uploaded_video.url }}{% endif %}">
+            <img src="{{ career_capsules_page.video_thumbnail.url }}" class="video-thumb">
+            <div class="video-overlay"></div>
+            <div class="play-button">▶</div>
+        </div>
+        {% endif %}
+        {% else %}
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-10 text-center">
+                <div class="ai-header-card">
+                    <h1 class="ai-advantage-title">Career Capsules</h1>
+                    <div class="ai-advantage-divider"></div>
+                </div>
+                <div class="ai-subtitle-badge">
+                    <span class="ai-badge-icon">✨</span>
+                    <p class="ai-advantage-subtitle">Short, focused career insights</p>
+                </div>
+                <div class="ai-description-card">
+                    <div class="ai-desc-accent"></div>
+                    <p class="ai-advantage-description">Quick lessons to boost your career growth.</p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>
 
-{% if video.video_type == 'youtube' %}
-<iframe
-id="videoFrame"
-src=""
-data-src="{{ video.youtube_url }}"
-allow="autoplay; encrypted-media"
-allowfullscreen>
-</iframe>
-{% else %}
-<video id="videoPlayer" controls>
-<source src="{{ video.uploaded_video.url }}" type="video/mp4">
-Your browser does not support the video tag.
-</video>
-{% endif %}
+<!-- LANGUAGE BARRIER SECTION -->
+<section class="ai-advantage-section py-5" id="language-barrier">
+    <div class="container">
+        {% if language_barrier_page %}
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-10 text-center">
+                <div class="ai-header-card">
+                    <h1 class="ai-advantage-title">{{ language_barrier_page.title }}</h1>
+                    <div class="ai-advantage-divider"></div>
+                </div>
+                <div class="ai-subtitle-badge">
+                    <span class="ai-badge-icon">✨</span>
+                    <p class="ai-advantage-subtitle">{{ language_barrier_page.subtitle }}</p>
+                </div>
+                <div class="ai-description-card">
+                    <div class="ai-desc-accent"></div>
+                    <p class="ai-advantage-description">{{ language_barrier_page.description }}</p>
+                </div>
+            </div>
+        </div>
+        {% if language_barrier_page.video_thumbnail or language_barrier_page.image %}
+        <div class="career-paths-image-wrapper">
+            <img src="{% if language_barrier_page.video_thumbnail %}{{ language_barrier_page.video_thumbnail.url }}{% else %}{{ language_barrier_page.image.url }}{% endif %}" class="career-paths-image">
+            <button class="career-path-btn career-path-btn-left" 
+                data-video-type="{{ language_barrier_page.video_type }}" 
+                data-video-src="{% if language_barrier_page.video_type == 'youtube' %}{{ language_barrier_page.youtube_url_1 }}{% elif language_barrier_page.uploaded_video_1 %}{{ language_barrier_page.uploaded_video_1.url }}{% endif %}">
+                <span class="btn-text">Explore Path</span>
+            </button>
+            <button class="career-path-btn career-path-btn-center" 
+                data-video-type="{{ language_barrier_page.video_type }}" 
+                data-video-src="{% if language_barrier_page.video_type == 'youtube' %}{{ language_barrier_page.youtube_url_2 }}{% elif language_barrier_page.uploaded_video_2 %}{{ language_barrier_page.uploaded_video_2.url }}{% endif %}">
+                <span class="btn-text">Explore Path</span>
+            </button>
+            <button class="career-path-btn career-path-btn-right" 
+                data-video-type="{{ language_barrier_page.video_type }}" 
+                data-video-src="{% if language_barrier_page.video_type == 'youtube' %}{{ language_barrier_page.youtube_url_3 }}{% elif language_barrier_page.uploaded_video_3 %}{{ language_barrier_page.uploaded_video_3.url }}{% endif %}">
+                <span class="btn-text">Explore Path</span>
+            </button>
+        </div>
+        {% endif %}
+        {% else %}
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-10 text-center">
+                <div class="ai-header-card">
+                    <h1 class="ai-advantage-title">Language Barrier</h1>
+                    <div class="ai-advantage-divider"></div>
+                </div>
+                <div class="ai-subtitle-badge">
+                    <span class="ai-badge-icon">✨</span>
+                    <p class="ai-advantage-subtitle">Overcome communication challenges</p>
+                </div>
+                <div class="ai-description-card">
+                    <div class="ai-desc-accent"></div>
+                    <p class="ai-advantage-description">Break through language barriers in your career.</p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>
 
-</div>
+<!-- READY FOR TEST SECTION -->
+<section class="ai-advantage-section py-5" id="ready-for-test">
+    <div class="container">
+        {% if ready_for_test_page %}
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-10 text-center">
+                <div class="ai-header-card">
+                    <h1 class="ai-advantage-title">{{ ready_for_test_page.title }}</h1>
+                    <div class="ai-advantage-divider"></div>
+                </div>
+                <div class="ai-subtitle-badge">
+                    <span class="ai-badge-icon">✨</span>
+                    <p class="ai-advantage-subtitle">{{ ready_for_test_page.subtitle }}</p>
+                </div>
+                <div class="ai-description-card">
+                    <div class="ai-desc-accent"></div>
+                    <p class="ai-advantage-description">{{ ready_for_test_page.description }}</p>
+                </div>
+            </div>
+        </div>
+        {% if ready_for_test_page.video_thumbnail %}
+        <div class="video-card" id="readyForTestVideoTrigger"
+            data-video-type="{{ ready_for_test_page.video_type }}"
+            data-video-src="{% if ready_for_test_page.video_type == 'youtube' %}{{ ready_for_test_page.youtube_url }}{% elif ready_for_test_page.uploaded_video %}{{ ready_for_test_page.uploaded_video.url }}{% endif %}">
+            <img src="{{ ready_for_test_page.video_thumbnail.url }}" class="video-thumb">
+            <div class="video-overlay"></div>
+            <div class="play-button">▶</div>
+        </div>
+        {% endif %}
+        {% else %}
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-10 text-center">
+                <div class="ai-header-card">
+                    <h1 class="ai-advantage-title">Ready for Test</h1>
+                    <div class="ai-advantage-divider"></div>
+                </div>
+                <div class="ai-subtitle-badge">
+                    <span class="ai-badge-icon">✨</span>
+                    <p class="ai-advantage-subtitle">Test your readiness before moving forward</p>
+                </div>
+                <div class="ai-description-card">
+                    <div class="ai-desc-accent"></div>
+                    <p class="ai-advantage-description">Ensure you're prepared for the next stage of your journey with our assessment tools.</p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>
 
-</div>
-{% endif %}
+<!-- TEST BEFORE YOU TRUST SECTION -->
+<section class="ai-advantage-section py-5" id="test-before-trust">
+    <div class="container">
+        {% if test_before_trust_page %}
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-10 text-center">
+                <div class="ai-header-card">
+                    <h1 class="ai-advantage-title">{{ test_before_trust_page.title }}</h1>
+                    <div class="ai-advantage-divider"></div>
+                </div>
+                <div class="ai-subtitle-badge">
+                    <span class="ai-badge-icon">✨</span>
+                    <p class="ai-advantage-subtitle">{{ test_before_trust_page.subtitle }}</p>
+                </div>
+                <div class="ai-description-card">
+                    <div class="ai-desc-accent"></div>
+                    <p class="ai-advantage-description">{{ test_before_trust_page.description }}</p>
+                </div>
+            </div>
+        </div>
+        {% if test_before_trust_page.video_thumbnail %}
+        <div class="video-card-a4" id="testBeforeTrustVideoTrigger"
+            data-video-type="{{ test_before_trust_page.video_type }}"
+            data-video-src="{% if test_before_trust_page.video_type == 'youtube' %}{{ test_before_trust_page.youtube_url }}{% elif test_before_trust_page.uploaded_video %}{{ test_before_trust_page.uploaded_video.url }}{% endif %}">
+            <img src="{{ test_before_trust_page.video_thumbnail.url }}" class="video-thumb-a4">
+            <div class="play-button-a4">▶</div>
+        </div>
+        {% endif %}
+        {% else %}
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-10 text-center">
+                <div class="ai-header-card">
+                    <h1 class="ai-advantage-title">Test Before You Trust</h1>
+                    <div class="ai-advantage-divider"></div>
+                </div>
+                <div class="ai-subtitle-badge">
+                    <span class="ai-badge-icon">✨</span>
+                    <p class="ai-advantage-subtitle">Verify our quality before you commit</p>
+                </div>
+                <div class="ai-description-card">
+                    <div class="ai-desc-accent"></div>
+                    <p class="ai-advantage-description">Experience our teaching methodology and quality before making a decision.</p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>
 
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // Home Video Modal
+    const homeVideoTrigger = document.getElementById("homeVideoTrigger");
+    const homeVideoModal = document.getElementById("videoModal");
+    const homeVideoContainer = document.getElementById("videoContainer");
+    const closeHomeVideo = document.getElementById("closeVideo");
+
+    if (homeVideoTrigger && homeVideoModal) {
+        homeVideoTrigger.addEventListener("click", function() {
+            const videoType = homeVideoTrigger.getAttribute("data-video-type");
+            const videoSrc = homeVideoTrigger.getAttribute("data-video-src");
+
+            homeVideoContainer.innerHTML = "";
+
+            if (videoType === "youtube" && videoSrc && videoSrc.trim() !== "") {
+                let embedUrl = videoSrc;
+                if (videoSrc.includes("youtube.com/watch")) {
+                    const match = videoSrc.match(/[?&]v=([^&]+)/);
+                    if (match) {
+                        embedUrl = "https://www.youtube.com/embed/" + match[1];
+                    }
+                }
+                const iframe = document.createElement("iframe");
+                iframe.id = "homeVideoFrame";
+                iframe.src = embedUrl + (embedUrl.includes("?") ? "&" : "?") + "autoplay=1";
+                iframe.allow = "autoplay; encrypted-media";
+                iframe.allowFullscreen = true;
+                iframe.style.width = "100%";
+                iframe.style.height = "500px";
+                iframe.style.border = "none";
+                homeVideoContainer.appendChild(iframe);
+            } else if (videoSrc && videoSrc.trim() !== "") {
+                console.log("Loading video from URL:", videoSrc);
+                const video = document.createElement("video");
+                video.id = "homeVideoPlayer";
+                video.controls = true;
+                video.muted = true;
+                video.style.width = "100%";
+                video.style.height = "500px";
+                video.style.maxHeight = "80vh";
+                video.style.objectFit = "contain";
+                video.style.background = "#000";
+                video.style.borderRadius = "8px";
+                
+                const source = document.createElement("source");
+                source.src = videoSrc;
+                source.type = "video/mp4";
+                video.appendChild(source);
+                homeVideoContainer.appendChild(video);
+                
+                video.addEventListener('error', function(e) {
+                    console.error('Video error:', video.error);
+                    if (video.error) {
+                        homeVideoContainer.innerHTML = '<div style="color:white;padding:20px;text-align:center;"><p>Error loading video: ' + video.error.message + '</p><p style="font-size:12px;color:#aaa;">Try converting your video to H.264 codec with FFmpeg:<br>ffmpeg -i input.mp4 -c:v libx264 -c:a aac output.mp4</p></div>';
+                    }
+                });
+                
+                setTimeout(function() {
+                    console.log("Attempting to play video");
+                    var playPromise = video.play();
+                    if (playPromise !== undefined) {
+                        playPromise.then(function() {
+                            console.log("Video playing successfully");
+                            video.muted = false;
+                        }).catch(function(error) {
+                            console.log("Play failed:", error);
+                        });
+                    }
+                }, 500);
+            }
+            homeVideoModal.style.display = "flex";
+        });
+
+        if (closeHomeVideo) {
+            closeHomeVideo.addEventListener("click", function() {
+                homeVideoModal.style.display = "none";
+                if (homeVideoFrame) homeVideoFrame.src = "";
+                if (homeVideoPlayer) {
+                    homeVideoPlayer.pause();
+                    homeVideoPlayer.src = "";
+                }
+            });
+        }
+
+        homeVideoModal.addEventListener("click", function(e) {
+            if (e.target === homeVideoModal) {
+                homeVideoModal.style.display = "none";
+                if (homeVideoFrame) homeVideoFrame.src = "";
+                if (homeVideoPlayer) {
+                    homeVideoPlayer.pause();
+                    homeVideoPlayer.src = "";
+                }
+            }
+        });
+    }
+
+    // AI Advantage Video Modal
+    const aiAdvantageVideoTrigger = document.getElementById("aiAdvantageVideoTrigger");
+    const aiAdvantageVideoModal = document.getElementById("aiVideoModal");
+    const aiVideoContainer = document.getElementById("aiVideoContainer");
+    const closeAiVideo = document.getElementById("closeAiVideo");
+
+    if (aiAdvantageVideoTrigger && aiAdvantageVideoModal) {
+        aiAdvantageVideoTrigger.addEventListener("click", function() {
+            const videoType = aiAdvantageVideoTrigger.getAttribute("data-video-type");
+            const videoSrc = aiAdvantageVideoTrigger.getAttribute("data-video-src");
+            aiVideoContainer.innerHTML = "";
+
+            if (videoType === "youtube") {
+                let embedUrl = videoSrc;
+                if (videoSrc.includes("youtube.com/watch")) {
+                    const match = videoSrc.match(/[?&]v=([^&]+)/);
+                    if (match) {
+                        embedUrl = "https://www.youtube.com/embed/" + match[1];
+                    }
+                }
+                const iframe = document.createElement("iframe");
+                iframe.id = "aiVideoFrame";
+                iframe.src = embedUrl + (embedUrl.includes("?") ? "&" : "?") + "autoplay=1";
+                iframe.allow = "autoplay; encrypted-media";
+                iframe.allowFullscreen = true;
+                iframe.style.width = "100%";
+                iframe.style.height = "500px";
+                iframe.style.border = "none";
+                aiVideoContainer.appendChild(iframe);
+            } else {
+                const video = document.createElement("video");
+                video.id = "aiVideoPlayer";
+                video.controls = true;
+                video.autoplay = true;
+                video.preload = "auto";
+                video.style.width = "100%";
+                video.style.height = "500px";
+                const source = document.createElement("source");
+                source.src = videoSrc;
+                source.type = "video/mp4";
+                video.appendChild(source);
+                aiVideoContainer.appendChild(video);
+                video.load();
+                video.play().catch(function(error) { console.log("Video autoplay failed:", error); });
+            }
+            aiAdvantageVideoModal.style.display = "flex";
+        });
+
+        if (closeAiVideo) {
+            closeAiVideo.addEventListener("click", function() {
+                aiAdvantageVideoModal.style.display = "none";
+                aiVideoContainer.innerHTML = "";
+            });
+        }
+        aiAdvantageVideoModal.addEventListener("click", function(e) {
+            if (e.target === aiAdvantageVideoModal) {
+                aiAdvantageVideoModal.style.display = "none";
+                aiVideoContainer.innerHTML = "";
+            }
+        });
+    }
+
+    // Skill Test Video Modal
+    const skillTestVideoTrigger = document.getElementById("skillTestVideoTrigger");
+    const skillTestVideoModal = document.getElementById("skillTestVideoModal");
+    const skillTestVideoContainer = document.getElementById("skillTestVideoContainer");
+    const closeSkillTestVideo = document.getElementById("closeSkillTestVideo");
+
+    if (skillTestVideoTrigger && skillTestVideoModal) {
+        skillTestVideoTrigger.addEventListener("click", function() {
+            const videoType = skillTestVideoTrigger.getAttribute("data-video-type");
+            const videoSrc = skillTestVideoTrigger.getAttribute("data-video-src");
+            skillTestVideoContainer.innerHTML = "";
+            if (videoType === "youtube") {
+                let embedUrl = videoSrc;
+                if (videoSrc.includes("youtube.com/watch")) {
+                    const match = videoSrc.match(/[?&]v=([^&]+)/);
+                    if (match) {
+                        embedUrl = "https://www.youtube.com/embed/" + match[1];
+                    }
+                }
+                const iframe = document.createElement("iframe");
+                iframe.id = "skillTestVideoFrame";
+                iframe.src = embedUrl + (embedUrl.includes("?") ? "&" : "?") + "autoplay=1";
+                iframe.allow = "autoplay; encrypted-media";
+                iframe.allowFullscreen = true;
+                iframe.style.width = "100%";
+                iframe.style.height = "500px";
+                iframe.style.border = "none";
+                skillTestVideoContainer.appendChild(iframe);
+            } else {
+                const video = document.createElement("video");
+                video.id = "skillTestVideoPlayer";
+                video.controls = true;
+                video.autoplay = true;
+                video.preload = "auto";
+                video.style.width = "100%";
+                video.style.height = "500px";
+                const source = document.createElement("source");
+                source.src = videoSrc;
+                source.type = "video/mp4";
+                video.appendChild(source);
+                skillTestVideoContainer.appendChild(video);
+                video.load();
+                video.play().catch(function(error) { console.log("Video autoplay failed:", error); });
+            }
+            skillTestVideoModal.style.display = "flex";
+        });
+
+        if (closeSkillTestVideo) {
+            closeSkillTestVideo.addEventListener("click", function() {
+                skillTestVideoModal.style.display = "none";
+                skillTestVideoContainer.innerHTML = "";
+            });
+        }
+        skillTestVideoModal.addEventListener("click", function(e) {
+            if (e.target === skillTestVideoModal) {
+                skillTestVideoModal.style.display = "none";
+                skillTestVideoContainer.innerHTML = "";
+            }
+        });
+    }
+
+    // Learning System Video Modal
+    const learningSystemVideoTrigger = document.getElementById("learningSystemVideoTrigger");
+    const learningSystemVideoModal = document.getElementById("learningSystemVideoModal");
+    const learningSystemVideoContainer = document.getElementById("learningSystemVideoContainer");
+    const closeLearningSystemVideo = document.getElementById("closeLearningSystemVideo");
+
+    if (learningSystemVideoTrigger && learningSystemVideoModal) {
+        learningSystemVideoTrigger.addEventListener("click", function() {
+            const videoType = learningSystemVideoTrigger.getAttribute("data-video-type");
+            const videoSrc = learningSystemVideoTrigger.getAttribute("data-video-src");
+            learningSystemVideoContainer.innerHTML = "";
+            if (videoType === "youtube") {
+                let embedUrl = videoSrc;
+                if (videoSrc.includes("youtube.com/watch")) {
+                    const match = videoSrc.match(/[?&]v=([^&]+)/);
+                    if (match) {
+                        embedUrl = "https://www.youtube.com/embed/" + match[1];
+                    }
+                }
+                const iframe = document.createElement("iframe");
+                iframe.id = "learningSystemVideoFrame";
+                iframe.src = embedUrl + (embedUrl.includes("?") ? "&" : "?") + "autoplay=1";
+                iframe.allow = "autoplay; encrypted-media";
+                iframe.allowFullscreen = true;
+                iframe.style.width = "100%";
+                iframe.style.height = "500px";
+                iframe.style.border = "none";
+                learningSystemVideoContainer.appendChild(iframe);
+            } else {
+                const video = document.createElement("video");
+                video.id = "learningSystemVideoPlayer";
+                video.controls = true;
+                video.autoplay = true;
+                video.preload = "auto";
+                video.style.width = "100%";
+                video.style.height = "500px";
+                const source = document.createElement("source");
+                source.src = videoSrc;
+                source.type = "video/mp4";
+                video.appendChild(source);
+                learningSystemVideoContainer.appendChild(video);
+                video.load();
+                video.play().catch(function(error) { console.log("Video autoplay failed:", error); });
+            }
+            learningSystemVideoModal.style.display = "flex";
+        });
+
+        if (closeLearningSystemVideo) {
+            closeLearningSystemVideo.addEventListener("click", function() {
+                learningSystemVideoModal.style.display = "none";
+                learningSystemVideoContainer.innerHTML = "";
+            });
+        }
+        learningSystemVideoModal.addEventListener("click", function(e) {
+            if (e.target === learningSystemVideoModal) {
+                learningSystemVideoModal.style.display = "none";
+                learningSystemVideoContainer.innerHTML = "";
+            }
+        });
+    }
+
+    // Career Roadmap Video Modal
+    const careerRoadmapVideoTrigger = document.getElementById("careerRoadmapVideoTrigger");
+    const careerRoadmapVideoModal = document.getElementById("careerRoadmapVideoModal");
+    const careerRoadmapVideoContainer = document.getElementById("careerRoadmapVideoContainer");
+    const closeCareerRoadmapVideo = document.getElementById("closeCareerRoadmapVideo");
+
+    if (careerRoadmapVideoTrigger && careerRoadmapVideoModal) {
+        careerRoadmapVideoTrigger.addEventListener("click", function() {
+            const videoType = careerRoadmapVideoTrigger.getAttribute("data-video-type");
+            const videoSrc = careerRoadmapVideoTrigger.getAttribute("data-video-src");
+            careerRoadmapVideoContainer.innerHTML = "";
+            if (videoType === "youtube") {
+                let embedUrl = videoSrc;
+                if (videoSrc.includes("youtube.com/watch")) {
+                    const match = videoSrc.match(/[?&]v=([^&]+)/);
+                    if (match) {
+                        embedUrl = "https://www.youtube.com/embed/" + match[1];
+                    }
+                }
+                const iframe = document.createElement("iframe");
+                iframe.id = "careerRoadmapVideoFrame";
+                iframe.src = embedUrl + (embedUrl.includes("?") ? "&" : "?") + "autoplay=1";
+                iframe.allow = "autoplay; encrypted-media";
+                iframe.allowFullscreen = true;
+                iframe.style.width = "100%";
+                iframe.style.height = "500px";
+                iframe.style.border = "none";
+                careerRoadmapVideoContainer.appendChild(iframe);
+            } else {
+                const video = document.createElement("video");
+                video.id = "careerRoadmapVideoPlayer";
+                video.controls = true;
+                video.autoplay = true;
+                video.preload = "auto";
+                video.style.width = "100%";
+                video.style.height = "500px";
+                const source = document.createElement("source");
+                source.src = videoSrc;
+                source.type = "video/mp4";
+                video.appendChild(source);
+                careerRoadmapVideoContainer.appendChild(video);
+                video.load();
+                video.play().catch(function(error) { console.log("Video autoplay failed:", error); });
+            }
+            careerRoadmapVideoModal.style.display = "flex";
+        });
+
+        if (closeCareerRoadmapVideo) {
+            closeCareerRoadmapVideo.addEventListener("click", function() {
+                careerRoadmapVideoModal.style.display = "none";
+                careerRoadmapVideoContainer.innerHTML = "";
+            });
+        }
+        careerRoadmapVideoModal.addEventListener("click", function(e) {
+            if (e.target === careerRoadmapVideoModal) {
+                careerRoadmapVideoModal.style.display = "none";
+                careerRoadmapVideoContainer.innerHTML = "";
+            }
+        });
+    }
+
+    // Career Capsules Video Modal
+    const careerCapsulesVideoTrigger = document.getElementById("careerCapsulesVideoTrigger");
+    const careerCapsulesVideoModal = document.getElementById("careerCapsulesVideoModal");
+    const careerCapsulesVideoContainer = document.getElementById("careerCapsulesVideoContainer");
+    const closeCareerCapsulesVideo = document.getElementById("closeCareerCapsulesVideo");
+
+    if (careerCapsulesVideoTrigger && careerCapsulesVideoModal) {
+        careerCapsulesVideoTrigger.addEventListener("click", function() {
+            const videoType = careerCapsulesVideoTrigger.getAttribute("data-video-type");
+            const videoSrc = careerCapsulesVideoTrigger.getAttribute("data-video-src");
+            careerCapsulesVideoContainer.innerHTML = "";
+            if (videoType === "youtube") {
+                let embedUrl = videoSrc;
+                if (videoSrc.includes("youtube.com/watch")) {
+                    const match = videoSrc.match(/[?&]v=([^&]+)/);
+                    if (match) {
+                        embedUrl = "https://www.youtube.com/embed/" + match[1];
+                    }
+                }
+                const iframe = document.createElement("iframe");
+                iframe.id = "careerCapsulesVideoFrame";
+                iframe.src = embedUrl + (embedUrl.includes("?") ? "&" : "?") + "autoplay=1";
+                iframe.allow = "autoplay; encrypted-media";
+                iframe.allowFullscreen = true;
+                iframe.style.width = "100%";
+                iframe.style.height = "500px";
+                iframe.style.border = "none";
+                careerCapsulesVideoContainer.appendChild(iframe);
+            } else {
+                const video = document.createElement("video");
+                video.id = "careerCapsulesVideoPlayer";
+                video.controls = true;
+                video.autoplay = true;
+                video.preload = "auto";
+                video.style.width = "100%";
+                video.style.height = "500px";
+                const source = document.createElement("source");
+                source.src = videoSrc;
+                source.type = "video/mp4";
+                video.appendChild(source);
+                careerCapsulesVideoContainer.appendChild(video);
+                video.load();
+                video.play().catch(function(error) { console.log("Video autoplay failed:", error); });
+            }
+            careerCapsulesVideoModal.style.display = "flex";
+        });
+
+        if (closeCareerCapsulesVideo) {
+            closeCareerCapsulesVideo.addEventListener("click", function() {
+                careerCapsulesVideoModal.style.display = "none";
+                careerCapsulesVideoContainer.innerHTML = "";
+            });
+        }
+        careerCapsulesVideoModal.addEventListener("click", function(e) {
+            if (e.target === careerCapsulesVideoModal) {
+                careerCapsulesVideoModal.style.display = "none";
+                careerCapsulesVideoContainer.innerHTML = "";
+            }
+        });
+    }
+
+// Language Barrier - Career Path Buttons
+    const careerPathButtons = document.querySelectorAll(".career-path-btn");
+    const languageBarrierVideoModal = document.getElementById("languageBarrierVideoModal");
+    const languageBarrierVideoContainer = document.getElementById("languageBarrierVideoContainer");
+    const closeLanguageBarrierVideo = document.getElementById("closeLanguageBarrierVideo");
+
+    console.log("Career path buttons found:", careerPathButtons.length);
+    console.log("Modal found:", !!languageBarrierVideoModal);
+    console.log("Container found:", !!languageBarrierVideoContainer);
+
+    careerPathButtons.forEach(function(btn) {
+        btn.addEventListener("click", function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log("Career path button clicked");
+            console.log("Video type:", btn.getAttribute("data-video-type"));
+            console.log("Video src:", btn.getAttribute("data-video-src"));
+            
+            const videoType = btn.getAttribute("data-video-type");
+            const videoSrc = btn.getAttribute("data-video-src");
+            
+            if (!videoSrc || videoSrc.trim() === "") {
+                alert("Please add a video URL in admin for this career path");
+                return;
+            }
+            
+            languageBarrierVideoContainer.innerHTML = "";
+            
+            if (videoType === "youtube" || videoSrc.includes("youtube.com")) {
+                let embedUrl = videoSrc;
+                if (videoSrc.includes("youtube.com/watch")) {
+                    const match = videoSrc.match(/[?&]v=([^&]+)/);
+                    if (match) {
+                        embedUrl = "https://www.youtube.com/embed/" + match[1];
+                    }
+                }
+                const iframe = document.createElement("iframe");
+                iframe.id = "languageBarrierVideoFrame";
+                iframe.src = embedUrl + (embedUrl.includes("?") ? "&" : "?") + "autoplay=1";
+                iframe.allow = "autoplay; encrypted-media";
+                iframe.allowFullscreen = true;
+                iframe.style.width = "100%";
+                iframe.style.height = "500px";
+                iframe.style.border = "none";
+                languageBarrierVideoContainer.appendChild(iframe);
+            } else {
+                const video = document.createElement("video");
+                video.id = "languageBarrierVideoPlayer";
+                video.controls = true;
+                video.autoplay = true;
+                video.preload = "auto";
+                video.style.width = "100%";
+                video.style.height = "500px";
+                const source = document.createElement("source");
+                source.src = videoSrc;
+                source.type = "video/mp4";
+                video.appendChild(source);
+                languageBarrierVideoContainer.appendChild(video);
+                video.load();
+                video.play().catch(function(error) { console.log("Video autoplay failed:", error); });
+            }
+            languageBarrierVideoModal.style.display = "flex";
+        });
+    });
+
+    if (closeLanguageBarrierVideo) {
+        closeLanguageBarrierVideo.addEventListener("click", function() {
+            languageBarrierVideoModal.style.display = "none";
+            languageBarrierVideoContainer.innerHTML = "";
+        });
+    }
+    
+    languageBarrierVideoModal.addEventListener("click", function(e) {
+        if (e.target === languageBarrierVideoModal) {
+            languageBarrierVideoModal.style.display = "none";
+            languageBarrierVideoContainer.innerHTML = "";
+        }
+    });
+});
+</script>
 {% endblock %}

@@ -18,12 +18,13 @@
 
 <body>
 
-<!-- TOP BANNER -->
-
+<!-- TOP BANNER (Fixed) -->
 <div class="top-banner">
-<img src="{% static 'images/top-banner.png' %}" class="banner-image" alt="Ekalavya Universys">
+<img src="{% static 'images/Top Banner.jpg.jpeg' %}" class="banner-image" alt="Ekalavya Universys">
 </div>
 
+<!-- Spacer for fixed banner -->
+<div class="top-banner-spacer"></div>
 
 <!-- NAVBAR -->
 
@@ -41,17 +42,19 @@
 
 </div>
 
-<div class="nav-menu">
+        <div class="nav-menu">
 
-<a href="/">Home</a>
-<a href="/ai-advantage/">AI Reality</a>
-<a href="/skill-test/">Skill Test</a>
-<a href="/learning-system/">Learning System</a>
-<a href="/career-roadmap/">Career Roadmap</a>
-<a href="/career-capsules/">Career Capsules</a>
-<a href="/language-barrier/">Language Barrier</a>
+        <a href="/#hero">Home</a>
+        <a href="/#ai-advantage">AI Reality</a>
+        <a href="/#skill-test">Skill Test</a>
+        <a href="/#learning-system">Learning System</a>
+        <a href="/#career-roadmap">Career Roadmap</a>
+        <a href="/#career-capsules">Career Capsules</a>
+        <a href="/#language-barrier">Language Barrier</a>
+        <a href="/#ready-for-test">Ready for Test</a>
+        <a href="/#test-before-trust">Test Before You Trust</a>
 
-</div>
+        </div>
 
 </div>
 
@@ -69,6 +72,96 @@
 <script src="{% static 'js/main.js' %}?v=2"></script>
 
 {% block extra_js %}{% endblock %}
+
+<!-- VIDEO MODAL -->
+<div id="videoModal" class="video-modal">
+    <div class="video-modal-content">
+        <div id="videoContainer">
+            <!-- Video content will be injected here -->
+        </div>
+        <div class="close-video" id="closeVideo">×</div>
+    </div>
+</div>
+
+<!-- AI VIDEO MODAL -->
+<div id="aiVideoModal" class="video-modal">
+    <div class="video-modal-content">
+        <div id="aiVideoContainer">
+            <!-- AI video content will be injected here -->
+        </div>
+        <div class="close-video" id="closeAiVideo">×</div>
+    </div>
+</div>
+
+<!-- SKILL TEST VIDEO MODAL -->
+<div id="skillTestVideoModal" class="video-modal">
+    <div class="video-modal-content">
+        <div id="skillTestVideoContainer">
+            <!-- Skill test video content will be injected here -->
+        </div>
+        <div class="close-video" id="closeSkillTestVideo">×</div>
+    </div>
+</div>
+
+<!-- LEARNING SYSTEM VIDEO MODAL -->
+<div id="learningSystemVideoModal" class="video-modal">
+    <div class="video-modal-content">
+        <div id="learningSystemVideoContainer">
+            <!-- Learning system video content will be injected here -->
+        </div>
+        <div class="close-video" id="closeLearningSystemVideo">×</div>
+    </div>
+</div>
+
+<!-- CAREER ROADMAP VIDEO MODAL -->
+<div id="careerRoadmapVideoModal" class="video-modal">
+    <div class="video-modal-content">
+        <div id="careerRoadmapVideoContainer">
+            <!-- Career roadmap video content will be injected here -->
+        </div>
+        <div class="close-video" id="closeCareerRoadmapVideo">×</div>
+    </div>
+</div>
+
+<!-- CAREER CAPSULES VIDEO MODAL -->
+<div id="careerCapsulesVideoModal" class="video-modal">
+    <div class="video-modal-content">
+        <div id="careerCapsulesVideoContainer">
+            <!-- Career capsules video content will be injected here -->
+        </div>
+        <div class="close-video" id="closeCareerCapsulesVideo">×</div>
+    </div>
+</div>
+
+<!-- LANGUAGE BARRIER VIDEO MODAL -->
+<div id="languageBarrierVideoModal" class="video-modal">
+    <div class="video-modal-content">
+        <div id="languageBarrierVideoContainer">
+            <!-- Language barrier video content will be injected here -->
+        </div>
+        <div class="close-video" id="closeLanguageBarrierVideo">×</div>
+    </div>
+</div>
+
+<!-- READY FOR TEST VIDEO MODAL -->
+<div id="readyForTestVideoModal" class="video-modal">
+    <div class="video-modal-content">
+        <div id="readyForTestVideoContainer">
+            <!-- Ready for test video content will be injected here -->
+        </div>
+        <div class="close-video" id="closeReadyForTestVideo">×</div>
+    </div>
+</div>
+
+<!-- TEST BEFORE TRUST VIDEO MODAL -->
+<div id="testBeforeTrustVideoModal" class="video-modal">
+    <div class="video-modal-content">
+        <div id="testBeforeTrustVideoContainer">
+            <!-- Test before trust video content will be injected here -->
+        </div>
+        <div class="close-video" id="closeTestBeforeTrustVideo">×</div>
+    </div>
+</div>
 
 </body>
 </html>
