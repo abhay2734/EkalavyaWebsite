@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import HeroImage, HomeVideo, AIAdvantagePage, TheSystemPage, SkillTestPage, LearningSystemPage, CareerRoadmapPage, CareerCapsulesPage, LanguageBarrierPage, ReadyForTestPage, TestBeforeTrustPage
+from .models import HeroImage, HomeVideo, AIAdvantage, TheSystem, ConceptualCommunication, ThirtyMinutes, ITAspirant, ZeroToIndustry, CareerPaths, ReadyForTestPage, TestBeforeTrustPage
 
 @admin.register(HeroImage)
 class HeroImageAdmin(admin.ModelAdmin):
@@ -39,17 +39,22 @@ class HomeVideoAdmin(admin.ModelAdmin):
         }),
     )
 
+    def has_add_permission(self, request):
+        if self.model.objects.count() >= 1:
+            return False
+        return super().has_add_permission(request)
 
-@admin.register(AIAdvantagePage)
-class AIAdvantagePageAdmin(admin.ModelAdmin):
+
+@admin.register(AIAdvantage)
+class AIAdvantageAdmin(admin.ModelAdmin):
     list_display = ["video_title", "active", "updated_at"]
     list_filter = ["active"]
     fieldsets = (
         ("Section Content", {
-            "fields": ("subtitle",)
+            "fields": ()
         }),
         ("Highlight Lines (Card Box)", {
-            "fields": ("line_1", "line_2")
+            "fields": ("highlight_1", "highlight_2")
         }),
         ("Video Section", {
             "fields": ("video_thumbnail", "video_title", "video_type", "youtube_url", "uploaded_video")
@@ -68,8 +73,8 @@ class AIAdvantagePageAdmin(admin.ModelAdmin):
         return super().has_add_permission(request)
 
 
-@admin.register(TheSystemPage)
-class TheSystemPageAdmin(admin.ModelAdmin):
+@admin.register(TheSystem)
+class TheSystemAdmin(admin.ModelAdmin):
     list_display = ["video_title", "active", "updated_at"]
     list_filter = ["active"]
     fieldsets = (
@@ -93,8 +98,8 @@ class TheSystemPageAdmin(admin.ModelAdmin):
         return super().has_add_permission(request)
 
 
-@admin.register(SkillTestPage)
-class SkillTestPageAdmin(admin.ModelAdmin):
+@admin.register(ConceptualCommunication)
+class ConceptualCommunicationAdmin(admin.ModelAdmin):
     list_display = ["video_title", "active", "updated_at"]
     list_filter = ["active"]
     fieldsets = (
@@ -118,8 +123,8 @@ class SkillTestPageAdmin(admin.ModelAdmin):
         return super().has_add_permission(request)
 
 
-@admin.register(LearningSystemPage)
-class LearningSystemPageAdmin(admin.ModelAdmin):
+@admin.register(ThirtyMinutes)
+class ThirtyMinutesAdmin(admin.ModelAdmin):
     list_display = ["video_title", "active", "updated_at"]
     list_filter = ["active"]
     fieldsets = (
@@ -143,8 +148,8 @@ class LearningSystemPageAdmin(admin.ModelAdmin):
         return super().has_add_permission(request)
 
 
-@admin.register(CareerRoadmapPage)
-class CareerRoadmapPageAdmin(admin.ModelAdmin):
+@admin.register(ITAspirant)
+class ITAspirantAdmin(admin.ModelAdmin):
     list_display = ["video_title", "active", "updated_at"]
     list_filter = ["active"]
     fieldsets = (
@@ -168,8 +173,8 @@ class CareerRoadmapPageAdmin(admin.ModelAdmin):
         return super().has_add_permission(request)
 
 
-@admin.register(CareerCapsulesPage)
-class CareerCapsulesPageAdmin(admin.ModelAdmin):
+@admin.register(ZeroToIndustry)
+class ZeroToIndustryAdmin(admin.ModelAdmin):
     list_display = ["video_title", "active", "updated_at"]
     list_filter = ["active"]
     fieldsets = (
@@ -193,8 +198,8 @@ class CareerCapsulesPageAdmin(admin.ModelAdmin):
         return super().has_add_permission(request)
 
 
-@admin.register(LanguageBarrierPage)
-class LanguageBarrierPageAdmin(admin.ModelAdmin):
+@admin.register(CareerPaths)
+class CareerPathsAdmin(admin.ModelAdmin):
     list_display = ["active", "updated_at"]
     list_filter = ["active"]
     fieldsets = (

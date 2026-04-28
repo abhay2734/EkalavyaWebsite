@@ -75,7 +75,7 @@ class HomeVideo(models.Model):
 
 
 
-class AIAdvantagePage(models.Model):
+class AIAdvantage(models.Model):
     """Dynamic AI Fear vs AI Advantage page content"""
 
     title = models.CharField(max_length=200, default="AI Fear vs AI Advantage")
@@ -136,7 +136,7 @@ class AIAdvantagePage(models.Model):
         return self.title
 
 
-class TheSystemPage(models.Model):
+class TheSystem(models.Model):
     """Dynamic The System page content - exact copy of AI Advantage page"""
 
     title = models.CharField(max_length=200, default="The System")
@@ -197,7 +197,7 @@ class TheSystemPage(models.Model):
         return self.title
 
 
-class SkillTestPage(models.Model):
+class ConceptualCommunication(models.Model):
     """Dynamic Skill Test page content"""
 
     title = models.CharField(max_length=200, default="Conceptual Communication")
@@ -264,7 +264,7 @@ class SkillTestPage(models.Model):
         return self.title
 
 
-class CareerRoadmapPage(models.Model):
+class ITAspirant(models.Model):
     """Dynamic Career Roadmap page content"""
 
     title = models.CharField(max_length=200, default="IT Aspirant")
@@ -337,7 +337,7 @@ class CareerRoadmapPage(models.Model):
         return self.title
 
 
-class CareerCapsulesPage(models.Model):
+class ZeroToIndustry(models.Model):
     """Dynamic Career Capsules page content"""
 
     title = models.CharField(max_length=200, default="From Zero to Industry Ready")
@@ -428,7 +428,7 @@ class CareerCapsulesPage(models.Model):
         return self.title
 
 
-class LearningSystemPage(models.Model):
+class ThirtyMinutes(models.Model):
     """Dynamic Learning System page content"""
 
     title = models.CharField(max_length=200, default="30 Minutes a day")
@@ -500,7 +500,7 @@ class LearningSystemPage(models.Model):
         return self.title
 
 
-class LanguageBarrierPage(models.Model):
+class CareerPaths(models.Model):
     """Dynamic Language Barrier page content"""
 
     title = models.CharField(max_length=200, default="3 Career Paths")

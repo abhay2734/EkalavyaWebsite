@@ -112,11 +112,11 @@
             <div class="col-lg-10 text-center">
                 <div class="ai-description-card">
                     <div class="ai-desc-accent"></div>
-                    {% if ai_advantage_page.line_1 %}
-                    <p class="system-highlight line-1">{{ ai_advantage_page.line_1 }}</p>
+                    {% if ai_advantage_page.highlight_1 %}
+                    <p class="system-highlight line-1">{{ ai_advantage_page.highlight_1 }}</p>
                     {% endif %}
-                    {% if ai_advantage_page.line_2 %}
-                    <p class="system-highlight line-2">{{ ai_advantage_page.line_2 }}</p>
+                    {% if ai_advantage_page.highlight_2 %}
+                    <p class="system-highlight line-2">{{ ai_advantage_page.highlight_2 }}</p>
                     {% endif %}
                 </div>
             </div>
@@ -147,28 +147,28 @@
 <!-- SKILL TEST SECTION -->
 <section class="ai-advantage-section py-5" id="skill-test">
     <div class="container">
-        {% if skill_test_page %}
+        {% if conceptual_communication_page %}
         <div class="row justify-content-center mb-5">
             <div class="col-lg-10 text-center">
                 <div class="ai-description-card">
                     <div class="ai-desc-accent"></div>
-                    {% if skill_test_page.line_1 %}
-                    <p class="system-highlight line-1">{{ skill_test_page.line_1 }}</p>
+                    {% if conceptual_communication_page.line_1 %}
+                    <p class="system-highlight line-1">{{ conceptual_communication_page.line_1 }}</p>
                     {% endif %}
-                    {% if skill_test_page.line_2 %}
-                    <p class="system-highlight line-2">{{ skill_test_page.line_2 }}</p>
+                    {% if conceptual_communication_page.line_2 %}
+                    <p class="system-highlight line-2">{{ conceptual_communication_page.line_2 }}</p>
                     {% endif %}
-                    {% if skill_test_page.line_3 %}
-                    <p class="system-highlight line-3">{{ skill_test_page.line_3 }}</p>
+                    {% if conceptual_communication_page.line_3 %}
+                    <p class="system-highlight line-3">{{ conceptual_communication_page.line_3 }}</p>
                     {% endif %}
                 </div>
             </div>
         </div>
-        {% if skill_test_page.video_thumbnail %}
-        <div class="video-card" id="skillTestVideoTrigger"
-            data-video-type="{{ skill_test_page.video_type }}"
-            data-video-src="{% if skill_test_page.video_type == 'youtube' %}{{ skill_test_page.youtube_url }}{% elif skill_test_page.uploaded_video %}{{ skill_test_page.uploaded_video.url }}{% endif %}">
-            <img src="{{ skill_test_page.video_thumbnail.url }}" class="video-thumb">
+        {% if conceptual_communication_page.video_thumbnail %}
+        <div class="video-card" id="conceptualCommunicationVideoTrigger"
+            data-video-type="{{ conceptual_communication_page.video_type }}"
+            data-video-src="{% if conceptual_communication_page.video_type == 'youtube' %}{{ conceptual_communication_page.youtube_url }}{% elif conceptual_communication_page.uploaded_video %}{{ conceptual_communication_page.uploaded_video.url }}{% endif %}">
+            <img src="{{ conceptual_communication_page.video_thumbnail.url }}" class="video-thumb">
             <div class="video-overlay"></div>
             <div class="play-button">▶</div>
         </div>
@@ -191,28 +191,28 @@
 <!-- LEARNING SYSTEM SECTION -->
 <section class="ai-advantage-section py-5" id="learning-system">
     <div class="container">
-        {% if learning_system_page %}
+        {% if thirty_minutes_page %}
         <div class="row justify-content-center mb-5">
             <div class="col-lg-10 text-center">
                 <div class="ai-description-card">
                     <div class="ai-desc-accent"></div>
-                    {% if learning_system_page.line_1 %}
-                    <p class="system-highlight line-1">{{ learning_system_page.line_1 }}</p>
+                    {% if thirty_minutes_page.line_1 %}
+                    <p class="system-highlight line-1">{{ thirty_minutes_page.line_1 }}</p>
                     {% endif %}
-                    {% if learning_system_page.line_2 %}
-                    <p class="system-highlight line-2">{{ learning_system_page.line_2 }}</p>
+                    {% if thirty_minutes_page.line_2 %}
+                    <p class="system-highlight line-2">{{ thirty_minutes_page.line_2 }}</p>
                     {% endif %}
-                    {% if learning_system_page.line_3 %}
-                    <p class="system-highlight line-3">{{ learning_system_page.line_3 }}</p>
+                    {% if thirty_minutes_page.line_3 %}
+                    <p class="system-highlight line-3">{{ thirty_minutes_page.line_3 }}</p>
                     {% endif %}
                 </div>
             </div>
         </div>
-        {% if learning_system_page.video_thumbnail %}
-        <div class="video-card" id="learningSystemVideoTrigger"
-            data-video-type="{{ learning_system_page.video_type }}"
-            data-video-src="{% if learning_system_page.video_type == 'youtube' %}{{ learning_system_page.youtube_url }}{% elif learning_system_page.uploaded_video %}{{ learning_system_page.uploaded_video.url }}{% endif %}">
-            <img src="{{ learning_system_page.video_thumbnail.url }}" class="video-thumb">
+        {% if thirty_minutes_page.video_thumbnail %}
+        <div class="video-card" id="thirtyMinutesVideoTrigger"
+            data-video-type="{{ thirty_minutes_page.video_type }}"
+            data-video-src="{% if thirty_minutes_page.video_type == 'youtube' %}{{ thirty_minutes_page.youtube_url }}{% elif thirty_minutes_page.uploaded_video %}{{ thirty_minutes_page.uploaded_video.url }}{% endif %}">
+            <img src="{{ thirty_minutes_page.video_thumbnail.url }}" class="video-thumb">
             <div class="video-overlay"></div>
             <div class="play-button">▶</div>
         </div>
@@ -235,31 +235,31 @@
 <!-- CAREER ROADMAP SECTION -->
 <section class="ai-advantage-section py-5" id="career-roadmap">
     <div class="container">
-        {% if career_roadmap_page %}
+        {% if it_aspirant_page %}
         <div class="row justify-content-center mb-5">
             <div class="col-lg-10 text-center">
                 <div class="ai-description-card">
                     <div class="ai-desc-accent"></div>
-                    {% if career_roadmap_page.line_1 %}
-                    <p class="system-highlight line-1">{{ career_roadmap_page.line_1 }}</p>
+                    {% if it_aspirant_page.line_1 %}
+                    <p class="system-highlight line-1">{{ it_aspirant_page.line_1 }}</p>
                     {% endif %}
-                    {% if career_roadmap_page.line_2 %}
-                    <p class="system-highlight line-2">{{ career_roadmap_page.line_2 }}</p>
+                    {% if it_aspirant_page.line_2 %}
+                    <p class="system-highlight line-2">{{ it_aspirant_page.line_2 }}</p>
                     {% endif %}
-                    {% if career_roadmap_page.line_3 %}
-                    <p class="system-highlight line-3">{{ career_roadmap_page.line_3 }}</p>
+                    {% if it_aspirant_page.line_3 %}
+                    <p class="system-highlight line-3">{{ it_aspirant_page.line_3 }}</p>
                     {% endif %}
-                    {% if career_roadmap_page.line_4 %}
-                    <p class="system-highlight line-4">{{ career_roadmap_page.line_4 }}</p>
+                    {% if it_aspirant_page.line_4 %}
+                    <p class="system-highlight line-4">{{ it_aspirant_page.line_4 }}</p>
                     {% endif %}
                 </div>
             </div>
         </div>
-        {% if career_roadmap_page.video_thumbnail %}
-        <div class="video-card" id="careerRoadmapVideoTrigger"
-            data-video-type="{{ career_roadmap_page.video_type }}"
-            data-video-src="{% if career_roadmap_page.video_type == 'youtube' %}{{ career_roadmap_page.youtube_url }}{% elif career_roadmap_page.uploaded_video %}{{ career_roadmap_page.uploaded_video.url }}{% endif %}">
-            <img src="{{ career_roadmap_page.video_thumbnail.url }}" class="video-thumb">
+        {% if it_aspirant_page.video_thumbnail %}
+        <div class="video-card" id="itAspirantVideoTrigger"
+            data-video-type="{{ it_aspirant_page.video_type }}"
+            data-video-src="{% if it_aspirant_page.video_type == 'youtube' %}{{ it_aspirant_page.youtube_url }}{% elif it_aspirant_page.uploaded_video %}{{ it_aspirant_page.uploaded_video.url }}{% endif %}">
+            <img src="{{ it_aspirant_page.video_thumbnail.url }}" class="video-thumb">
             <div class="video-overlay"></div>
             <div class="play-button-red"></div>
         </div>
@@ -327,37 +327,37 @@
 <!-- CAREER CAPSULES SECTION -->
 <section class="ai-advantage-section py-5" id="career-capsules">
     <div class="container">
-        {% if career_capsules_page %}
+        {% if zero_to_industry_page %}
         <div class="row justify-content-center mb-5">
             <div class="col-lg-10 text-center">
                 <div class="ai-description-card">
                     <div class="ai-desc-accent"></div>
-                    {% if career_capsules_page.line_1 %}
-                    <p class="system-highlight line-1">{{ career_capsules_page.line_1 }}</p>
+                    {% if zero_to_industry_page.line_1 %}
+                    <p class="system-highlight line-1">{{ zero_to_industry_page.line_1 }}</p>
                     {% endif %}
-                    {% if career_capsules_page.line_2 %}
-                    <p class="system-highlight line-2">{{ career_capsules_page.line_2 }}</p>
+                    {% if zero_to_industry_page.line_2 %}
+                    <p class="system-highlight line-2">{{ zero_to_industry_page.line_2 }}</p>
                     {% endif %}
-                    {% if career_capsules_page.line_3 %}
-                    <p class="system-highlight line-3">{{ career_capsules_page.line_3 }}</p>
+                    {% if zero_to_industry_page.line_3 %}
+                    <p class="system-highlight line-3">{{ zero_to_industry_page.line_3 }}</p>
                     {% endif %}
-                    {% if career_capsules_page.line_4 %}
-                    <p class="system-highlight line-4">{{ career_capsules_page.line_4 }}</p>
+                    {% if zero_to_industry_page.line_4 %}
+                    <p class="system-highlight line-4">{{ zero_to_industry_page.line_4 }}</p>
                     {% endif %}
-                    {% if career_capsules_page.line_5 %}
-                    <p class="system-highlight line-5">{{ career_capsules_page.line_5 }}</p>
+                    {% if zero_to_industry_page.line_5 %}
+                    <p class="system-highlight line-5">{{ zero_to_industry_page.line_5 }}</p>
                     {% endif %}
-                    {% if career_capsules_page.line_6 %}
-                    <p class="system-highlight line-6">{{ career_capsules_page.line_6 }}</p>
+                    {% if zero_to_industry_page.line_6 %}
+                    <p class="system-highlight line-6">{{ zero_to_industry_page.line_6 }}</p>
                     {% endif %}
                 </div>
             </div>
         </div>
-        {% if career_capsules_page.video_thumbnail %}
-        <div class="video-card" id="careerCapsulesVideoTrigger"
-            data-video-type="{{ career_capsules_page.video_type }}"
-            data-video-src="{% if career_capsules_page.video_type == 'youtube' %}{{ career_capsules_page.youtube_url }}{% elif career_capsules_page.uploaded_video %}{{ career_capsules_page.uploaded_video.url }}{% endif %}">
-            <img src="{{ career_capsules_page.video_thumbnail.url }}" class="video-thumb">
+        {% if zero_to_industry_page.video_thumbnail %}
+        <div class="video-card" id="zeroToIndustryVideoTrigger"
+            data-video-type="{{ zero_to_industry_page.video_type }}"
+            data-video-src="{% if zero_to_industry_page.video_type == 'youtube' %}{{ zero_to_industry_page.youtube_url }}{% elif zero_to_industry_page.uploaded_video %}{{ zero_to_industry_page.uploaded_video.url }}{% endif %}">
+            <img src="{{ zero_to_industry_page.video_thumbnail.url }}" class="video-thumb">
             <div class="video-overlay"></div>
             <div class="play-button">▶</div>
         </div>
@@ -383,48 +383,48 @@
 <!-- LANGUAGE BARRIER SECTION -->
 <section class="ai-advantage-section py-5" id="language-barrier">
     <div class="container">
-        {% if language_barrier_page %}
+        {% if career_paths_page %}
         <div class="row justify-content-center mb-5">
             <div class="col-lg-10 text-center">
                 <div class="ai-description-card">
                     <div class="ai-desc-accent"></div>
-                    {% if language_barrier_page.line_1 %}
-                    <p class="system-highlight line-1">{{ language_barrier_page.line_1 }}</p>
+                    {% if career_paths_page.line_1 %}
+                    <p class="system-highlight line-1">{{ career_paths_page.line_1 }}</p>
                     {% endif %}
-                    {% if language_barrier_page.line_2 %}
-                    <p class="system-highlight line-2">{{ language_barrier_page.line_2 }}</p>
+                    {% if career_paths_page.line_2 %}
+                    <p class="system-highlight line-2">{{ career_paths_page.line_2 }}</p>
                     {% endif %}
-                    {% if language_barrier_page.line_3 %}
-                    <p class="system-highlight line-3">{{ language_barrier_page.line_3 }}</p>
+                    {% if career_paths_page.line_3 %}
+                    <p class="system-highlight line-3">{{ career_paths_page.line_3 }}</p>
                     {% endif %}
-                    {% if language_barrier_page.line_4 %}
-                    <p class="system-highlight line-4">{{ language_barrier_page.line_4 }}</p>
+                    {% if career_paths_page.line_4 %}
+                    <p class="system-highlight line-4">{{ career_paths_page.line_4 }}</p>
                     {% endif %}
-                    {% if language_barrier_page.line_5 %}
-                    <p class="system-highlight line-5">{{ language_barrier_page.line_5 }}</p>
+                    {% if career_paths_page.line_5 %}
+                    <p class="system-highlight line-5">{{ career_paths_page.line_5 }}</p>
                     {% endif %}
-                    {% if language_barrier_page.line_6 %}
-                    <p class="system-highlight line-6">{{ language_barrier_page.line_6 }}</p>
+                    {% if career_paths_page.line_6 %}
+                    <p class="system-highlight line-6">{{ career_paths_page.line_6 }}</p>
                     {% endif %}
                 </div>
             </div>
         </div>
-        {% if language_barrier_page.video_thumbnail or language_barrier_page.image %}
+        {% if career_paths_page.video_thumbnail or career_paths_page.image %}
         <div class="career-paths-image-wrapper">
-            <img src="{% if language_barrier_page.video_thumbnail %}{{ language_barrier_page.video_thumbnail.url }}{% else %}{{ language_barrier_page.image.url }}{% endif %}" class="career-paths-image">
+            <img src="{% if career_paths_page.video_thumbnail %}{{ career_paths_page.video_thumbnail.url }}{% else %}{{ career_paths_page.image.url }}{% endif %}" class="career-paths-image">
             <button class="career-path-btn career-path-btn-left" 
-                data-video-type="{{ language_barrier_page.video_type }}" 
-                data-video-src="{% if language_barrier_page.video_type == 'youtube' %}{{ language_barrier_page.youtube_url_1 }}{% elif language_barrier_page.uploaded_video_1 %}{{ language_barrier_page.uploaded_video_1.url }}{% endif %}">
+                data-video-type="{{ career_paths_page.video_type }}" 
+                data-video-src="{% if career_paths_page.video_type == 'youtube' %}{{ career_paths_page.youtube_url_1 }}{% elif career_paths_page.uploaded_video_1 %}{{ career_paths_page.uploaded_video_1.url }}{% endif %}">
                 <span class="btn-text">Explore Path</span>
             </button>
             <button class="career-path-btn career-path-btn-center" 
-                data-video-type="{{ language_barrier_page.video_type }}" 
-                data-video-src="{% if language_barrier_page.video_type == 'youtube' %}{{ language_barrier_page.youtube_url_2 }}{% elif language_barrier_page.uploaded_video_2 %}{{ language_barrier_page.uploaded_video_2.url }}{% endif %}">
+                data-video-type="{{ career_paths_page.video_type }}" 
+                data-video-src="{% if career_paths_page.video_type == 'youtube' %}{{ career_paths_page.youtube_url_2 }}{% elif career_paths_page.uploaded_video_2 %}{{ career_paths_page.uploaded_video_2.url }}{% endif %}">
                 <span class="btn-text">Explore Path</span>
             </button>
             <button class="career-path-btn career-path-btn-right" 
-                data-video-type="{{ language_barrier_page.video_type }}" 
-                data-video-src="{% if language_barrier_page.video_type == 'youtube' %}{{ language_barrier_page.youtube_url_3 }}{% elif language_barrier_page.uploaded_video_3 %}{{ language_barrier_page.uploaded_video_3.url }}{% endif %}">
+                data-video-type="{{ career_paths_page.video_type }}" 
+                data-video-src="{% if career_paths_page.video_type == 'youtube' %}{{ career_paths_page.youtube_url_3 }}{% elif career_paths_page.uploaded_video_3 %}{{ career_paths_page.uploaded_video_3.url }}{% endif %}">
                 <span class="btn-text">Explore Path</span>
             </button>
         </div>
@@ -812,20 +812,20 @@ if (aiAdvantageVideoTrigger && aiAdvantageVideoModal) {
     }
 
     // Skill Test Video Modal
-    const skillTestVideoTrigger = document.getElementById("skillTestVideoTrigger");
-    const skillTestVideoModal = document.getElementById("skillTestVideoModal");
-    const skillTestVideoContainer = document.getElementById("skillTestVideoContainer");
-    const closeSkillTestVideo = document.getElementById("closeSkillTestVideo");
-    let stCurrentVideo = null;
-    let stCurrentIframe = null;
+    const conceptualCommunicationVideoTrigger = document.getElementById("conceptualCommunicationVideoTrigger");
+    const conceptualCommunicationVideoModal = document.getElementById("conceptualCommunicationVideoModal");
+    const conceptualCommunicationVideoContainer = document.getElementById("conceptualCommunicationVideoContainer");
+    const closeConceptualCommunicationVideo = document.getElementById("closeConceptualCommunicationVideo");
+     let conceptCurrentVideo = null;
+     let conceptCurrentIframe = null;
 
-    if (skillTestVideoTrigger && skillTestVideoModal) {
-        skillTestVideoTrigger.addEventListener("click", function() {
-            const videoType = skillTestVideoTrigger.getAttribute("data-video-type");
-            const videoSrc = skillTestVideoTrigger.getAttribute("data-video-src");
-            skillTestVideoContainer.innerHTML = "";
-            stCurrentVideo = null;
-            stCurrentIframe = null;
+    if (conceptualCommunicationVideoTrigger && conceptualCommunicationVideoModal) {
+        conceptualCommunicationVideoTrigger.addEventListener("click", function() {
+            const videoType = conceptualCommunicationVideoTrigger.getAttribute("data-video-type");
+            const videoSrc = conceptualCommunicationVideoTrigger.getAttribute("data-video-src");
+            conceptualCommunicationVideoContainer.innerHTML = "";
+            conceptCurrentVideo = null;
+            conceptCurrentIframe = null;
 
             if (videoSrc && videoSrc.trim() !== "" && (videoType === "youtube" || videoSrc.includes("youtube") || videoSrc.includes("youtu.be"))) {
                 let videoId = "";
@@ -836,18 +836,18 @@ if (aiAdvantageVideoTrigger && aiAdvantageVideoModal) {
                     const match = videoSrc.match(/[?&]v=([^&]+)/);
                     if (match) videoId = match[1];
                 }
-                if (videoId) {
-                    const iframe = document.createElement("iframe");
-                    iframe.src = "https://www.youtube.com/embed/" + videoId + "?autoplay=1";
-                    iframe.allow = "autoplay; encrypted-media; picture-in-picture; web-share";
-                    iframe.referrerPolicy = "strict-origin-when-cross-origin";
-                    iframe.allowFullscreen = true;
-                    iframe.style.width = "100%";
-                    iframe.style.height = "500px";
-                    iframe.style.border = "none";
-                    stCurrentIframe = iframe;
-                    skillTestVideoContainer.appendChild(iframe);
-                }
+                 if (videoId) {
+                     const iframe = document.createElement("iframe");
+                     iframe.src = "https://www.youtube.com/embed/" + videoId + "?autoplay=1";
+                     iframe.allow = "autoplay; encrypted-media; picture-in-picture; web-share";
+                     iframe.referrerPolicy = "strict-origin-when-cross-origin";
+                     iframe.allowFullscreen = true;
+                     iframe.style.width = "100%";
+                     iframe.style.height = "500px";
+                     iframe.style.border = "none";
+                     conceptCurrentIframe = iframe;
+                     conceptualCommunicationVideoContainer.appendChild(iframe);
+                 }
             } else {
                 const video = document.createElement("video");
                 video.controls = true;
@@ -858,60 +858,60 @@ if (aiAdvantageVideoTrigger && aiAdvantageVideoModal) {
                 const source = document.createElement("source");
                 source.src = videoSrc;
                 source.type = "video/mp4";
-                video.appendChild(source);
-                stCurrentVideo = video;
-                skillTestVideoContainer.appendChild(video);
+                 video.appendChild(source);
+                 conceptCurrentVideo = video;
+                 conceptualCommunicationVideoContainer.appendChild(video);
                 video.load();
                 video.play().catch(function(error) { console.log("Video autoplay failed:", error); });
             }
-            skillTestVideoModal.style.display = "flex";
+            conceptualCommunicationVideoModal.style.display = "flex";
         });
 
-        if (closeSkillTestVideo) {
-            closeSkillTestVideo.addEventListener("click", function() {
-                if (stCurrentIframe) stCurrentIframe.src = "about:blank";
-                if (stCurrentVideo) {
-                    stCurrentVideo.pause();
-                    stCurrentVideo.src = "";
-                    stCurrentVideo.load();
+        if (closeConceptualCommunicationVideo) {
+            closeConceptualCommunicationVideo.addEventListener("click", function() {
+                if (conceptCurrentIframe) conceptCurrentIframe.src = "about:blank";
+                if (conceptCurrentVideo) {
+                    conceptCurrentVideo.pause();
+                    conceptCurrentVideo.src = "";
+                    conceptCurrentVideo.load();
                 }
-                skillTestVideoModal.style.display = "none";
-                skillTestVideoContainer.innerHTML = "";
-                stCurrentVideo = null;
-                stCurrentIframe = null;
+                conceptualCommunicationVideoModal.style.display = "none";
+                conceptualCommunicationVideoContainer.innerHTML = "";
+                conceptCurrentVideo = null;
+                conceptCurrentIframe = null;
             });
         }
-        skillTestVideoModal.addEventListener("click", function(e) {
-            if (e.target === skillTestVideoModal) {
-                if (stCurrentIframe) stCurrentIframe.src = "about:blank";
-                if (stCurrentVideo) {
-                    stCurrentVideo.pause();
-                    stCurrentVideo.src = "";
-                    stCurrentVideo.load();
+        conceptualCommunicationVideoModal.addEventListener("click", function(e) {
+            if (e.target === conceptualCommunicationVideoModal) {
+                if (conceptCurrentIframe) conceptCurrentIframe.src = "about:blank";
+                if (conceptCurrentVideo) {
+                    conceptCurrentVideo.pause();
+                    conceptCurrentVideo.src = "";
+                    conceptCurrentVideo.load();
                 }
-                skillTestVideoModal.style.display = "none";
-                skillTestVideoContainer.innerHTML = "";
-                stCurrentVideo = null;
-                stCurrentIframe = null;
+                conceptualCommunicationVideoModal.style.display = "none";
+                conceptualCommunicationVideoContainer.innerHTML = "";
+                conceptCurrentVideo = null;
+                conceptCurrentIframe = null;
             }
         });
     }
 
     // Learning System Video Modal
-    const learningSystemVideoTrigger = document.getElementById("learningSystemVideoTrigger");
-    const learningSystemVideoModal = document.getElementById("learningSystemVideoModal");
-    const learningSystemVideoContainer = document.getElementById("learningSystemVideoContainer");
-    const closeLearningSystemVideo = document.getElementById("closeLearningSystemVideo");
-    let lsCurrentVideo = null;
-    let lsCurrentIframe = null;
+    const thirtyMinutesVideoTrigger = document.getElementById("thirtyMinutesVideoTrigger");
+    const thirtyMinutesVideoModal = document.getElementById("thirtyMinutesVideoModal");
+    const thirtyMinutesVideoContainer = document.getElementById("thirtyMinutesVideoContainer");
+    const closeThirtyMinutesVideo = document.getElementById("closeThirtyMinutesVideo");
+     let tmCurrentVideo = null;
+     let tmCurrentIframe = null;
 
-    if (learningSystemVideoTrigger && learningSystemVideoModal) {
-        learningSystemVideoTrigger.addEventListener("click", function() {
-            const videoType = learningSystemVideoTrigger.getAttribute("data-video-type");
-            const videoSrc = learningSystemVideoTrigger.getAttribute("data-video-src");
-            learningSystemVideoContainer.innerHTML = "";
-            lsCurrentVideo = null;
-            lsCurrentIframe = null;
+    if (thirtyMinutesVideoTrigger && thirtyMinutesVideoModal) {
+        thirtyMinutesVideoTrigger.addEventListener("click", function() {
+            const videoType = thirtyMinutesVideoTrigger.getAttribute("data-video-type");
+            const videoSrc = thirtyMinutesVideoTrigger.getAttribute("data-video-src");
+            thirtyMinutesVideoContainer.innerHTML = "";
+            tmCurrentVideo = null;
+            tmCurrentIframe = null;
 
             if (videoSrc && videoSrc.trim() !== "" && (videoType === "youtube" || videoSrc.includes("youtube") || videoSrc.includes("youtu.be"))) {
                 let videoId = "";
@@ -931,8 +931,8 @@ if (aiAdvantageVideoTrigger && aiAdvantageVideoModal) {
                     iframe.style.width = "100%";
                     iframe.style.height = "500px";
                     iframe.style.border = "none";
-                    lsCurrentIframe = iframe;
-                    learningSystemVideoContainer.appendChild(iframe);
+                    tmCurrentIframe = iframe;
+                    thirtyMinutesVideoContainer.appendChild(iframe);
                 }
             } else {
                 const video = document.createElement("video");
@@ -945,57 +945,57 @@ if (aiAdvantageVideoTrigger && aiAdvantageVideoModal) {
                 source.src = videoSrc;
                 source.type = "video/mp4";
                 video.appendChild(source);
-                lsCurrentVideo = video;
-                learningSystemVideoContainer.appendChild(video);
+                tmCurrentVideo = video;
+                thirtyMinutesVideoContainer.appendChild(video);
                 video.load();
                 video.play().catch(function(error) { console.log("Video autoplay failed:", error); });
             }
-            learningSystemVideoModal.style.display = "flex";
+            thirtyMinutesVideoModal.style.display = "flex";
         });
 
-        if (closeLearningSystemVideo) {
-            closeLearningSystemVideo.addEventListener("click", function() {
-                if (lsCurrentIframe) lsCurrentIframe.src = "about:blank";
-                if (lsCurrentVideo) {
-                    lsCurrentVideo.pause();
-                    lsCurrentVideo.src = "";
-                    lsCurrentVideo.load();
+        if (closeThirtyMinutesVideo) {
+            closeThirtyMinutesVideo.addEventListener("click", function() {
+                if (tmCurrentIframe) tmCurrentIframe.src = "about:blank";
+                if (tmCurrentVideo) {
+                    tmCurrentVideo.pause();
+                    tmCurrentVideo.src = "";
+                    tmCurrentVideo.load();
                 }
-                learningSystemVideoModal.style.display = "none";
-                learningSystemVideoContainer.innerHTML = "";
-                lsCurrentVideo = null;
-                lsCurrentIframe = null;
+                thirtyMinutesVideoModal.style.display = "none";
+                thirtyMinutesVideoContainer.innerHTML = "";
+                tmCurrentVideo = null;
+                tmCurrentIframe = null;
             });
         }
-        learningSystemVideoModal.addEventListener("click", function(e) {
-            if (e.target === learningSystemVideoModal) {
-                if (lsCurrentIframe) lsCurrentIframe.src = "about:blank";
-                if (lsCurrentVideo) {
-                    lsCurrentVideo.pause();
-                    lsCurrentVideo.src = "";
-                    lsCurrentVideo.load();
+        thirtyMinutesVideoModal.addEventListener("click", function(e) {
+            if (e.target === thirtyMinutesVideoModal) {
+                if (tmCurrentIframe) tmCurrentIframe.src = "about:blank";
+                if (tmCurrentVideo) {
+                    tmCurrentVideo.pause();
+                    tmCurrentVideo.src = "";
+                    tmCurrentVideo.load();
                 }
-                learningSystemVideoModal.style.display = "none";
-                learningSystemVideoContainer.innerHTML = "";
-                lsCurrentVideo = null;
-                lsCurrentIframe = null;
+                thirtyMinutesVideoModal.style.display = "none";
+                thirtyMinutesVideoContainer.innerHTML = "";
+                tmCurrentVideo = null;
+                tmCurrentIframe = null;
             }
         });
     }
 
     // Career Roadmap Video Modal
-    const careerRoadmapVideoTrigger = document.getElementById("careerRoadmapVideoTrigger");
-    const careerRoadmapVideoModal = document.getElementById("careerRoadmapVideoModal");
-    const careerRoadmapVideoContainer = document.getElementById("careerRoadmapVideoContainer");
-    const closeCareerRoadmapVideo = document.getElementById("closeCareerRoadmapVideo");
-    let crCurrentVideo = null;
-    let crCurrentIframe = null;
+    const itAspirantVideoTrigger = document.getElementById("itAspirantVideoTrigger");
+    const itAspirantVideoModal = document.getElementById("itAspirantVideoModal");
+    const itAspirantVideoContainer = document.getElementById("itAspirantVideoContainer");
+    const closeItAspirantVideo = document.getElementById("closeItAspirantVideo");
+     let itaCurrentVideo = null;
+     let itaCurrentIframe = null;
 
-    if (careerRoadmapVideoTrigger && careerRoadmapVideoModal) {
-        careerRoadmapVideoTrigger.addEventListener("click", function() {
-            const videoType = careerRoadmapVideoTrigger.getAttribute("data-video-type");
-            const videoSrc = careerRoadmapVideoTrigger.getAttribute("data-video-src");
-            careerRoadmapVideoContainer.innerHTML = "";
+    if (itAspirantVideoTrigger && itAspirantVideoModal) {
+        itAspirantVideoTrigger.addEventListener("click", function() {
+            const videoType = itAspirantVideoTrigger.getAttribute("data-video-type");
+            const videoSrc = itAspirantVideoTrigger.getAttribute("data-video-src");
+            itAspirantVideoContainer.innerHTML = "";
             crCurrentVideo = null;
             crCurrentIframe = null;
 
@@ -1017,8 +1017,8 @@ if (aiAdvantageVideoTrigger && aiAdvantageVideoModal) {
                     iframe.style.width = "100%";
                     iframe.style.height = "500px";
                     iframe.style.border = "none";
-                    crCurrentIframe = iframe;
-                    careerRoadmapVideoContainer.appendChild(iframe);
+                    itaCurrentIframe = iframe;
+                    itAspirantVideoContainer.appendChild(iframe);
                 }
             } else {
                 const video = document.createElement("video");
@@ -1031,59 +1031,59 @@ if (aiAdvantageVideoTrigger && aiAdvantageVideoModal) {
                 source.src = videoSrc;
                 source.type = "video/mp4";
                 video.appendChild(source);
-                crCurrentVideo = video;
-                careerRoadmapVideoContainer.appendChild(video);
+                itaCurrentVideo = video;
+                itAspirantVideoContainer.appendChild(video);
                 video.load();
                 video.play().catch(function(error) { console.log("Video autoplay failed:", error); });
             }
-            careerRoadmapVideoModal.style.display = "flex";
+            itAspirantVideoModal.style.display = "flex";
         });
 
-        if (closeCareerRoadmapVideo) {
-            closeCareerRoadmapVideo.addEventListener("click", function() {
-                if (crCurrentIframe) crCurrentIframe.src = "about:blank";
-                if (crCurrentVideo) {
-                    crCurrentVideo.pause();
-                    crCurrentVideo.src = "";
-                    crCurrentVideo.load();
+        if (closeItAspirantVideo) {
+            closeItAspirantVideo.addEventListener("click", function() {
+                if (itaCurrentIframe) itaCurrentIframe.src = "about:blank";
+                if (itaCurrentVideo) {
+                    itaCurrentVideo.pause();
+                    itaCurrentVideo.src = "";
+                    itaCurrentVideo.load();
                 }
-                careerRoadmapVideoModal.style.display = "none";
-                careerRoadmapVideoContainer.innerHTML = "";
-                crCurrentVideo = null;
-                crCurrentIframe = null;
+                itAspirantVideoModal.style.display = "none";
+                itAspirantVideoContainer.innerHTML = "";
+                itaCurrentVideo = null;
+                itaCurrentIframe = null;
             });
         }
-        careerRoadmapVideoModal.addEventListener("click", function(e) {
-            if (e.target === careerRoadmapVideoModal) {
-                if (crCurrentIframe) crCurrentIframe.src = "about:blank";
-                if (crCurrentVideo) {
-                    crCurrentVideo.pause();
-                    crCurrentVideo.src = "";
-                    crCurrentVideo.load();
+        itAspirantVideoModal.addEventListener("click", function(e) {
+            if (e.target === itAspirantVideoModal) {
+                if (itaCurrentIframe) itaCurrentIframe.src = "about:blank";
+                if (itaCurrentVideo) {
+                    itaCurrentVideo.pause();
+                    itaCurrentVideo.src = "";
+                    itaCurrentVideo.load();
                 }
-                careerRoadmapVideoModal.style.display = "none";
-                careerRoadmapVideoContainer.innerHTML = "";
-                crCurrentVideo = null;
-                crCurrentIframe = null;
+                itAspirantVideoModal.style.display = "none";
+                itAspirantVideoContainer.innerHTML = "";
+                itaCurrentVideo = null;
+                itaCurrentIframe = null;
             }
         });
     }
 
     // Career Capsules Video Modal
-    const careerCapsulesVideoTrigger = document.getElementById("careerCapsulesVideoTrigger");
-    const careerCapsulesVideoModal = document.getElementById("careerCapsulesVideoModal");
-    const careerCapsulesVideoContainer = document.getElementById("careerCapsulesVideoContainer");
-    const closeCareerCapsulesVideo = document.getElementById("closeCareerCapsulesVideo");
-    let ccCurrentVideo = null;
-    let ccCurrentIframe = null;
+    const zeroToIndustryVideoTrigger = document.getElementById("zeroToIndustryVideoTrigger");
+    const zeroToIndustryVideoModal = document.getElementById("zeroToIndustryVideoModal");
+    const zeroToIndustryVideoContainer = document.getElementById("zeroToIndustryVideoContainer");
+    const closeZeroToIndustryVideo = document.getElementById("closeZeroToIndustryVideo");
+     let zeroCurrentVideo = null;
+     let zeroCurrentIframe = null;
 
-    if (careerCapsulesVideoTrigger && careerCapsulesVideoModal) {
-        careerCapsulesVideoTrigger.addEventListener("click", function() {
-            const videoType = careerCapsulesVideoTrigger.getAttribute("data-video-type");
-            const videoSrc = careerCapsulesVideoTrigger.getAttribute("data-video-src");
-            careerCapsulesVideoContainer.innerHTML = "";
-            ccCurrentVideo = null;
-            ccCurrentIframe = null;
+    if (zeroToIndustryVideoTrigger && zeroToIndustryVideoModal) {
+        zeroToIndustryVideoTrigger.addEventListener("click", function() {
+            const videoType = zeroToIndustryVideoTrigger.getAttribute("data-video-type");
+            const videoSrc = zeroToIndustryVideoTrigger.getAttribute("data-video-src");
+            zeroToIndustryVideoContainer.innerHTML = "";
+            zeroCurrentVideo = null;
+            zeroCurrentIframe = null;
 
             if (videoSrc && videoSrc.trim() !== "" && (videoType === "youtube" || videoSrc.includes("youtube") || videoSrc.includes("youtu.be"))) {
                 let videoId = "";
@@ -1103,8 +1103,8 @@ if (aiAdvantageVideoTrigger && aiAdvantageVideoModal) {
                     iframe.style.width = "100%";
                     iframe.style.height = "500px";
                     iframe.style.border = "none";
-                    ccCurrentIframe = iframe;
-                    careerCapsulesVideoContainer.appendChild(iframe);
+                     zeroCurrentIframe = iframe;
+                    zeroToIndustryVideoContainer.appendChild(iframe);
                 }
             } else {
                 const video = document.createElement("video");
@@ -1117,40 +1117,40 @@ if (aiAdvantageVideoTrigger && aiAdvantageVideoModal) {
                 source.src = videoSrc;
                 source.type = "video/mp4";
                 video.appendChild(source);
-                ccCurrentVideo = video;
-                careerCapsulesVideoContainer.appendChild(video);
+                 zeroCurrentVideo = video;
+                zeroToIndustryVideoContainer.appendChild(video);
                 video.load();
                 video.play().catch(function(error) { console.log("Video autoplay failed:", error); });
             }
-            careerCapsulesVideoModal.style.display = "flex";
+            zeroToIndustryVideoModal.style.display = "flex";
         });
 
-        if (closeCareerCapsulesVideo) {
-            closeCareerCapsulesVideo.addEventListener("click", function() {
-                if (ccCurrentIframe) ccCurrentIframe.src = "about:blank";
-                if (ccCurrentVideo) {
-                    ccCurrentVideo.pause();
-                    ccCurrentVideo.src = "";
-                    ccCurrentVideo.load();
+        if (closeZeroToIndustryVideo) {
+            closeZeroToIndustryVideo.addEventListener("click", function() {
+                if (zeroCurrentIframe) zeroCurrentIframe.src = "about:blank";
+                if (zeroCurrentVideo) {
+                    zeroCurrentVideo.pause();
+                    zeroCurrentVideo.src = "";
+                    zeroCurrentVideo.load();
                 }
-                careerCapsulesVideoModal.style.display = "none";
-                careerCapsulesVideoContainer.innerHTML = "";
-                ccCurrentVideo = null;
-                ccCurrentIframe = null;
+                zeroToIndustryVideoModal.style.display = "none";
+                zeroToIndustryVideoContainer.innerHTML = "";
+                zeroCurrentVideo = null;
+                zeroCurrentIframe = null;
             });
         }
-        careerCapsulesVideoModal.addEventListener("click", function(e) {
-            if (e.target === careerCapsulesVideoModal) {
-                if (ccCurrentIframe) ccCurrentIframe.src = "about:blank";
-                if (ccCurrentVideo) {
-                    ccCurrentVideo.pause();
-                    ccCurrentVideo.src = "";
-                    ccCurrentVideo.load();
+        zeroToIndustryVideoModal.addEventListener("click", function(e) {
+            if (e.target === zeroToIndustryVideoModal) {
+                if (zeroCurrentIframe) zeroCurrentIframe.src = "about:blank";
+                if (zeroCurrentVideo) {
+                    zeroCurrentVideo.pause();
+                    zeroCurrentVideo.src = "";
+                    zeroCurrentVideo.load();
                 }
-                careerCapsulesVideoModal.style.display = "none";
-                careerCapsulesVideoContainer.innerHTML = "";
-                ccCurrentVideo = null;
-                ccCurrentIframe = null;
+                zeroToIndustryVideoModal.style.display = "none";
+                zeroToIndustryVideoContainer.innerHTML = "";
+                zeroCurrentVideo = null;
+                zeroCurrentIframe = null;
             }
         });
     }
@@ -1246,15 +1246,15 @@ if (readyForTestVideoTrigger && readyForTestVideoModal) {
 
 // Language Barrier - Career Path Buttons
     const careerPathButtons = document.querySelectorAll(".career-path-btn");
-    const languageBarrierVideoModal = document.getElementById("languageBarrierVideoModal");
-    const languageBarrierVideoContainer = document.getElementById("languageBarrierVideoContainer");
-    const closeLanguageBarrierVideo = document.getElementById("closeLanguageBarrierVideo");
-    let lbCurrentVideo = null;
-    let lbCurrentIframe = null;
+    const careerPathsVideoModal = document.getElementById("careerPathsVideoModal");
+    const careerPathsVideoContainer = document.getElementById("careerPathsVideoContainer");
+    const closeCareerPathsVideo = document.getElementById("closeCareerPathsVideo");
+     let cpCurrentVideo = null;
+     let cpCurrentIframe = null;
 
     console.log("Career path buttons found:", careerPathButtons.length);
-    console.log("Modal found:", !!languageBarrierVideoModal);
-    console.log("Container found:", !!languageBarrierVideoContainer);
+    console.log("Modal found:", !!careerPathsVideoModal);
+    console.log("Container found:", !!careerPathsVideoContainer);
 
     careerPathButtons.forEach(function(btn) {
         btn.addEventListener("click", function(e) {
@@ -1272,9 +1272,9 @@ if (readyForTestVideoTrigger && readyForTestVideoModal) {
                 return;
             }
             
-            languageBarrierVideoContainer.innerHTML = "";
-            lbCurrentVideo = null;
-            lbCurrentIframe = null;
+            careerPathsVideoContainer.innerHTML = "";
+            cpCurrentVideo = null;
+            cpCurrentIframe = null;
             
             if (videoSrc && videoSrc.trim() !== "" && (videoType === "youtube" || videoSrc.includes("youtube") || videoSrc.includes("youtu.be"))) {
                 let videoId = "";
@@ -1294,8 +1294,8 @@ if (readyForTestVideoTrigger && readyForTestVideoModal) {
                     iframe.style.width = "100%";
                     iframe.style.height = "500px";
                     iframe.style.border = "none";
-                    lbCurrentIframe = iframe;
-                    languageBarrierVideoContainer.appendChild(iframe);
+                    cpCurrentIframe = iframe;
+                    careerPathsVideoContainer.appendChild(iframe);
                 }
             } else {
                 const video = document.createElement("video");
@@ -1308,42 +1308,42 @@ if (readyForTestVideoTrigger && readyForTestVideoModal) {
                 source.src = videoSrc;
                 source.type = "video/mp4";
                 video.appendChild(source);
-                lbCurrentVideo = video;
-                languageBarrierVideoContainer.appendChild(video);
+                cpCurrentVideo = video;
+                careerPathsVideoContainer.appendChild(video);
                 video.load();
                 video.play().catch(function(error) { console.log("Video autoplay failed:", error); });
             }
-            languageBarrierVideoModal.style.display = "flex";
+            careerPathsVideoModal.style.display = "flex";
         });
     });
 
-    if (closeLanguageBarrierVideo) {
-        closeLanguageBarrierVideo.addEventListener("click", function() {
-            if (lbCurrentIframe) lbCurrentIframe.src = "about:blank";
-            if (lbCurrentVideo) {
-                lbCurrentVideo.pause();
-                lbCurrentVideo.src = "";
-                lbCurrentVideo.load();
+    if (closeCareerPathsVideo) {
+        closeCareerPathsVideo.addEventListener("click", function() {
+            if (cpCurrentIframe) cpCurrentIframe.src = "about:blank";
+            if (cpCurrentVideo) {
+                cpCurrentVideo.pause();
+                cpCurrentVideo.src = "";
+                cpCurrentVideo.load();
             }
-            languageBarrierVideoModal.style.display = "none";
-            languageBarrierVideoContainer.innerHTML = "";
-            lbCurrentVideo = null;
-            lbCurrentIframe = null;
+            careerPathsVideoModal.style.display = "none";
+            careerPathsVideoContainer.innerHTML = "";
+            cpCurrentVideo = null;
+            cpCurrentIframe = null;
         });
     }
     
-    languageBarrierVideoModal.addEventListener("click", function(e) {
-        if (e.target === languageBarrierVideoModal) {
-            if (lbCurrentIframe) lbCurrentIframe.src = "about:blank";
-            if (lbCurrentVideo) {
-                lbCurrentVideo.pause();
-                lbCurrentVideo.src = "";
-                lbCurrentVideo.load();
+    careerPathsVideoModal.addEventListener("click", function(e) {
+        if (e.target === careerPathsVideoModal) {
+            if (cpCurrentIframe) cpCurrentIframe.src = "about:blank";
+            if (cpCurrentVideo) {
+                cpCurrentVideo.pause();
+                cpCurrentVideo.src = "";
+                cpCurrentVideo.load();
             }
-            languageBarrierVideoModal.style.display = "none";
-            languageBarrierVideoContainer.innerHTML = "";
-            lbCurrentVideo = null;
-            lbCurrentIframe = null;
+            careerPathsVideoModal.style.display = "none";
+            careerPathsVideoContainer.innerHTML = "";
+            cpCurrentVideo = null;
+            cpCurrentIframe = null;
         }
     });
 
