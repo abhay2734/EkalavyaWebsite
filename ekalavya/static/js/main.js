@@ -34,22 +34,4 @@ videoPlayer.currentTime=0
 })
 
 
-/* FUNNEL ACCORDION */
-
-const funnelCards=document.querySelectorAll(".funnel-card")
-
-funnelCards.forEach(card=>{
-const header=card.querySelector(".funnel-card-header")
-header?.addEventListener("click",()=>{
-// Close all other cards
-funnelCards.forEach(c=>{
-if(c!==card){
-c.classList.remove("active")
-}
-})
-// Toggle current card
-card.classList.toggle("active")
-})
-})
-
 })

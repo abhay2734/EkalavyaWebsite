@@ -6,7 +6,6 @@ def populate_initial_data(apps, schema_editor):
     HeroImage = apps.get_model('website', 'HeroImage')
     TopBanner = apps.get_model('website', 'TopBanner')
     HomeVideo = apps.get_model('website', 'HomeVideo')
-    FunnelStep = apps.get_model('website', 'FunnelStep')
     AIAdvantagePage = apps.get_model('website', 'AIAdvantagePage')
     SkillTestPage = apps.get_model('website', 'SkillTestPage')
     CareerRoadmapPage = apps.get_model('website', 'CareerRoadmapPage')
@@ -34,35 +33,6 @@ def populate_initial_data(apps, schema_editor):
         thumbnail='video_thumbnails/RAV_home_page_video_thumbnail.png',
         video_type='upload',
         uploaded_video='homepage_videos/video_20250325_135431.mp4',
-        active=True
-    )
-
-    # FunnelSteps
-    FunnelStep.objects.create(
-        title='Free Clarity Call',
-        description='Get a free clarity call to start your journey.',
-        button_text='Book Now',
-        button_url='/clarity/',
-        step_type='clarity',
-        order=0,
-        active=True
-    )
-    FunnelStep.objects.create(
-        title='5-Day Challenge',
-        description='Join our 5-day challenge to test your skills.',
-        button_text='Join Challenge',
-        button_url='/challenge/',
-        step_type='challenge',
-        order=1,
-        active=True
-    )
-    FunnelStep.objects.create(
-        title='Enroll Now',
-        description='Start your career transformation today.',
-        button_text='Enroll',
-        button_url='/enroll/',
-        step_type='conversion',
-        order=2,
         active=True
     )
 

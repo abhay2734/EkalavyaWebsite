@@ -1,6 +1,5 @@
 from django.contrib import admin
-from .models import HeroImage, HomeVideo, FunnelStep, AIAdvantagePage, TheSystemPage, SkillTestPage, LearningSystemPage, CareerRoadmapPage, CareerCapsulesPage, LanguageBarrierPage, ReadyForTestPage, TestBeforeTrustPage
-
+from .models import HeroImage, HomeVideo, AIAdvantagePage, TheSystemPage, SkillTestPage, LearningSystemPage, CareerRoadmapPage, CareerCapsulesPage, LanguageBarrierPage, ReadyForTestPage, TestBeforeTrustPage
 
 @admin.register(HeroImage)
 class HeroImageAdmin(admin.ModelAdmin):
@@ -15,7 +14,7 @@ class HeroImageAdmin(admin.ModelAdmin):
 
 @admin.register(HomeVideo)
 class HomeVideoAdmin(admin.ModelAdmin):
-    list_display = ["title", "video_type", "active", "created_at"]
+    list_display = ["video_type", "active", "created_at"]
     list_filter = ["active", "video_type"]
 
     def has_add_permission(self, request):
@@ -24,20 +23,13 @@ class HomeVideoAdmin(admin.ModelAdmin):
         return super().has_add_permission(request)
 
 
-@admin.register(FunnelStep)
-class FunnelStepAdmin(admin.ModelAdmin):
-    list_display = ["title", "step_type", "order", "active", "created_at"]
-    list_filter = ["active", "step_type"]
-    list_editable = ["order", "active"]
-
-
 @admin.register(AIAdvantagePage)
 class AIAdvantagePageAdmin(admin.ModelAdmin):
-    list_display = ["title", "video_title", "active", "updated_at"]
+    list_display = ["video_title", "active", "updated_at"]
     list_filter = ["active"]
     fieldsets = (
         ("Section Content", {
-            "fields": ("title", "subtitle", "description")
+            "fields": ("subtitle", "description")
         }),
         ("Video Section", {
             "fields": ("video_thumbnail", "video_title", "video_type", "youtube_url", "uploaded_video")
@@ -58,11 +50,11 @@ class AIAdvantagePageAdmin(admin.ModelAdmin):
 
 @admin.register(TheSystemPage)
 class TheSystemPageAdmin(admin.ModelAdmin):
-    list_display = ["title", "video_title", "active", "updated_at"]
+    list_display = ["video_title", "active", "updated_at"]
     list_filter = ["active"]
     fieldsets = (
         ("Section Content", {
-            "fields": ("title", "subtitle", "description")
+            "fields": ("subtitle", "description")
         }),
         ("Video Section", {
             "fields": ("video_thumbnail", "video_title", "video_type", "youtube_url", "uploaded_video")
@@ -83,11 +75,11 @@ class TheSystemPageAdmin(admin.ModelAdmin):
 
 @admin.register(SkillTestPage)
 class SkillTestPageAdmin(admin.ModelAdmin):
-    list_display = ["title", "video_title", "active", "updated_at"]
+    list_display = ["video_title", "active", "updated_at"]
     list_filter = ["active"]
     fieldsets = (
         ("Section Content", {
-            "fields": ("title", "subtitle", "description")
+            "fields": ("subtitle", "description")
         }),
         ("Video Section", {
             "fields": ("video_thumbnail", "video_title", "video_type", "youtube_url", "uploaded_video")
@@ -108,11 +100,11 @@ class SkillTestPageAdmin(admin.ModelAdmin):
 
 @admin.register(LearningSystemPage)
 class LearningSystemPageAdmin(admin.ModelAdmin):
-    list_display = ["title", "video_title", "active", "updated_at"]
+    list_display = ["video_title", "active", "updated_at"]
     list_filter = ["active"]
     fieldsets = (
         ("Section Content", {
-            "fields": ("title", "subtitle", "description")
+            "fields": ("subtitle", "description")
         }),
         ("Video Section", {
             "fields": ("video_thumbnail", "video_title", "video_type", "youtube_url", "uploaded_video")
@@ -133,11 +125,11 @@ class LearningSystemPageAdmin(admin.ModelAdmin):
 
 @admin.register(CareerRoadmapPage)
 class CareerRoadmapPageAdmin(admin.ModelAdmin):
-    list_display = ["title", "video_title", "active", "updated_at"]
+    list_display = ["video_title", "active", "updated_at"]
     list_filter = ["active"]
     fieldsets = (
         ("Section Content", {
-            "fields": ("title", "subtitle", "description")
+            "fields": ("subtitle", "description")
         }),
         ("Video Section", {
             "fields": ("video_thumbnail", "video_title", "video_type", "youtube_url", "uploaded_video")
@@ -158,11 +150,11 @@ class CareerRoadmapPageAdmin(admin.ModelAdmin):
 
 @admin.register(CareerCapsulesPage)
 class CareerCapsulesPageAdmin(admin.ModelAdmin):
-    list_display = ["title", "video_title", "active", "updated_at"]
+    list_display = ["video_title", "active", "updated_at"]
     list_filter = ["active"]
     fieldsets = (
         ("Section Content", {
-            "fields": ("title", "subtitle", "description")
+            "fields": ("subtitle", "description")
         }),
         ("Video Section", {
             "fields": ("video_thumbnail", "video_title", "video_type", "youtube_url", "uploaded_video")
@@ -183,11 +175,11 @@ class CareerCapsulesPageAdmin(admin.ModelAdmin):
 
 @admin.register(LanguageBarrierPage)
 class LanguageBarrierPageAdmin(admin.ModelAdmin):
-    list_display = ["title", "active", "updated_at"]
+    list_display = ["active", "updated_at"]
     list_filter = ["active"]
     fieldsets = (
         ("Section Content", {
-            "fields": ("title", "subtitle", "description")
+            "fields": ("subtitle", "description")
         }),
         ("Career Paths Image", {
             "fields": ("video_thumbnail",)
@@ -217,11 +209,11 @@ class LanguageBarrierPageAdmin(admin.ModelAdmin):
 
 @admin.register(ReadyForTestPage)
 class ReadyForTestPageAdmin(admin.ModelAdmin):
-    list_display = ["title", "video_title", "active", "updated_at"]
+    list_display = ["video_title", "active", "updated_at"]
     list_filter = ["active"]
     fieldsets = (
         ("Section Content", {
-            "fields": ("title", "subtitle", "description")
+            "fields": ("subtitle", "description")
         }),
         ("Video Section", {
             "fields": ("video_thumbnail", "video_title", "video_type", "youtube_url", "uploaded_video")
@@ -242,11 +234,11 @@ class ReadyForTestPageAdmin(admin.ModelAdmin):
 
 @admin.register(TestBeforeTrustPage)
 class TestBeforeTrustPageAdmin(admin.ModelAdmin):
-    list_display = ["title", "video_title", "active", "updated_at"]
+    list_display = ["video_title", "active", "updated_at"]
     list_filter = ["active"]
     fieldsets = (
         ("Section Content", {
-            "fields": ("title", "subtitle", "description")
+            "fields": ("subtitle", "description")
         }),
         ("Video Section", {
             "fields": ("video_thumbnail", "video_title", "video_type", "youtube_url", "uploaded_video")

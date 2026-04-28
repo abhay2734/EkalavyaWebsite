@@ -53,40 +53,7 @@ class HomeVideo(models.Model):
         return "Homepage Video"
 
 
-class FunnelStep(models.Model):
-    """Dynamic funnel steps that can be managed through Django admin"""
 
-    STEP_TYPE_CHOICES = [
-        ("clarity", "Clarity Entry"),
-        ("challenge", "Challenge"),
-        ("conversion", "Conversion"),
-    ]
-
-    title = models.CharField(max_length=200)
-
-    description = models.TextField()
-
-    button_text = models.CharField(max_length=200)
-
-    button_url = models.URLField(blank=True, help_text="URL for the button (e.g., /clarity-50/)")
-
-    step_type = models.CharField(
-        max_length=20,
-        choices=STEP_TYPE_CHOICES,
-        default="clarity"
-    )
-
-    order = models.PositiveIntegerField(default=0)
-
-    active = models.BooleanField(default=True)
-
-    created_at = models.DateTimeField(auto_now_add=True)
-
-    class Meta:
-        ordering = ["order"]
-
-    def __str__(self):
-        return f"{self.get_step_type_display()}: {self.title}"
 
 
 class AIAdvantagePage(models.Model):

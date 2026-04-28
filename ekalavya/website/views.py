@@ -1,11 +1,10 @@
 from django.shortcuts import render
-from .models import HeroImage, HomeVideo, FunnelStep, AIAdvantagePage, TheSystemPage, SkillTestPage, LearningSystemPage, CareerRoadmapPage, CareerCapsulesPage, LanguageBarrierPage, ReadyForTestPage, TestBeforeTrustPage
+from .models import HeroImage, HomeVideo, AIAdvantagePage, TheSystemPage, SkillTestPage, LearningSystemPage, CareerRoadmapPage, CareerCapsulesPage, LanguageBarrierPage, ReadyForTestPage, TestBeforeTrustPage
 
 
 def home(request):
     hero_image = HeroImage.objects.filter(active=True).first()
     video = HomeVideo.objects.filter(active=True).first()
-    funnel_steps = FunnelStep.objects.filter(active=True).order_by("order")
 
     ai_advantage_page = AIAdvantagePage.objects.filter(active=True).first()
     the_system_page = TheSystemPage.objects.filter(active=True).first()
@@ -20,7 +19,6 @@ def home(request):
     context = {
         "hero_image": hero_image,
         "video": video,
-        "funnel_steps": funnel_steps,
         "ai_advantage_page": ai_advantage_page,
         "the_system_page": the_system_page,
         "skill_test_page": skill_test_page,
