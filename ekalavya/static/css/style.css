@@ -1112,40 +1112,10 @@ body {
  .system-highlight.line-6 {
      margin-top: 16px;
      color: #ffffff;
-     text-shadow: 0 0 20px rgba(255, 255, 255, 0.25);
- }
-
- .section-text {
-      font-size: 16px;
-      color: #B8A898;
-      margin: 0 0 20px 0;
-      text-align: center;
-      font-style: italic;
-      letter-spacing: 0.6px;
-      text-shadow: 0 0 10px rgba(184, 168, 152, 0.3);
+      text-shadow: 0 0 20px rgba(255, 255, 255, 0.25);
   }
 
- /* AI ADVANTAGE IMAGE WRAPPER */
-.ai-advantage-image-wrapper {
-    position: relative;
-    overflow: hidden;
-    border-radius: 20px;
-    border: 2px solid #E6A93C;
-    box-shadow: 0 0 40px rgba(230, 169, 60, 0.3);
-}
-
-/* AI ADVANTAGE IMAGE */
-.ai-advantage-image {
-    width: 100%;
-    height: auto;
-    transition: transform 0.5s ease;
-}
-
-.ai-advantage-image-wrapper:hover .ai-advantage-image {
-    transform: scale(1.05);
-}
-
-/* AI ADVANTAGE VIDEO */
+  /* AI ADVANTAGE VIDEO */
 .ai-advantage-video {
     width: 100%;
     height: auto;
@@ -1251,18 +1221,6 @@ body {
     bottom: 0;
     pointer-events: none;
     z-index: 6;
-}
-
-/* VIDEO THUMB WRAPPER - Relative container for overlay positioning */
-.video-thumb-wrapper {
-    position: relative;
-    display: inline-block;
-    width: 100%;
-}
-
-.video-thumb-wrapper img {
-    width: 100%;
-    display: block;
 }
 
 /* PLAY BUTTON OVERLAY - positioned on play icon in thumbnail */

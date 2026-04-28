@@ -62,6 +62,10 @@ class HomeVideo(models.Model):
 
     created_at = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        verbose_name = "1) Home video"
+        verbose_name_plural = "1) Home video"
+
     def __str__(self):
         if self.title:
             return self.title
@@ -75,11 +79,6 @@ class AIAdvantagePage(models.Model):
     """Dynamic AI Fear vs AI Advantage page content"""
 
     title = models.CharField(max_length=200, default="AI Fear vs AI Advantage")
-
-    subtitle = models.CharField(
-        max_length=300,
-        default="AI is not replacing people — it is empowering those who learn how to use it."
-    )
 
     line_1 = models.CharField(
         max_length=300,
@@ -130,8 +129,8 @@ class AIAdvantagePage(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        verbose_name = "AI Advantage Page"
-        verbose_name_plural = "AI Advantage Page"
+        verbose_name = "3)AI Advantage"
+        verbose_name_plural = "3)AI Advantage"
 
     def __str__(self):
         return self.title
@@ -191,8 +190,8 @@ class TheSystemPage(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        verbose_name = "The System"
-        verbose_name_plural = "The System"
+        verbose_name = "2)The System"
+        verbose_name_plural = "2)The System"
 
     def __str__(self):
         return self.title
@@ -258,8 +257,8 @@ class SkillTestPage(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        verbose_name = "Conceptual Communication"
-        verbose_name_plural = "Conceptual Communication"
+        verbose_name = "4) Conceptual Communication"
+        verbose_name_plural = "4) Conceptual Communication"
 
     def __str__(self):
         return self.title
@@ -331,8 +330,8 @@ class CareerRoadmapPage(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        verbose_name = "IT Aspirant"
-        verbose_name_plural = "IT Aspirant"
+        verbose_name = "6) IT Aspirant"
+        verbose_name_plural = "6) IT Aspirant"
 
     def __str__(self):
         return self.title
@@ -422,8 +421,8 @@ class CareerCapsulesPage(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        verbose_name = "Career Capsules Page"
-        verbose_name_plural = "Career Capsules Page"
+        verbose_name = "8)Zero to Industry"
+        verbose_name_plural = "8)Zero to Industry"
 
     def __str__(self):
         return self.title
@@ -494,8 +493,8 @@ class LearningSystemPage(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        verbose_name = "Learning System Page"
-        verbose_name_plural = "Learning System Page"
+        verbose_name = "5) 30Minutes"
+        verbose_name_plural = "5) 30Minutes"
 
     def __str__(self):
         return self.title
@@ -611,8 +610,8 @@ class LanguageBarrierPage(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        verbose_name = "3 Career Paths"
-        verbose_name_plural = "3 Career Paths"
+        verbose_name = "9)3 Career Paths"
+        verbose_name_plural = "9)3 Career Paths"
 
     def __str__(self):
         return self.title
@@ -683,8 +682,8 @@ class ReadyForTestPage(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        verbose_name = "Ready for Test Page"
-        verbose_name_plural = "Ready for Test Page"
+        verbose_name = "7)Ready for Test Page"
+        verbose_name_plural = "7)Ready for Test Page"
 
     def __str__(self):
         return self.title
@@ -797,8 +796,8 @@ class TestBeforeTrustPage(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        verbose_name = "Test Before You Trust Page"
-        verbose_name_plural = "Test Before You Trust Page"
+        verbose_name = "10)Test Before You Trust Page"
+        verbose_name_plural = "10)Test Before You Trust Page"
 
     def __str__(self):
         return self.title
