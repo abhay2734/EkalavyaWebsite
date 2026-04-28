@@ -24,12 +24,44 @@
 <!-- HERO CTA SECTION -->
 <div class="hero-cta-section">
     <div class="container">
-        <a href="#intro-video" class="hero-cta-button">
-            ▶ Before You Start IT Career — Watch This (3 Min)
+        {% if hero_image %}
+        <h3 class="hero-cta-title">{{ hero_image.main_heading }}</h3>
+        <a href="#intro-video" class="hero-cta-button" id="heroCtaButton">
+            {{ hero_image.button_text }}
         </a>
-        <p class="hero-micro-text">This 3-minute video may save your 1–2 years of confusion.</p>
+        <p class="hero-micro-text">{{ hero_image.subtitle }}</p>
+        {% else %}
+        <h3 class="hero-cta-title">Ekalavya Mission: From Zer0 to Industry-Ready — a Complete Transformation.</h3>
+        <a href="#intro-video" class="hero-cta-button" id="heroCtaButton">
+            ▶ Start with a 5-minute overview of what this system delivers
+        </a>
+        <p class="hero-micro-text">👉 Discover the All-in-One Skillset through a single, structured System before you Start.</p>
+        {% endif %}
     </div>
 </div>
+
+
+
+
+<!-- HOME VIDEO SECTION -->
+<section class="home-video-section py-5" id="intro-video">
+    <div class="container">
+        {% if video %}
+        {% if video.thumbnail %}
+        <div class="video-card" id="homeVideoTrigger"
+            data-video-type="{{ video.video_type }}"
+            data-video-src="{% if video.video_type == 'youtube' %}{{ video.youtube_url }}{% elif video.uploaded_video %}{{ video.uploaded_video.url }}{% endif %}">
+            <img src="{{ video.thumbnail.url }}" class="video-thumb">
+            <div class="video-overlay"></div>
+            <div class="play-button">▶</div>
+        </div>
+        {% endif %}
+        {% else %}
+        <!-- Fallback if no video data -->
+        {% endif %}
+    </div>
+</section>
+
 
 
 <!-- THE SYSTEM SECTION -->
@@ -37,9 +69,15 @@
     <div class="container">
         {% if the_system_page %}
         <div class="row justify-content-center mb-5">
-            <div class="col-lg-10 text-center"><div class="ai-description-card">
+            <div class="col-lg-10 text-center">
+                <div class="ai-description-card">
                     <div class="ai-desc-accent"></div>
-                    <p class="ai-advantage-description">{{ the_system_page.description }}</p>
+                    {% if the_system_page.highlight_1 %}
+                    <p class="system-highlight line-1">{{ the_system_page.highlight_1 }}</p>
+                    {% endif %}
+                    {% if the_system_page.highlight_2 %}
+                    <p class="system-highlight line-2">{{ the_system_page.highlight_2 }}</p>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -54,9 +92,11 @@
         {% endif %}
         {% else %}
         <div class="row justify-content-center mb-5">
-            <div class="col-lg-10 text-center"><div class="ai-description-card">
+            <div class="col-lg-10 text-center">
+                <div class="ai-description-card">
                     <div class="ai-desc-accent"></div>
-                    <p class="ai-advantage-description">We are living in a powerful technological shift. Many people fear that artificial intelligence will replace them, while others are learning how to use it as a tool to grow faster. The difference is not intelligence or talent — it is clarity and direction.</p>
+                    <p class="system-highlight line-1">👉 Industry-ready Training is different from Exam-ready Learning.</p>
+                    <p class="system-highlight line-2">👉 The WINdianized Organic Learning System is built exactly for that transformation.</p>
                 </div>
             </div>
         </div>
@@ -69,9 +109,15 @@
     <div class="container">
         {% if ai_advantage_page %}
         <div class="row justify-content-center mb-5">
-            <div class="col-lg-10 text-center"><div class="ai-description-card">
+            <div class="col-lg-10 text-center">
+                <div class="ai-description-card">
                     <div class="ai-desc-accent"></div>
-                    <p class="ai-advantage-description">{{ ai_advantage_page.description }}</p>
+                    {% if ai_advantage_page.line_1 %}
+                    <p class="system-highlight line-1">{{ ai_advantage_page.line_1 }}</p>
+                    {% endif %}
+                    {% if ai_advantage_page.line_2 %}
+                    <p class="system-highlight line-2">{{ ai_advantage_page.line_2 }}</p>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -86,9 +132,11 @@
         {% endif %}
         {% else %}
         <div class="row justify-content-center mb-5">
-            <div class="col-lg-10 text-center"><div class="ai-description-card">
+            <div class="col-lg-10 text-center">
+                <div class="ai-description-card">
                     <div class="ai-desc-accent"></div>
-                    <p class="ai-advantage-description">We are living in a powerful technological shift. Many people fear that artificial intelligence will replace them, while others are learning how to use it as a tool to grow faster. The difference is not intelligence or talent — it is clarity and direction.</p>
+                    <p class="system-highlight line-1">👉 Industry-ready Training is different from Exam-ready Learning.</p>
+                    <p class="system-highlight line-2">👉 The WINdianized Organic Learning System is built exactly for that transformation.</p>
                 </div>
             </div>
         </div>
@@ -101,9 +149,18 @@
     <div class="container">
         {% if skill_test_page %}
         <div class="row justify-content-center mb-5">
-            <div class="col-lg-10 text-center"><div class="ai-description-card">
+            <div class="col-lg-10 text-center">
+                <div class="ai-description-card">
                     <div class="ai-desc-accent"></div>
-                    <p class="ai-advantage-description">{{ skill_test_page.description }}</p>
+                    {% if skill_test_page.line_1 %}
+                    <p class="system-highlight line-1">{{ skill_test_page.line_1 }}</p>
+                    {% endif %}
+                    {% if skill_test_page.line_2 %}
+                    <p class="system-highlight line-2">{{ skill_test_page.line_2 }}</p>
+                    {% endif %}
+                    {% if skill_test_page.line_3 %}
+                    <p class="system-highlight line-3">{{ skill_test_page.line_3 }}</p>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -118,9 +175,12 @@
         {% endif %}
         {% else %}
         <div class="row justify-content-center mb-5">
-            <div class="col-lg-10 text-center"><div class="ai-description-card">
+            <div class="col-lg-10 text-center">
+                <div class="ai-description-card">
                     <div class="ai-desc-accent"></div>
-                    <p class="ai-advantage-description">Assess your abilities and understand where you stand.</p>
+                    <p class="system-highlight line-1">👉 First highlight line for skill test section</p>
+                    <p class="system-highlight line-2">👉 Second highlight line for skill test section</p>
+                    <p class="system-highlight line-3">👉 Third highlight line for skill test section</p>
                 </div>
             </div>
         </div>
@@ -133,9 +193,18 @@
     <div class="container">
         {% if learning_system_page %}
         <div class="row justify-content-center mb-5">
-            <div class="col-lg-10 text-center"><div class="ai-description-card">
+            <div class="col-lg-10 text-center">
+                <div class="ai-description-card">
                     <div class="ai-desc-accent"></div>
-                    <p class="ai-advantage-description">{{ learning_system_page.description }}</p>
+                    {% if learning_system_page.line_1 %}
+                    <p class="system-highlight line-1">{{ learning_system_page.line_1 }}</p>
+                    {% endif %}
+                    {% if learning_system_page.line_2 %}
+                    <p class="system-highlight line-2">{{ learning_system_page.line_2 }}</p>
+                    {% endif %}
+                    {% if learning_system_page.line_3 %}
+                    <p class="system-highlight line-3">{{ learning_system_page.line_3 }}</p>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -150,9 +219,12 @@
         {% endif %}
         {% else %}
         <div class="row justify-content-center mb-5">
-            <div class="col-lg-10 text-center"><div class="ai-description-card">
+            <div class="col-lg-10 text-center">
+                <div class="ai-description-card">
                     <div class="ai-desc-accent"></div>
-                    <p class="ai-advantage-description">Master the skills you need for your career.</p>
+                    <p class="system-highlight line-1">👉 First highlight line for Learning System Page section</p>
+                    <p class="system-highlight line-2">👉 Second highlight line for Learning System Page section</p>
+                    <p class="system-highlight line-3">👉 Third highlight line for Learning System Page section</p>
                 </div>
             </div>
         </div>
@@ -165,9 +237,21 @@
     <div class="container">
         {% if career_roadmap_page %}
         <div class="row justify-content-center mb-5">
-            <div class="col-lg-10 text-center"><div class="ai-description-card">
+            <div class="col-lg-10 text-center">
+                <div class="ai-description-card">
                     <div class="ai-desc-accent"></div>
-                    <p class="ai-advantage-description">{{ career_roadmap_page.description }}</p>
+                    {% if career_roadmap_page.line_1 %}
+                    <p class="system-highlight line-1">{{ career_roadmap_page.line_1 }}</p>
+                    {% endif %}
+                    {% if career_roadmap_page.line_2 %}
+                    <p class="system-highlight line-2">{{ career_roadmap_page.line_2 }}</p>
+                    {% endif %}
+                    {% if career_roadmap_page.line_3 %}
+                    <p class="system-highlight line-3">{{ career_roadmap_page.line_3 }}</p>
+                    {% endif %}
+                    {% if career_roadmap_page.line_4 %}
+                    <p class="system-highlight line-4">{{ career_roadmap_page.line_4 }}</p>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -182,9 +266,57 @@
         {% endif %}
         {% else %}
         <div class="row justify-content-center mb-5">
-            <div class="col-lg-10 text-center"><div class="ai-description-card">
+            <div class="col-lg-10 text-center">
+                <div class="ai-description-card">
                     <div class="ai-desc-accent"></div>
-                    <p class="ai-advantage-description">This roadmap provides a simple and structured journey from zero knowledge to industry readiness.</p>
+                    <p class="system-highlight line-1">👉 First highlight line for IT Aspirant section</p>
+                    <p class="system-highlight line-2">👉 Second highlight line for IT Aspirant section</p>
+                    <p class="system-highlight line-3">👉 Third highlight line for IT Aspirant section</p>
+                    <p class="system-highlight line-4">👉 Fourth highlight line for IT Aspirant section</p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+     </div>
+ </section>
+
+<!-- READY FOR TEST SECTION -->
+<section class="ai-advantage-section py-5" id="ready-for-test">
+    <div class="container">
+        {% if ready_for_test_page %}
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-10 text-center">
+                <div class="ai-description-card">
+                    <div class="ai-desc-accent"></div>
+                    {% if ready_for_test_page.line_1 %}
+                    <p class="system-highlight line-1">{{ ready_for_test_page.line_1 }}</p>
+                    {% endif %}
+                    {% if ready_for_test_page.line_2 %}
+                    <p class="system-highlight line-2">{{ ready_for_test_page.line_2 }}</p>
+                    {% endif %}
+                    {% if ready_for_test_page.line_3 %}
+                    <p class="system-highlight line-3">{{ ready_for_test_page.line_3 }}</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% if ready_for_test_page.video_thumbnail %}
+        <div class="video-card" id="readyForTestVideoTrigger"
+            data-video-type="{{ ready_for_test_page.video_type }}"
+            data-video-src="{% if ready_for_test_page.video_type == 'youtube' %}{{ ready_for_test_page.youtube_url }}{% elif ready_for_test_page.uploaded_video %}{{ ready_for_test_page.uploaded_video.url }}{% endif %}">
+            <img src="{{ ready_for_test_page.video_thumbnail.url }}" class="video-thumb">
+            <div class="video-overlay"></div>
+            <div class="play-button">▶</div>
+        </div>
+        {% endif %}
+        {% else %}
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-10 text-center">
+                <div class="ai-description-card">
+                    <div class="ai-desc-accent"></div>
+                    <p class="system-highlight line-1">👉 First highlight line for Ready for Test section</p>
+                    <p class="system-highlight line-2">👉 Second highlight line for Ready for Test section</p>
+                    <p class="system-highlight line-3">👉 Third highlight line for Ready for Test section</p>
                 </div>
             </div>
         </div>
@@ -197,9 +329,27 @@
     <div class="container">
         {% if career_capsules_page %}
         <div class="row justify-content-center mb-5">
-            <div class="col-lg-10 text-center"><div class="ai-description-card">
+            <div class="col-lg-10 text-center">
+                <div class="ai-description-card">
                     <div class="ai-desc-accent"></div>
-                    <p class="ai-advantage-description">{{ career_capsules_page.description }}</p>
+                    {% if career_capsules_page.line_1 %}
+                    <p class="system-highlight line-1">{{ career_capsules_page.line_1 }}</p>
+                    {% endif %}
+                    {% if career_capsules_page.line_2 %}
+                    <p class="system-highlight line-2">{{ career_capsules_page.line_2 }}</p>
+                    {% endif %}
+                    {% if career_capsules_page.line_3 %}
+                    <p class="system-highlight line-3">{{ career_capsules_page.line_3 }}</p>
+                    {% endif %}
+                    {% if career_capsules_page.line_4 %}
+                    <p class="system-highlight line-4">{{ career_capsules_page.line_4 }}</p>
+                    {% endif %}
+                    {% if career_capsules_page.line_5 %}
+                    <p class="system-highlight line-5">{{ career_capsules_page.line_5 }}</p>
+                    {% endif %}
+                    {% if career_capsules_page.line_6 %}
+                    <p class="system-highlight line-6">{{ career_capsules_page.line_6 }}</p>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -214,9 +364,15 @@
         {% endif %}
         {% else %}
         <div class="row justify-content-center mb-5">
-            <div class="col-lg-10 text-center"><div class="ai-description-card">
+            <div class="col-lg-10 text-center">
+                <div class="ai-description-card">
                     <div class="ai-desc-accent"></div>
-                    <p class="ai-advantage-description">Quick lessons to boost your career growth.</p>
+                    <p class="system-highlight line-1">👉 First highlight line for Career Capsules section</p>
+                    <p class="system-highlight line-2">👉 Second highlight line for Career Capsules section</p>
+                    <p class="system-highlight line-3">👉 Third highlight line for Career Capsules section</p>
+                    <p class="system-highlight line-4">👉 Fourth highlight line for Career Capsules section</p>
+                    <p class="system-highlight line-5">👉 Fifth highlight line for Career Capsules section</p>
+                    <p class="system-highlight line-6">👉 Sixth highlight line for Career Capsules section</p>
                 </div>
             </div>
         </div>
@@ -229,9 +385,27 @@
     <div class="container">
         {% if language_barrier_page %}
         <div class="row justify-content-center mb-5">
-            <div class="col-lg-10 text-center"><div class="ai-description-card">
+            <div class="col-lg-10 text-center">
+                <div class="ai-description-card">
                     <div class="ai-desc-accent"></div>
-                    <p class="ai-advantage-description">{{ language_barrier_page.description }}</p>
+                    {% if language_barrier_page.line_1 %}
+                    <p class="system-highlight line-1">{{ language_barrier_page.line_1 }}</p>
+                    {% endif %}
+                    {% if language_barrier_page.line_2 %}
+                    <p class="system-highlight line-2">{{ language_barrier_page.line_2 }}</p>
+                    {% endif %}
+                    {% if language_barrier_page.line_3 %}
+                    <p class="system-highlight line-3">{{ language_barrier_page.line_3 }}</p>
+                    {% endif %}
+                    {% if language_barrier_page.line_4 %}
+                    <p class="system-highlight line-4">{{ language_barrier_page.line_4 }}</p>
+                    {% endif %}
+                    {% if language_barrier_page.line_5 %}
+                    <p class="system-highlight line-5">{{ language_barrier_page.line_5 }}</p>
+                    {% endif %}
+                    {% if language_barrier_page.line_6 %}
+                    <p class="system-highlight line-6">{{ language_barrier_page.line_6 }}</p>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -257,41 +431,15 @@
         {% endif %}
         {% else %}
         <div class="row justify-content-center mb-5">
-            <div class="col-lg-10 text-center"><div class="ai-description-card">
+            <div class="col-lg-10 text-center">
+                <div class="ai-description-card">
                     <div class="ai-desc-accent"></div>
-                    <p class="ai-advantage-description">Break through language barriers in your career.</p>
-                </div>
-            </div>
-        </div>
-        {% endif %}
-    </div>
-</section>
-
-<!-- READY FOR TEST SECTION -->
-<section class="ai-advantage-section py-5" id="ready-for-test">
-    <div class="container">
-        {% if ready_for_test_page %}
-        <div class="row justify-content-center mb-5">
-            <div class="col-lg-10 text-center"><div class="ai-description-card">
-                    <div class="ai-desc-accent"></div>
-                    <p class="ai-advantage-description">{{ ready_for_test_page.description }}</p>
-                </div>
-            </div>
-        </div>
-        {% if ready_for_test_page.video_thumbnail %}
-        <div class="video-card" id="readyForTestVideoTrigger"
-            data-video-type="{{ ready_for_test_page.video_type }}"
-            data-video-src="{% if ready_for_test_page.video_type == 'youtube' %}{{ ready_for_test_page.youtube_url }}{% elif ready_for_test_page.uploaded_video %}{{ ready_for_test_page.uploaded_video.url }}{% endif %}">
-            <img src="{{ ready_for_test_page.video_thumbnail.url }}" class="video-thumb">
-            <div class="video-overlay"></div>
-            <div class="play-button">▶</div>
-        </div>
-        {% endif %}
-        {% else %}
-        <div class="row justify-content-center mb-5">
-            <div class="col-lg-10 text-center"><div class="ai-description-card">
-                    <div class="ai-desc-accent"></div>
-                    <p class="ai-advantage-description">Ensure you're prepared for the next stage of your journey with our assessment tools.</p>
+                    <p class="system-highlight line-1">👉 First highlight line for 3 Career Paths section</p>
+                    <p class="system-highlight line-2">👉 Second highlight line for 3 Career Paths section</p>
+                    <p class="system-highlight line-3">👉 Third highlight line for 3 Career Paths section</p>
+                    <p class="system-highlight line-4">👉 Fourth highlight line for 3 Career Paths section</p>
+                    <p class="system-highlight line-5">👉 Fifth highlight line for 3 Career Paths section</p>
+                    <p class="system-highlight line-6">👉 Sixth highlight line for 3 Career Paths section</p>
                 </div>
             </div>
         </div>
@@ -304,9 +452,21 @@
     <div class="container">
         {% if test_before_trust_page %}
         <div class="row justify-content-center mb-5">
-            <div class="col-lg-10 text-center"><div class="ai-description-card">
+            <div class="col-lg-10 text-center">
+                <div class="ai-description-card">
                     <div class="ai-desc-accent"></div>
-                    <p class="ai-advantage-description">{{ test_before_trust_page.description }}</p>
+                    {% if test_before_trust_page.line_1 %}
+                    <p class="system-highlight line-1">{{ test_before_trust_page.line_1 }}</p>
+                    {% endif %}
+                    {% if test_before_trust_page.line_2 %}
+                    <p class="system-highlight line-2">{{ test_before_trust_page.line_2 }}</p>
+                    {% endif %}
+                    {% if test_before_trust_page.line_3 %}
+                    <p class="system-highlight line-3">{{ test_before_trust_page.line_3 }}</p>
+                    {% endif %}
+                    {% if test_before_trust_page.line_4 %}
+                    <p class="system-highlight line-4">{{ test_before_trust_page.line_4 }}</p>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -334,9 +494,13 @@
         {% endif %}
         {% else %}
         <div class="row justify-content-center mb-5">
-            <div class="col-lg-10 text-center"><div class="ai-description-card">
+            <div class="col-lg-10 text-center">
+                <div class="ai-description-card">
                     <div class="ai-desc-accent"></div>
-                    <p class="ai-advantage-description">Experience our teaching methodology and quality before making a decision.</p>
+                    <p class="system-highlight line-1">👉 First highlight line for Test Before You Trust section</p>
+                    <p class="system-highlight line-2">👉 Second highlight line for Test Before You Trust section</p>
+                    <p class="system-highlight line-3">👉 Third highlight line for Test Before You Trust section</p>
+                    <p class="system-highlight line-4">👉 Fourth highlight line for Test Before You Trust section</p>
                 </div>
             </div>
         </div>
@@ -349,8 +513,31 @@
 {% block extra_js %}
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-// Home Video Modal
+// Hero CTA Button - Scroll to video and play
+    const heroCtaButton = document.getElementById("heroCtaButton");
     const homeVideoTrigger = document.getElementById("homeVideoTrigger");
+
+    if (heroCtaButton && homeVideoTrigger) {
+        heroCtaButton.addEventListener("click", function(e) {
+            e.preventDefault();
+
+            // Smooth scroll to video section
+            const targetSection = document.getElementById("intro-video");
+            if (targetSection) {
+                targetSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+
+            // Trigger video modal after a short delay to allow scroll
+            setTimeout(function() {
+                homeVideoTrigger.click();
+            }, 800);
+        });
+    }
+
+// Home Video Modal
     const homeVideoModal = document.getElementById("videoModal");
     const homeVideoContainer = document.getElementById("videoContainer");
     const closeHomeVideo = document.getElementById("closeVideo");

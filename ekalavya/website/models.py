@@ -6,6 +6,21 @@ class HeroImage(models.Model):
 
     image = models.ImageField(upload_to="hero/")
 
+    main_heading = models.CharField(
+        max_length=300,
+        default="Ekalavya Mission: From Zer0 to Industry-Ready — a Complete Transformation."
+    )
+
+    button_text = models.CharField(
+        max_length=200,
+        default="▶ Start with a 5-minute overview of what this system delivers"
+    )
+
+    subtitle = models.CharField(
+        max_length=300,
+        default="👉 Discover the All-in-One Skillset through a single, structured System before you Start."
+    )
+
     active = models.BooleanField(default=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
@@ -66,8 +81,16 @@ class AIAdvantagePage(models.Model):
         default="AI is not replacing people — it is empowering those who learn how to use it."
     )
 
-    description = models.TextField(
-        default="We are living in a powerful technological shift. Many people fear that artificial intelligence will replace them, while others are learning how to use it as a tool to grow faster. The difference is not intelligence or talent — it is clarity and direction."
+    line_1 = models.CharField(
+        max_length=300,
+        default="👉 Industry-ready Training is different from Exam-ready Learning.",
+        help_text="First highlight line in the description card"
+    )
+
+    line_2 = models.CharField(
+        max_length=300,
+        default="👉 The WINdianized Organic Learning System is built exactly for that transformation.",
+        help_text="Second highlight line in the description card"
     )
 
     video_title = models.CharField(max_length=200, default="Who Controls AI?")
@@ -119,13 +142,16 @@ class TheSystemPage(models.Model):
 
     title = models.CharField(max_length=200, default="The System")
 
-    subtitle = models.CharField(
+    highlight_1 = models.CharField(
         max_length=300,
-        default="AI is not replacing people — it is empowering those who learn how to use it."
+        default="👉 Industry-ready Training is different from Exam-ready Learning.",
+        help_text="First highlight line in the description card"
     )
 
-    description = models.TextField(
-        default="We are living in a powerful technological shift. Many people fear that artificial intelligence will replace them, while others are learning how to use it as a tool to grow faster. The difference is not intelligence or talent — it is clarity and direction."
+    highlight_2 = models.CharField(
+        max_length=300,
+        default="👉 The WINdianized Organic Learning System is built exactly for that transformation.",
+        help_text="Second highlight line in the description card"
     )
 
     video_title = models.CharField(max_length=200, default="Watch Now")
@@ -177,13 +203,22 @@ class SkillTestPage(models.Model):
 
     title = models.CharField(max_length=200, default="Conceptual Communication")
 
-    subtitle = models.CharField(
+    line_1 = models.CharField(
         max_length=300,
-        default="Test your skills and knowledge"
+        default="👉 First highlight line for skill test section",
+        help_text="First highlight line in the card box"
     )
 
-    description = models.TextField(
-        default="Assess your abilities and understand where you stand."
+    line_2 = models.CharField(
+        max_length=300,
+        default="👉 Second highlight line for skill test section",
+        help_text="Second highlight line in the card box"
+    )
+
+    line_3 = models.CharField(
+        max_length=300,
+        default="👉 Third highlight line for skill test section",
+        help_text="Third highlight line in the card box"
     )
 
     video_title = models.CharField(max_length=200, default="Watch Now")
@@ -235,13 +270,28 @@ class CareerRoadmapPage(models.Model):
 
     title = models.CharField(max_length=200, default="IT Aspirant")
 
-    subtitle = models.CharField(
+    line_1 = models.CharField(
         max_length=300,
-        default="Every successful career begins with a clear path"
+        default="👉 First highlight line for IT Aspirant section",
+        help_text="First highlight line in the card box"
     )
 
-    description = models.TextField(
-        default="This roadmap provides a simple and structured journey from zero knowledge to industry readiness."
+    line_2 = models.CharField(
+        max_length=300,
+        default="👉 Second highlight line for IT Aspirant section",
+        help_text="Second highlight line in the card box"
+    )
+
+    line_3 = models.CharField(
+        max_length=300,
+        default="👉 Third highlight line for IT Aspirant section",
+        help_text="Third highlight line in the card box"
+    )
+
+    line_4 = models.CharField(
+        max_length=300,
+        default="👉 Fourth highlight line for IT Aspirant section",
+        help_text="Fourth highlight line in the card box"
     )
 
     video_title = models.CharField(max_length=200, default="Watch Now")
@@ -293,13 +343,46 @@ class CareerCapsulesPage(models.Model):
 
     title = models.CharField(max_length=200, default="From Zero to Industry Ready")
 
-    subtitle = models.CharField(
+    line_1 = models.CharField(
         max_length=300,
-        default="Short, focused career insights"
+        default="👉 First highlight line for Career Capsules section",
+        help_text="First highlight line in the card box"
     )
 
-    description = models.TextField(
-        default="Quick lessons to boost your career growth."
+    line_2 = models.CharField(
+        max_length=300,
+        default="👉 Second highlight line for Career Capsules section",
+        help_text="Second highlight line in the card box"
+    )
+
+    line_3 = models.CharField(
+        max_length=300,
+        default="👉 Third highlight line for Career Capsules section",
+        help_text="Third highlight line in the card box"
+    )
+
+    line_4 = models.CharField(
+        max_length=300,
+        default="👉 Fourth highlight line for Career Capsules section",
+        help_text="Fourth highlight line in the card box"
+    )
+
+    line_5 = models.CharField(
+        max_length=300,
+        default="👉 Fifth highlight line for Career Capsules section",
+        help_text="Fifth highlight line in the card box"
+    )
+
+    line_6 = models.CharField(
+        max_length=300,
+        default="👉 Sixth highlight line for Career Capsules section",
+        help_text="Sixth highlight line in the card box"
+    )
+
+    image = models.ImageField(
+        upload_to="career_capsules/",
+        help_text="Main image for the Career Capsules section",
+        null=True
     )
 
     video_title = models.CharField(max_length=200, default="Watch Now")
@@ -351,13 +434,22 @@ class LearningSystemPage(models.Model):
 
     title = models.CharField(max_length=200, default="30 Minutes a day")
 
-    subtitle = models.CharField(
+    line_1 = models.CharField(
         max_length=300,
-        default="Learn the right way"
+        default="👉 First highlight line for Learning System section",
+        help_text="First highlight line in the card box"
     )
 
-    description = models.TextField(
-        default="Master the skills you need for your career."
+    line_2 = models.CharField(
+        max_length=300,
+        default="👉 Second highlight line for Learning System section",
+        help_text="Second highlight line in the card box"
+    )
+
+    line_3 = models.CharField(
+        max_length=300,
+        default="👉 Third highlight line for Learning System section",
+        help_text="Third highlight line in the card box"
     )
 
     image = models.ImageField(
@@ -414,13 +506,40 @@ class LanguageBarrierPage(models.Model):
 
     title = models.CharField(max_length=200, default="3 Career Paths")
 
-    subtitle = models.CharField(
+    line_1 = models.CharField(
         max_length=300,
-        default="Overcome communication challenges"
+        default="👉 First highlight line for 3 Career Paths section",
+        help_text="First highlight line in the card box"
     )
 
-    description = models.TextField(
-        default="Break through language barriers in your career."
+    line_2 = models.CharField(
+        max_length=300,
+        default="👉 Second highlight line for 3 Career Paths section",
+        help_text="Second highlight line in the card box"
+    )
+
+    line_3 = models.CharField(
+        max_length=300,
+        default="👉 Third highlight line for 3 Career Paths section",
+        help_text="Third highlight line in the card box"
+    )
+
+    line_4 = models.CharField(
+        max_length=300,
+        default="👉 Fourth highlight line for 3 Career Paths section",
+        help_text="Fourth highlight line in the card box"
+    )
+
+    line_5 = models.CharField(
+        max_length=300,
+        default="👉 Fifth highlight line for 3 Career Paths section",
+        help_text="Fifth highlight line in the card box"
+    )
+
+    line_6 = models.CharField(
+        max_length=300,
+        default="👉 Sixth highlight line for 3 Career Paths section",
+        help_text="Sixth highlight line in the card box"
     )
 
     image = models.ImageField(
@@ -504,13 +623,22 @@ class ReadyForTestPage(models.Model):
 
     title = models.CharField(max_length=200, default="Ready for Test")
 
-    subtitle = models.CharField(
+    line_1 = models.CharField(
         max_length=300,
-        default="Test your readiness before moving forward"
+        default="👉 First highlight line for Ready for Test section",
+        help_text="First highlight line in the card box"
     )
 
-    description = models.TextField(
-        default="Ensure you're prepared for the next stage of your journey with our assessment tools."
+    line_2 = models.CharField(
+        max_length=300,
+        default="👉 Second highlight line for Ready for Test section",
+        help_text="Second highlight line in the card box"
+    )
+
+    line_3 = models.CharField(
+        max_length=300,
+        default="👉 Third highlight line for Ready for Test section",
+        help_text="Third highlight line in the card box"
     )
 
     image = models.ImageField(
@@ -567,13 +695,28 @@ class TestBeforeTrustPage(models.Model):
 
     title = models.CharField(max_length=200, default="Test Before You Trust")
 
-    subtitle = models.CharField(
+    line_1 = models.CharField(
         max_length=300,
-        default="Verify our quality before you commit"
+        default="👉 First highlight line for Test Before You Trust section",
+        help_text="First highlight line in the card box"
     )
 
-    description = models.TextField(
-        default="Experience our teaching methodology and quality before making a decision."
+    line_2 = models.CharField(
+        max_length=300,
+        default="👉 Second highlight line for Test Before You Trust section",
+        help_text="Second highlight line in the card box"
+    )
+
+    line_3 = models.CharField(
+        max_length=300,
+        default="👉 Third highlight line for Test Before You Trust section",
+        help_text="Third highlight line in the card box"
+    )
+
+    line_4 = models.CharField(
+        max_length=300,
+        default="👉 Fourth highlight line for Test Before You Trust section",
+        help_text="Fourth highlight line in the card box"
     )
 
     image = models.ImageField(
