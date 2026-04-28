@@ -31,56 +31,13 @@
     </div>
 </div>
 
-<!-- VIDEO SECTION -->
-<section class="video-section" id="intro-video">
-    <div class="container">
-        <div class="video-divider"></div>
-        <p class="video-subtitle">(Ekalavya Mission) From Zer0 to Industry-Ready - a Complete Transformation. Discover the All-in-One Skillset through a single, structured System before you Start. Start with a 5-minute overview of what this system delivers.</p>
-        {% if video %}
-        <div class="video-card" id="homeVideoTrigger"
-            data-video-type="{{ video.video_type }}"
-            data-video-src="{% if video.video_type == 'youtube' %}{{ video.youtube_url }}{% elif video.uploaded_video %}{{ video.uploaded_video.url }}{% endif %}">
-            {% if video.thumbnail %}<img src="{{ video.thumbnail.url }}" class="video-thumb">{% endif %}
-            <div class="video-overlay"></div>
-            <div class="play-button">▶</div>
-        </div>
-        {% else %}
-        <div class="video-card"><p style="color: #B8A898; padding: 40px;">Video coming soon...</p></div>
-        {% endif %}
-    </div>
-</section>
-
-
-<!-- EKALAVYA MISSION SECTION -->
-<section class="ai-advantage-section py-5" id="ekalavya-mission">
-    <div class="container">
-        <div class="row justify-content-center mb-5">
-            <div class="col-lg-10 text-center">
-                <div class="ai-subtitle-badge">
-                    <span class="ai-badge-icon">[Mission]</span>
-                    <p class="ai-advantage-subtitle">Ekalavya Mission</p>
-                </div>
-                <div class="ai-description-card">
-                    <div class="ai-desc-accent"></div>
-                    <p class="ai-advantage-description">(Ekalavya Mission) From Zer0 to Industry-Ready - a Complete Transformation. Discover the All-in-One Skillset through a single, structured System before you Start. Start with a 5-minute overview of what this system delivers.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
 
 <!-- THE SYSTEM SECTION -->
 <section class="ai-advantage-section py-5" id="the-system">
     <div class="container">
         {% if the_system_page %}
         <div class="row justify-content-center mb-5">
-            <div class="col-lg-10 text-center">
-                <div class="ai-subtitle-badge">
-                    <span class="ai-badge-icon">✨</span>
-                    <p class="ai-advantage-subtitle">{{ the_system_page.subtitle }}</p>
-                </div>
-                <div class="ai-description-card">
+            <div class="col-lg-10 text-center"><div class="ai-description-card">
                     <div class="ai-desc-accent"></div>
                     <p class="ai-advantage-description">{{ the_system_page.description }}</p>
                 </div>
@@ -97,12 +54,7 @@
         {% endif %}
         {% else %}
         <div class="row justify-content-center mb-5">
-            <div class="col-lg-10 text-center">
-                <div class="ai-subtitle-badge">
-                    <span class="ai-badge-icon">✨</span>
-                    <p class="ai-advantage-subtitle">AI is not replacing people — it is empowering those who learn how to use it.</p>
-                </div>
-                <div class="ai-description-card">
+            <div class="col-lg-10 text-center"><div class="ai-description-card">
                     <div class="ai-desc-accent"></div>
                     <p class="ai-advantage-description">We are living in a powerful technological shift. Many people fear that artificial intelligence will replace them, while others are learning how to use it as a tool to grow faster. The difference is not intelligence or talent — it is clarity and direction.</p>
                 </div>
@@ -117,12 +69,7 @@
     <div class="container">
         {% if ai_advantage_page %}
         <div class="row justify-content-center mb-5">
-            <div class="col-lg-10 text-center">
-                <div class="ai-subtitle-badge">
-                    <span class="ai-badge-icon">✨</span>
-                    <p class="ai-advantage-subtitle">{{ ai_advantage_page.subtitle }}</p>
-                </div>
-                <div class="ai-description-card">
+            <div class="col-lg-10 text-center"><div class="ai-description-card">
                     <div class="ai-desc-accent"></div>
                     <p class="ai-advantage-description">{{ ai_advantage_page.description }}</p>
                 </div>
@@ -139,12 +86,7 @@
         {% endif %}
         {% else %}
         <div class="row justify-content-center mb-5">
-            <div class="col-lg-10 text-center">
-                <div class="ai-subtitle-badge">
-                    <span class="ai-badge-icon">✨</span>
-                    <p class="ai-advantage-subtitle">AI is not replacing people — it is empowering those who learn how to use it.</p>
-                </div>
-                <div class="ai-description-card">
+            <div class="col-lg-10 text-center"><div class="ai-description-card">
                     <div class="ai-desc-accent"></div>
                     <p class="ai-advantage-description">We are living in a powerful technological shift. Many people fear that artificial intelligence will replace them, while others are learning how to use it as a tool to grow faster. The difference is not intelligence or talent — it is clarity and direction.</p>
                 </div>
@@ -159,12 +101,7 @@
     <div class="container">
         {% if skill_test_page %}
         <div class="row justify-content-center mb-5">
-            <div class="col-lg-10 text-center">
-                <div class="ai-subtitle-badge">
-                    <span class="ai-badge-icon">✨</span>
-                    <p class="ai-advantage-subtitle">{{ skill_test_page.subtitle }}</p>
-                </div>
-                <div class="ai-description-card">
+            <div class="col-lg-10 text-center"><div class="ai-description-card">
                     <div class="ai-desc-accent"></div>
                     <p class="ai-advantage-description">{{ skill_test_page.description }}</p>
                 </div>
@@ -181,12 +118,7 @@
         {% endif %}
         {% else %}
         <div class="row justify-content-center mb-5">
-            <div class="col-lg-10 text-center">
-                <div class="ai-subtitle-badge">
-                    <span class="ai-badge-icon">✨</span>
-                    <p class="ai-advantage-subtitle">Test your skills and knowledge</p>
-                </div>
-                <div class="ai-description-card">
+            <div class="col-lg-10 text-center"><div class="ai-description-card">
                     <div class="ai-desc-accent"></div>
                     <p class="ai-advantage-description">Assess your abilities and understand where you stand.</p>
                 </div>
@@ -201,12 +133,7 @@
     <div class="container">
         {% if learning_system_page %}
         <div class="row justify-content-center mb-5">
-            <div class="col-lg-10 text-center">
-                <div class="ai-subtitle-badge">
-                    <span class="ai-badge-icon">✨</span>
-                    <p class="ai-advantage-subtitle">{{ learning_system_page.subtitle }}</p>
-                </div>
-                <div class="ai-description-card">
+            <div class="col-lg-10 text-center"><div class="ai-description-card">
                     <div class="ai-desc-accent"></div>
                     <p class="ai-advantage-description">{{ learning_system_page.description }}</p>
                 </div>
@@ -223,12 +150,7 @@
         {% endif %}
         {% else %}
         <div class="row justify-content-center mb-5">
-            <div class="col-lg-10 text-center">
-                <div class="ai-subtitle-badge">
-                    <span class="ai-badge-icon">✨</span>
-                    <p class="ai-advantage-subtitle">Learn the right way</p>
-                </div>
-                <div class="ai-description-card">
+            <div class="col-lg-10 text-center"><div class="ai-description-card">
                     <div class="ai-desc-accent"></div>
                     <p class="ai-advantage-description">Master the skills you need for your career.</p>
                 </div>
@@ -243,12 +165,7 @@
     <div class="container">
         {% if career_roadmap_page %}
         <div class="row justify-content-center mb-5">
-            <div class="col-lg-10 text-center">
-                <div class="ai-subtitle-badge">
-                    <span class="ai-badge-icon">✨</span>
-                    <p class="ai-advantage-subtitle">{{ career_roadmap_page.subtitle }}</p>
-                </div>
-                <div class="ai-description-card">
+            <div class="col-lg-10 text-center"><div class="ai-description-card">
                     <div class="ai-desc-accent"></div>
                     <p class="ai-advantage-description">{{ career_roadmap_page.description }}</p>
                 </div>
@@ -265,12 +182,7 @@
         {% endif %}
         {% else %}
         <div class="row justify-content-center mb-5">
-            <div class="col-lg-10 text-center">
-                <div class="ai-subtitle-badge">
-                    <span class="ai-badge-icon">✨</span>
-                    <p class="ai-advantage-subtitle">Every successful career begins with a clear path</p>
-                </div>
-                <div class="ai-description-card">
+            <div class="col-lg-10 text-center"><div class="ai-description-card">
                     <div class="ai-desc-accent"></div>
                     <p class="ai-advantage-description">This roadmap provides a simple and structured journey from zero knowledge to industry readiness.</p>
                 </div>
@@ -285,12 +197,7 @@
     <div class="container">
         {% if career_capsules_page %}
         <div class="row justify-content-center mb-5">
-            <div class="col-lg-10 text-center">
-                <div class="ai-subtitle-badge">
-                    <span class="ai-badge-icon">✨</span>
-                    <p class="ai-advantage-subtitle">{{ career_capsules_page.subtitle }}</p>
-                </div>
-                <div class="ai-description-card">
+            <div class="col-lg-10 text-center"><div class="ai-description-card">
                     <div class="ai-desc-accent"></div>
                     <p class="ai-advantage-description">{{ career_capsules_page.description }}</p>
                 </div>
@@ -307,12 +214,7 @@
         {% endif %}
         {% else %}
         <div class="row justify-content-center mb-5">
-            <div class="col-lg-10 text-center">
-                <div class="ai-subtitle-badge">
-                    <span class="ai-badge-icon">✨</span>
-                    <p class="ai-advantage-subtitle">Short, focused career insights</p>
-                </div>
-                <div class="ai-description-card">
+            <div class="col-lg-10 text-center"><div class="ai-description-card">
                     <div class="ai-desc-accent"></div>
                     <p class="ai-advantage-description">Quick lessons to boost your career growth.</p>
                 </div>
@@ -327,12 +229,7 @@
     <div class="container">
         {% if language_barrier_page %}
         <div class="row justify-content-center mb-5">
-            <div class="col-lg-10 text-center">
-                <div class="ai-subtitle-badge">
-                    <span class="ai-badge-icon">✨</span>
-                    <p class="ai-advantage-subtitle">{{ language_barrier_page.subtitle }}</p>
-                </div>
-                <div class="ai-description-card">
+            <div class="col-lg-10 text-center"><div class="ai-description-card">
                     <div class="ai-desc-accent"></div>
                     <p class="ai-advantage-description">{{ language_barrier_page.description }}</p>
                 </div>
@@ -360,12 +257,7 @@
         {% endif %}
         {% else %}
         <div class="row justify-content-center mb-5">
-            <div class="col-lg-10 text-center">
-                <div class="ai-subtitle-badge">
-                    <span class="ai-badge-icon">✨</span>
-                    <p class="ai-advantage-subtitle">Overcome communication challenges</p>
-                </div>
-                <div class="ai-description-card">
+            <div class="col-lg-10 text-center"><div class="ai-description-card">
                     <div class="ai-desc-accent"></div>
                     <p class="ai-advantage-description">Break through language barriers in your career.</p>
                 </div>
@@ -380,12 +272,7 @@
     <div class="container">
         {% if ready_for_test_page %}
         <div class="row justify-content-center mb-5">
-            <div class="col-lg-10 text-center">
-                <div class="ai-subtitle-badge">
-                    <span class="ai-badge-icon">✨</span>
-                    <p class="ai-advantage-subtitle">{{ ready_for_test_page.subtitle }}</p>
-                </div>
-                <div class="ai-description-card">
+            <div class="col-lg-10 text-center"><div class="ai-description-card">
                     <div class="ai-desc-accent"></div>
                     <p class="ai-advantage-description">{{ ready_for_test_page.description }}</p>
                 </div>
@@ -402,12 +289,7 @@
         {% endif %}
         {% else %}
         <div class="row justify-content-center mb-5">
-            <div class="col-lg-10 text-center">
-                <div class="ai-subtitle-badge">
-                    <span class="ai-badge-icon">✨</span>
-                    <p class="ai-advantage-subtitle">Test your readiness before moving forward</p>
-                </div>
-                <div class="ai-description-card">
+            <div class="col-lg-10 text-center"><div class="ai-description-card">
                     <div class="ai-desc-accent"></div>
                     <p class="ai-advantage-description">Ensure you're prepared for the next stage of your journey with our assessment tools.</p>
                 </div>
@@ -422,12 +304,7 @@
     <div class="container">
         {% if test_before_trust_page %}
         <div class="row justify-content-center mb-5">
-            <div class="col-lg-10 text-center">
-                <div class="ai-subtitle-badge">
-                    <span class="ai-badge-icon">✨</span>
-                    <p class="ai-advantage-subtitle">{{ test_before_trust_page.subtitle }}</p>
-                </div>
-                <div class="ai-description-card">
+            <div class="col-lg-10 text-center"><div class="ai-description-card">
                     <div class="ai-desc-accent"></div>
                     <p class="ai-advantage-description">{{ test_before_trust_page.description }}</p>
                 </div>
@@ -457,12 +334,7 @@
         {% endif %}
         {% else %}
         <div class="row justify-content-center mb-5">
-            <div class="col-lg-10 text-center">
-                <div class="ai-subtitle-badge">
-                    <span class="ai-badge-icon">✨</span>
-                    <p class="ai-advantage-subtitle">Verify our quality before you commit</p>
-                </div>
-                <div class="ai-description-card">
+            <div class="col-lg-10 text-center"><div class="ai-description-card">
                     <div class="ai-desc-accent"></div>
                     <p class="ai-advantage-description">Experience our teaching methodology and quality before making a decision.</p>
                 </div>
