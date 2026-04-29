@@ -10,7 +10,7 @@ class HeroImageAdmin(admin.ModelAdmin):
             "fields": ("image",)
         }),
         ("Hero Text Content", {
-            "fields": ("main_heading", "button_text", "subtitle")
+            "fields": ("main_heading", "button_text", "subtitle", "secondary_subtitle")
         }),
         ("Status", {
             "fields": ("active",)
@@ -79,7 +79,7 @@ class TheSystemAdmin(admin.ModelAdmin):
     list_filter = ["active"]
     fieldsets = (
         ("Highlight Lines (Card Box)", {
-            "fields": ("highlight_1", "highlight_2")
+            "fields": ("highlight_1", "highlight_2", "highlight_3")
         }),
         ("Video Section", {
             "fields": ("video_thumbnail", "video_title", "video_type", "youtube_url", "uploaded_video")

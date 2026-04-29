@@ -8,7 +8,7 @@ class HeroImage(models.Model):
 
     main_heading = models.CharField(
         max_length=300,
-        default="Ekalavya Mission: From Zer0 to Industry-Ready — a Complete Transformation."
+        default="Ekalavya Mission: From Zer0 to Industry-Ready — a Complete Self-Transformation."
     )
 
     button_text = models.CharField(
@@ -18,7 +18,14 @@ class HeroImage(models.Model):
 
     subtitle = models.CharField(
         max_length=300,
-        default="👉 Discover the All-in-One Skillset through a single, structured System before you Start."
+        default="👉 Discover the All-in-One Skillset through a Single, Structured System before you Start."
+    )
+
+    secondary_subtitle = models.CharField(
+        max_length=300,
+        default="Your Journey - Specially Designed for the AI Era.",
+        blank=True,
+        help_text="Additional subtitle text displayed below the main subtitle in the hero section"
     )
 
     active = models.BooleanField(default=True)
@@ -80,13 +87,13 @@ class AIAdvantage(models.Model):
 
     title = models.CharField(max_length=200, default="AI Fear vs AI Advantage")
 
-    line_1 = models.CharField(
+    highlight_1 = models.CharField(
         max_length=300,
         default="👉 Industry-ready Training is different from Exam-ready Learning.",
         help_text="First highlight line in the description card"
     )
 
-    line_2 = models.CharField(
+    highlight_2 = models.CharField(
         max_length=300,
         default="👉 The WINdianized Organic Learning System is built exactly for that transformation.",
         help_text="Second highlight line in the description card"
@@ -151,6 +158,13 @@ class TheSystem(models.Model):
         max_length=300,
         default="👉 The WINdianized Organic Learning System is built exactly for that transformation.",
         help_text="Second highlight line in the description card"
+    )
+
+    highlight_3 = models.CharField(
+        max_length=300,
+        default="👉 Discover the Core Capabilities required for IT Industry-Readiness",
+        blank=True,
+        help_text="Third highlight line in the description card (optional)"
     )
 
     video_title = models.CharField(max_length=200, default="Watch Now")
@@ -289,7 +303,7 @@ class ITAspirant(models.Model):
 
     line_4 = models.CharField(
         max_length=300,
-        default="👉 Fourth highlight line for IT Aspirant section",
+        default="👉 Over 90% of Candidates fail in job interviews not due to lack of knowledge, but inability to express what they know.",
         help_text="Fourth highlight line in the card box"
     )
 
@@ -447,7 +461,7 @@ class ThirtyMinutes(models.Model):
 
     line_3 = models.CharField(
         max_length=300,
-        default="👉 Third highlight line for Learning System section",
+        default="👉 Introducing 30-minute - Bite-sized learning —Minimum one Focused Step a Day consistently.",
         help_text="Third highlight line in the card box"
     )
 

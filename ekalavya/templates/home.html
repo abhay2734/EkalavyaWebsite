@@ -25,17 +25,21 @@
 <div class="hero-cta-section">
     <div class="container">
         {% if hero_image %}
-        <h3 class="hero-cta-title">{{ hero_image.main_heading }}</h3>
+        <h3 class="hero-cta-title">{{ hero_heading_html }}</h3>
         <a href="#intro-video" class="hero-cta-button" id="heroCtaButton">
             {{ hero_image.button_text }}
         </a>
-        <p class="hero-micro-text">{{ hero_image.subtitle }}</p>
+        <p class="hero-micro-text">{{ hero_subtitle_html }}</p>
+        {% if hero_image.secondary_subtitle %}
+        <p class="hero-micro-text hero-highlight">{{ hero_image.secondary_subtitle }}</p>
+        {% endif %}
         {% else %}
-        <h3 class="hero-cta-title">Ekalavya Mission: From Zer0 to Industry-Ready — a Complete Transformation.</h3>
+        <h3 class="hero-cta-title">Ekalavya Mission: From Zer0 to Industry-Ready — a Complete<br><span class="hero-highlight">Self</span>-Transformation.</h3>
         <a href="#intro-video" class="hero-cta-button" id="heroCtaButton">
             ▶ Start with a 5-minute overview of what this system delivers
         </a>
-        <p class="hero-micro-text">👉 Discover the All-in-One Skillset through a single, structured System before you Start.</p>
+        <p class="hero-micro-text">👉 Discover the All-in-One Skillset through a <span class="hero-highlight">Single</span>, <span class="hero-highlight">Structured</span> System before you Start.</p>
+        <p class="hero-micro-text hero-highlight">Your Journey - Specially Designed for the AI Era.</p>
         {% endif %}
     </div>
 </div>
@@ -78,6 +82,9 @@
                     {% if the_system_page.highlight_2 %}
                     <p class="system-highlight line-2">{{ the_system_page.highlight_2 }}</p>
                     {% endif %}
+                    {% if the_system_page.highlight_3 %}
+                    <p class="system-highlight line-3">{{ the_system_page.highlight_3 }}</p>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -97,6 +104,7 @@
                     <div class="ai-desc-accent"></div>
                     <p class="system-highlight line-1">👉 Industry-ready Training is different from Exam-ready Learning.</p>
                     <p class="system-highlight line-2">👉 The WINdianized Organic Learning System is built exactly for that transformation.</p>
+                    <p class="system-highlight line-3">👉 Discover the Core Capabilities required for IT Industry-Readiness</p>
                 </div>
             </div>
         </div>
@@ -224,7 +232,7 @@
                     <div class="ai-desc-accent"></div>
                     <p class="system-highlight line-1">👉 First highlight line for Learning System Page section</p>
                     <p class="system-highlight line-2">👉 Second highlight line for Learning System Page section</p>
-                    <p class="system-highlight line-3">👉 Third highlight line for Learning System Page section</p>
+                    <p class="system-highlight line-3">👉 Introducing 30-minute - Bite-sized learning —Minimum one Focused Step a Day consistently.</p>
                 </div>
             </div>
         </div>
@@ -240,16 +248,24 @@
             <div class="col-lg-10 text-center">
                 <div class="ai-description-card">
                     <div class="ai-desc-accent"></div>
-                    {% if it_aspirant_page.line_1 %}
+                    {% if it_aspirant_page and it_aspirant_line_1_html %}
+                    <p class="system-highlight line-1">{{ it_aspirant_line_1_html|safe }}</p>
+                    {% elif it_aspirant_page.line_1 %}
                     <p class="system-highlight line-1">{{ it_aspirant_page.line_1 }}</p>
                     {% endif %}
-                    {% if it_aspirant_page.line_2 %}
+                    {% if it_aspirant_page and it_aspirant_line_2_html %}
+                    <p class="system-highlight line-2">{{ it_aspirant_line_2_html|safe }}</p>
+                    {% elif it_aspirant_page.line_2 %}
                     <p class="system-highlight line-2">{{ it_aspirant_page.line_2 }}</p>
                     {% endif %}
-                    {% if it_aspirant_page.line_3 %}
+                    {% if it_aspirant_page and it_aspirant_line_3_html %}
+                    <p class="system-highlight line-3">{{ it_aspirant_line_3_html|safe }}</p>
+                    {% elif it_aspirant_page.line_3 %}
                     <p class="system-highlight line-3">{{ it_aspirant_page.line_3 }}</p>
                     {% endif %}
-                    {% if it_aspirant_page.line_4 %}
+                    {% if it_aspirant_page and it_aspirant_line_4_html %}
+                    <p class="system-highlight line-4">{{ it_aspirant_line_4_html|safe }}</p>
+                    {% elif it_aspirant_page.line_4 %}
                     <p class="system-highlight line-4">{{ it_aspirant_page.line_4 }}</p>
                     {% endif %}
                 </div>
@@ -272,7 +288,7 @@
                     <p class="system-highlight line-1">👉 First highlight line for IT Aspirant section</p>
                     <p class="system-highlight line-2">👉 Second highlight line for IT Aspirant section</p>
                     <p class="system-highlight line-3">👉 Third highlight line for IT Aspirant section</p>
-                    <p class="system-highlight line-4">👉 Fourth highlight line for IT Aspirant section</p>
+                    <p class="system-highlight line-4">👉 Over 90% of Candidates fail in job interviews not due to lack of knowledge, but inability to express what they know.</p>
                 </div>
             </div>
         </div>
