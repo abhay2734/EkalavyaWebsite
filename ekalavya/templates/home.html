@@ -9,7 +9,7 @@
     <div class="hero-container">
         {% if hero_image %}
         <div class="hero-slide active">
-            {% if hero_image.image %}<img src="{{ hero_image.image.url }}" class="hero-image" alt="{{ hero_image }}">{% endif %}
+            {% if hero_image.image %}<img src="{{ hero_image.image.url }}" class="hero-image" alt="{{ hero_image.image.alt_text|default:'Hero' }}">{% endif %}
             <div class="hero-overlay"></div>
         </div>
         {% else %}
@@ -21,26 +21,23 @@
     </div>
 </section>
 
+<!-- HERO INTERSTITIAL IMAGE SECTION -->
+{% if hero_image and hero_image.hero_interstitial_image %}
+<section class="hero-interstitial-section" id="hero-interstitial">
+    <div class="container">
+        <div class="hero-interstitial-wrapper">
+            <img src="{{ hero_image.hero_interstitial_image.url }}" class="hero-interstitial-image" alt="{{ hero_image.hero_interstitial_image.alt_text|default:'Interstitial Image' }}">
+        </div>
+    </div>
+</section>
+{% endif %}
+
 <!-- HERO CTA SECTION -->
 <div class="hero-cta-section">
     <div class="container">
-        {% if hero_image %}
-        <h3 class="hero-cta-title">{{ hero_heading_html }}</h3>
-        <a href="#intro-video" class="hero-cta-button" id="heroCtaButton">
-            {{ hero_image.button_text }}
-        </a>
-        <p class="hero-micro-text">{{ hero_subtitle_html }}</p>
-        {% if hero_image.secondary_subtitle %}
-        <p class="hero-micro-text hero-highlight">{{ hero_image.secondary_subtitle }}</p>
-        {% endif %}
-        {% else %}
-        <h3 class="hero-cta-title">Ekalavya Mission: From Zer0 to Industry-Ready — a Complete<br><span class="hero-highlight">Self</span>-Transformation.</h3>
-        <a href="#intro-video" class="hero-cta-button" id="heroCtaButton">
-            ▶ Start with a 5-minute overview of what this system delivers
-        </a>
-        <p class="hero-micro-text">👉 Discover the All-in-One Skillset through a <span class="hero-highlight">Single</span>, <span class="hero-highlight">Structured</span> System before you Start.</p>
-        <p class="hero-micro-text hero-highlight">Your Journey - Specially Designed for the AI Era.</p>
-        {% endif %}
+        <div class="text-center">
+
+        </div>
     </div>
 </div>
 
@@ -55,7 +52,7 @@
         <div class="video-card" id="homeVideoTrigger"
             data-video-type="{{ video.video_type }}"
             data-video-src="{% if video.video_type == 'youtube' %}{{ video.youtube_url }}{% elif video.uploaded_video %}{{ video.uploaded_video.url }}{% endif %}">
-            <img src="{{ video.thumbnail.url }}" class="video-thumb">
+            <img src="{{ video.thumbnail.url }}?t={{ video.updated_at|date:'U' }}" class="video-thumb">
             <div class="video-overlay"></div>
             <div class="play-button">▶</div>
         </div>
@@ -72,42 +69,28 @@
 <section class="ai-advantage-section py-5" id="the-system">
     <div class="container">
         {% if the_system_page %}
-        <div class="row justify-content-center mb-5">
-            <div class="col-lg-10 text-center">
-                <div class="ai-description-card">
-                    <div class="ai-desc-accent"></div>
-                    {% if the_system_page.highlight_1 %}
-                    <p class="system-highlight line-1">{{ the_system_page.highlight_1 }}</p>
-                    {% endif %}
-                    {% if the_system_page.highlight_2 %}
-                    <p class="system-highlight line-2">{{ the_system_page.highlight_2 }}</p>
-                    {% endif %}
-                    {% if the_system_page.highlight_3 %}
-                    <p class="system-highlight line-3">{{ the_system_page.highlight_3 }}</p>
-                    {% endif %}
-                </div>
-            </div>
+        {% if the_system_page.header_image %}
+        <div class="header-image-card">
+            <img src="{{ the_system_page.header_image.url }}" alt="The System Header">
         </div>
+        {% endif %}
         {% if the_system_page.video_thumbnail %}
         <div class="video-card" id="theSystemVideoTrigger"
             data-video-type="{{ the_system_page.video_type }}"
             data-video-src="{% if the_system_page.video_type == 'youtube' %}{{ the_system_page.youtube_url }}{% elif the_system_page.uploaded_video %}{{ the_system_page.uploaded_video.url }}{% endif %}">
-            <img src="{{ the_system_page.video_thumbnail.url }}" class="video-thumb">
+            <img src="{{ the_system_page.video_thumbnail.url }}?t={{ the_system_page.updated_at|date:'U' }}" class="video-thumb">
             <div class="video-overlay"></div>
             <div class="play-button">▶</div>
         </div>
-        {% endif %}
         {% else %}
         <div class="row justify-content-center mb-5">
             <div class="col-lg-10 text-center">
                 <div class="ai-description-card">
                     <div class="ai-desc-accent"></div>
-                    <p class="system-highlight line-1">👉 Industry-ready Training is different from Exam-ready Learning.</p>
-                    <p class="system-highlight line-2">👉 The WINdianized Organic Learning System is built exactly for that transformation.</p>
-                    <p class="system-highlight line-3">👉 Discover the Core Capabilities required for IT Industry-Readiness</p>
                 </div>
             </div>
         </div>
+        {% endif %}
         {% endif %}
     </div>
 </section>
@@ -116,38 +99,28 @@
 <section class="ai-advantage-section py-5" id="ai-advantage">
     <div class="container">
         {% if ai_advantage_page %}
-        <div class="row justify-content-center mb-5">
-            <div class="col-lg-10 text-center">
-                <div class="ai-description-card">
-                    <div class="ai-desc-accent"></div>
-                    {% if ai_advantage_page.highlight_1 %}
-                    <p class="system-highlight line-1">{{ ai_advantage_page.highlight_1 }}</p>
-                    {% endif %}
-                    {% if ai_advantage_page.highlight_2 %}
-                    <p class="system-highlight line-2">{{ ai_advantage_page.highlight_2 }}</p>
-                    {% endif %}
-                </div>
-            </div>
+        {% if ai_advantage_page.header_image %}
+        <div class="header-image-card">
+            <img src="{{ ai_advantage_page.header_image.url }}" alt="AI Advantage Header">
         </div>
+        {% endif %}
         {% if ai_advantage_page.video_thumbnail %}
         <div class="video-card" id="aiAdvantageVideoTrigger"
             data-video-type="{{ ai_advantage_page.video_type }}"
             data-video-src="{% if ai_advantage_page.video_type == 'youtube' %}{{ ai_advantage_page.youtube_url }}{% elif ai_advantage_page.uploaded_video %}{{ ai_advantage_page.uploaded_video.url }}{% endif %}">
-            <img src="{{ ai_advantage_page.video_thumbnail.url }}" class="video-thumb">
+            <img src="{{ ai_advantage_page.video_thumbnail.url }}?t={{ ai_advantage_page.updated_at|date:'U' }}" class="video-thumb">
             <div class="video-overlay"></div>
             <div class="play-button">▶</div>
         </div>
-        {% endif %}
         {% else %}
         <div class="row justify-content-center mb-5">
             <div class="col-lg-10 text-center">
                 <div class="ai-description-card">
                     <div class="ai-desc-accent"></div>
-                    <p class="system-highlight line-1">👉 Industry-ready Training is different from Exam-ready Learning.</p>
-                    <p class="system-highlight line-2">👉 The WINdianized Organic Learning System is built exactly for that transformation.</p>
                 </div>
             </div>
         </div>
+        {% endif %}
         {% endif %}
     </div>
 </section>
@@ -156,42 +129,28 @@
 <section class="ai-advantage-section py-5" id="skill-test">
     <div class="container">
         {% if conceptual_communication_page %}
-        <div class="row justify-content-center mb-5">
-            <div class="col-lg-10 text-center">
-                <div class="ai-description-card">
-                    <div class="ai-desc-accent"></div>
-                    {% if conceptual_communication_page.line_1 %}
-                    <p class="system-highlight line-1">{{ conceptual_communication_page.line_1 }}</p>
-                    {% endif %}
-                    {% if conceptual_communication_page.line_2 %}
-                    <p class="system-highlight line-2">{{ conceptual_communication_page.line_2 }}</p>
-                    {% endif %}
-                    {% if conceptual_communication_page.line_3 %}
-                    <p class="system-highlight line-3">{{ conceptual_communication_page.line_3 }}</p>
-                    {% endif %}
-                </div>
-            </div>
+        {% if conceptual_communication_page.header_image %}
+        <div class="header-image-card">
+            <img src="{{ conceptual_communication_page.header_image.url }}" alt="Conceptual Communication Header">
         </div>
+        {% endif %}
         {% if conceptual_communication_page.video_thumbnail %}
         <div class="video-card" id="conceptualCommunicationVideoTrigger"
             data-video-type="{{ conceptual_communication_page.video_type }}"
             data-video-src="{% if conceptual_communication_page.video_type == 'youtube' %}{{ conceptual_communication_page.youtube_url }}{% elif conceptual_communication_page.uploaded_video %}{{ conceptual_communication_page.uploaded_video.url }}{% endif %}">
-            <img src="{{ conceptual_communication_page.video_thumbnail.url }}" class="video-thumb">
+            <img src="{{ conceptual_communication_page.video_thumbnail.url }}?t={{ conceptual_communication_page.updated_at|date:'U' }}" class="video-thumb">
             <div class="video-overlay"></div>
             <div class="play-button">▶</div>
         </div>
-        {% endif %}
         {% else %}
         <div class="row justify-content-center mb-5">
             <div class="col-lg-10 text-center">
                 <div class="ai-description-card">
                     <div class="ai-desc-accent"></div>
-                    <p class="system-highlight line-1">👉 First highlight line for skill test section</p>
-                    <p class="system-highlight line-2">👉 Second highlight line for skill test section</p>
-                    <p class="system-highlight line-3">👉 Third highlight line for skill test section</p>
                 </div>
             </div>
         </div>
+        {% endif %}
         {% endif %}
     </div>
 </section>
@@ -200,42 +159,28 @@
 <section class="ai-advantage-section py-5" id="learning-system">
     <div class="container">
         {% if thirty_minutes_page %}
-        <div class="row justify-content-center mb-5">
-            <div class="col-lg-10 text-center">
-                <div class="ai-description-card">
-                    <div class="ai-desc-accent"></div>
-                    {% if thirty_minutes_page.line_1 %}
-                    <p class="system-highlight line-1">{{ thirty_minutes_page.line_1 }}</p>
-                    {% endif %}
-                    {% if thirty_minutes_page.line_2 %}
-                    <p class="system-highlight line-2">{{ thirty_minutes_page.line_2 }}</p>
-                    {% endif %}
-                    {% if thirty_minutes_page.line_3 %}
-                    <p class="system-highlight line-3">{{ thirty_minutes_page.line_3 }}</p>
-                    {% endif %}
-                </div>
-            </div>
+        {% if thirty_minutes_page.header_image %}
+        <div class="header-image-card">
+            <img src="{{ thirty_minutes_page.header_image.url }}" alt="Learning System Header">
         </div>
+        {% endif %}
         {% if thirty_minutes_page.video_thumbnail %}
         <div class="video-card" id="thirtyMinutesVideoTrigger"
             data-video-type="{{ thirty_minutes_page.video_type }}"
             data-video-src="{% if thirty_minutes_page.video_type == 'youtube' %}{{ thirty_minutes_page.youtube_url }}{% elif thirty_minutes_page.uploaded_video %}{{ thirty_minutes_page.uploaded_video.url }}{% endif %}">
-            <img src="{{ thirty_minutes_page.video_thumbnail.url }}" class="video-thumb">
+            <img src="{{ thirty_minutes_page.video_thumbnail.url }}?t={{ thirty_minutes_page.updated_at|date:'U' }}" class="video-thumb">
             <div class="video-overlay"></div>
             <div class="play-button">▶</div>
         </div>
-        {% endif %}
         {% else %}
         <div class="row justify-content-center mb-5">
             <div class="col-lg-10 text-center">
                 <div class="ai-description-card">
                     <div class="ai-desc-accent"></div>
-                    <p class="system-highlight line-1">👉 First highlight line for Learning System Page section</p>
-                    <p class="system-highlight line-2">👉 Second highlight line for Learning System Page section</p>
-                    <p class="system-highlight line-3">👉 Introducing 30-minute - Bite-sized learning —Minimum one Focused Step a Day consistently.</p>
                 </div>
             </div>
         </div>
+        {% endif %}
         {% endif %}
     </div>
 </section>
@@ -244,98 +189,58 @@
 <section class="ai-advantage-section py-5" id="career-roadmap">
     <div class="container">
         {% if it_aspirant_page %}
-        <div class="row justify-content-center mb-5">
-            <div class="col-lg-10 text-center">
-                <div class="ai-description-card">
-                    <div class="ai-desc-accent"></div>
-                    {% if it_aspirant_page and it_aspirant_line_1_html %}
-                    <p class="system-highlight line-1">{{ it_aspirant_line_1_html|safe }}</p>
-                    {% elif it_aspirant_page.line_1 %}
-                    <p class="system-highlight line-1">{{ it_aspirant_page.line_1 }}</p>
-                    {% endif %}
-                    {% if it_aspirant_page and it_aspirant_line_2_html %}
-                    <p class="system-highlight line-2">{{ it_aspirant_line_2_html|safe }}</p>
-                    {% elif it_aspirant_page.line_2 %}
-                    <p class="system-highlight line-2">{{ it_aspirant_page.line_2 }}</p>
-                    {% endif %}
-                    {% if it_aspirant_page and it_aspirant_line_3_html %}
-                    <p class="system-highlight line-3">{{ it_aspirant_line_3_html|safe }}</p>
-                    {% elif it_aspirant_page.line_3 %}
-                    <p class="system-highlight line-3">{{ it_aspirant_page.line_3 }}</p>
-                    {% endif %}
-                    {% if it_aspirant_page and it_aspirant_line_4_html %}
-                    <p class="system-highlight line-4">{{ it_aspirant_line_4_html|safe }}</p>
-                    {% elif it_aspirant_page.line_4 %}
-                    <p class="system-highlight line-4">{{ it_aspirant_page.line_4 }}</p>
-                    {% endif %}
-                </div>
-            </div>
+        {% if it_aspirant_page.header_image %}
+        <div class="header-image-card">
+            <img src="{{ it_aspirant_page.header_image.url }}" alt="IT Aspirant Header">
         </div>
+        {% endif %}
         {% if it_aspirant_page.video_thumbnail %}
         <div class="video-card" id="itAspirantVideoTrigger"
             data-video-type="{{ it_aspirant_page.video_type }}"
             data-video-src="{% if it_aspirant_page.video_type == 'youtube' %}{{ it_aspirant_page.youtube_url }}{% elif it_aspirant_page.uploaded_video %}{{ it_aspirant_page.uploaded_video.url }}{% endif %}">
-            <img src="{{ it_aspirant_page.video_thumbnail.url }}" class="video-thumb">
+            <img src="{{ it_aspirant_page.video_thumbnail.url }}?t={{ it_aspirant_page.updated_at|date:'U' }}" class="video-thumb">
             <div class="video-overlay"></div>
             <div class="play-button-red"></div>
         </div>
-        {% endif %}
         {% else %}
         <div class="row justify-content-center mb-5">
             <div class="col-lg-10 text-center">
                 <div class="ai-description-card">
                     <div class="ai-desc-accent"></div>
-                    <p class="system-highlight line-1">👉 First highlight line for IT Aspirant section</p>
-                    <p class="system-highlight line-2">👉 Second highlight line for IT Aspirant section</p>
-                    <p class="system-highlight line-3">👉 Third highlight line for IT Aspirant section</p>
-                    <p class="system-highlight line-4">👉 Over 90% of Candidates fail in job interviews not due to lack of knowledge, but inability to express what they know.</p>
                 </div>
             </div>
         </div>
         {% endif %}
-     </div>
- </section>
+        {% endif %}
+    </div>
+</section>
 
 <!-- READY FOR TEST SECTION -->
 <section class="ai-advantage-section py-5" id="ready-for-test">
     <div class="container">
         {% if ready_for_test_page %}
-        <div class="row justify-content-center mb-5">
-            <div class="col-lg-10 text-center">
-                <div class="ai-description-card">
-                    <div class="ai-desc-accent"></div>
-                    {% if ready_for_test_page.line_1 %}
-                    <p class="system-highlight line-1">{{ ready_for_test_page.line_1 }}</p>
-                    {% endif %}
-                    {% if ready_for_test_page.line_2 %}
-                    <p class="system-highlight line-2">{{ ready_for_test_page.line_2 }}</p>
-                    {% endif %}
-                    {% if ready_for_test_page.line_3 %}
-                    <p class="system-highlight line-3">{{ ready_for_test_page.line_3 }}</p>
-                    {% endif %}
-                </div>
-            </div>
+        {% if ready_for_test_page.header_image %}
+        <div class="header-image-card">
+            <img src="{{ ready_for_test_page.header_image.url }}" alt="Ready for Test Header">
         </div>
+        {% endif %}
         {% if ready_for_test_page.video_thumbnail %}
         <div class="video-card" id="readyForTestVideoTrigger"
             data-video-type="{{ ready_for_test_page.video_type }}"
             data-video-src="{% if ready_for_test_page.video_type == 'youtube' %}{{ ready_for_test_page.youtube_url }}{% elif ready_for_test_page.uploaded_video %}{{ ready_for_test_page.uploaded_video.url }}{% endif %}">
-            <img src="{{ ready_for_test_page.video_thumbnail.url }}" class="video-thumb">
+            <img src="{{ ready_for_test_page.video_thumbnail.url }}?t={{ ready_for_test_page.updated_at|date:'U' }}" class="video-thumb">
             <div class="video-overlay"></div>
             <div class="play-button">▶</div>
         </div>
-        {% endif %}
         {% else %}
         <div class="row justify-content-center mb-5">
             <div class="col-lg-10 text-center">
                 <div class="ai-description-card">
                     <div class="ai-desc-accent"></div>
-                    <p class="system-highlight line-1">👉 First highlight line for Ready for Test section</p>
-                    <p class="system-highlight line-2">👉 Second highlight line for Ready for Test section</p>
-                    <p class="system-highlight line-3">👉 Third highlight line for Ready for Test section</p>
                 </div>
             </div>
         </div>
+        {% endif %}
         {% endif %}
     </div>
 </section>
@@ -344,54 +249,28 @@
 <section class="ai-advantage-section py-5" id="career-capsules">
     <div class="container">
         {% if zero_to_industry_page %}
-        <div class="row justify-content-center mb-5">
-            <div class="col-lg-10 text-center">
-                <div class="ai-description-card">
-                    <div class="ai-desc-accent"></div>
-                    {% if zero_to_industry_page.line_1 %}
-                    <p class="system-highlight line-1">{{ zero_to_industry_page.line_1 }}</p>
-                    {% endif %}
-                    {% if zero_to_industry_page.line_2 %}
-                    <p class="system-highlight line-2">{{ zero_to_industry_page.line_2 }}</p>
-                    {% endif %}
-                    {% if zero_to_industry_page.line_3 %}
-                    <p class="system-highlight line-3">{{ zero_to_industry_page.line_3 }}</p>
-                    {% endif %}
-                    {% if zero_to_industry_page.line_4 %}
-                    <p class="system-highlight line-4">{{ zero_to_industry_page.line_4 }}</p>
-                    {% endif %}
-                    {% if zero_to_industry_page.line_5 %}
-                    <p class="system-highlight line-5">{{ zero_to_industry_page.line_5 }}</p>
-                    {% endif %}
-                    {% if zero_to_industry_page.line_6 %}
-                    <p class="system-highlight line-6">{{ zero_to_industry_page.line_6 }}</p>
-                    {% endif %}
-                </div>
-            </div>
+        {% if zero_to_industry_page.header_image %}
+        <div class="header-image-card">
+            <img src="{{ zero_to_industry_page.header_image.url }}" alt="Career Capsules Header">
         </div>
+        {% endif %}
         {% if zero_to_industry_page.video_thumbnail %}
         <div class="video-card" id="zeroToIndustryVideoTrigger"
             data-video-type="{{ zero_to_industry_page.video_type }}"
             data-video-src="{% if zero_to_industry_page.video_type == 'youtube' %}{{ zero_to_industry_page.youtube_url }}{% elif zero_to_industry_page.uploaded_video %}{{ zero_to_industry_page.uploaded_video.url }}{% endif %}">
-            <img src="{{ zero_to_industry_page.video_thumbnail.url }}" class="video-thumb">
+            <img src="{{ zero_to_industry_page.video_thumbnail.url }}?t={{ zero_to_industry_page.updated_at|date:'U' }}" class="video-thumb">
             <div class="video-overlay"></div>
             <div class="play-button">▶</div>
         </div>
-        {% endif %}
         {% else %}
         <div class="row justify-content-center mb-5">
             <div class="col-lg-10 text-center">
                 <div class="ai-description-card">
                     <div class="ai-desc-accent"></div>
-                    <p class="system-highlight line-1">👉 First highlight line for Career Capsules section</p>
-                    <p class="system-highlight line-2">👉 Second highlight line for Career Capsules section</p>
-                    <p class="system-highlight line-3">👉 Third highlight line for Career Capsules section</p>
-                    <p class="system-highlight line-4">👉 Fourth highlight line for Career Capsules section</p>
-                    <p class="system-highlight line-5">👉 Fifth highlight line for Career Capsules section</p>
-                    <p class="system-highlight line-6">👉 Sixth highlight line for Career Capsules section</p>
                 </div>
             </div>
         </div>
+        {% endif %}
         {% endif %}
     </div>
 </section>
@@ -400,34 +279,14 @@
 <section class="ai-advantage-section py-5" id="language-barrier">
     <div class="container">
         {% if career_paths_page %}
-        <div class="row justify-content-center mb-5">
-            <div class="col-lg-10 text-center">
-                <div class="ai-description-card">
-                    <div class="ai-desc-accent"></div>
-                    {% if career_paths_page.line_1 %}
-                    <p class="system-highlight line-1">{{ career_paths_page.line_1 }}</p>
-                    {% endif %}
-                    {% if career_paths_page.line_2 %}
-                    <p class="system-highlight line-2">{{ career_paths_page.line_2 }}</p>
-                    {% endif %}
-                    {% if career_paths_page.line_3 %}
-                    <p class="system-highlight line-3">{{ career_paths_page.line_3 }}</p>
-                    {% endif %}
-                    {% if career_paths_page.line_4 %}
-                    <p class="system-highlight line-4">{{ career_paths_page.line_4 }}</p>
-                    {% endif %}
-                    {% if career_paths_page.line_5 %}
-                    <p class="system-highlight line-5">{{ career_paths_page.line_5 }}</p>
-                    {% endif %}
-                    {% if career_paths_page.line_6 %}
-                    <p class="system-highlight line-6">{{ career_paths_page.line_6 }}</p>
-                    {% endif %}
-                </div>
-            </div>
+        {% if career_paths_page.header_image %}
+        <div class="header-image-card">
+            <img src="{{ career_paths_page.header_image.url }}" alt="Career Paths Header">
         </div>
+        {% endif %}
         {% if career_paths_page.video_thumbnail or career_paths_page.image %}
         <div class="career-paths-image-wrapper">
-            <img src="{% if career_paths_page.video_thumbnail %}{{ career_paths_page.video_thumbnail.url }}{% else %}{{ career_paths_page.image.url }}{% endif %}" class="career-paths-image">
+            <img src="{% if career_paths_page.video_thumbnail %}{{ career_paths_page.video_thumbnail.url }}?t={{ career_paths_page.updated_at|date:'U' }}{% else %}{{ career_paths_page.image.url }}{% endif %}" class="career-paths-image">
             <button class="career-path-btn career-path-btn-left" 
                 data-video-type="{{ career_paths_page.video_type }}" 
                 data-video-src="{% if career_paths_page.video_type == 'youtube' %}{{ career_paths_page.youtube_url_1 }}{% elif career_paths_page.uploaded_video_1 %}{{ career_paths_page.uploaded_video_1.url }}{% endif %}">
@@ -444,21 +303,15 @@
                 <span class="btn-text">Explore Path</span>
             </button>
         </div>
-        {% endif %}
         {% else %}
         <div class="row justify-content-center mb-5">
             <div class="col-lg-10 text-center">
                 <div class="ai-description-card">
                     <div class="ai-desc-accent"></div>
-                    <p class="system-highlight line-1">👉 First highlight line for 3 Career Paths section</p>
-                    <p class="system-highlight line-2">👉 Second highlight line for 3 Career Paths section</p>
-                    <p class="system-highlight line-3">👉 Third highlight line for 3 Career Paths section</p>
-                    <p class="system-highlight line-4">👉 Fourth highlight line for 3 Career Paths section</p>
-                    <p class="system-highlight line-5">👉 Fifth highlight line for 3 Career Paths section</p>
-                    <p class="system-highlight line-6">👉 Sixth highlight line for 3 Career Paths section</p>
                 </div>
             </div>
         </div>
+        {% endif %}
         {% endif %}
     </div>
 </section>
@@ -467,30 +320,16 @@
 <section class="ai-advantage-section py-5" id="test-before-trust">
     <div class="container">
         {% if test_before_trust_page %}
-        <div class="row justify-content-center mb-5">
-            <div class="col-lg-10 text-center">
-                <div class="ai-description-card">
-                    <div class="ai-desc-accent"></div>
-                    {% if test_before_trust_page.line_1 %}
-                    <p class="system-highlight line-1">{{ test_before_trust_page.line_1 }}</p>
-                    {% endif %}
-                    {% if test_before_trust_page.line_2 %}
-                    <p class="system-highlight line-2">{{ test_before_trust_page.line_2 }}</p>
-                    {% endif %}
-                    {% if test_before_trust_page.line_3 %}
-                    <p class="system-highlight line-3">{{ test_before_trust_page.line_3 }}</p>
-                    {% endif %}
-                    {% if test_before_trust_page.line_4 %}
-                    <p class="system-highlight line-4">{{ test_before_trust_page.line_4 }}</p>
-                    {% endif %}
-                </div>
-            </div>
+        {% if test_before_trust_page.header_image %}
+        <div class="header-image-card">
+            <img src="{{ test_before_trust_page.header_image.url }}" alt="Test Before You Trust Header">
         </div>
+        {% endif %}
         {% if test_before_trust_page.video_thumbnail %}
         <div class="video-card-a4" id="testBeforeTrustVideoTrigger"
             data-video-type="{{ test_before_trust_page.video_type }}"
             data-video-src="{% if test_before_trust_page.video_type == 'youtube' %}{{ test_before_trust_page.youtube_url }}{% elif test_before_trust_page.uploaded_video %}{{ test_before_trust_page.uploaded_video.url }}{% endif %}">
-            <img src="{{ test_before_trust_page.video_thumbnail.url }}" class="video-thumb-a4">
+            <img src="{{ test_before_trust_page.video_thumbnail.url }}?t={{ test_before_trust_page.updated_at|date:'U' }}" class="video-thumb-a4">
             <button class="preview-btn preview-btn-left" 
                 data-video-type="{{ test_before_trust_page.video_type }}" 
                 data-video-src="{% if test_before_trust_page.video_type == 'youtube' %}{{ test_before_trust_page.youtube_url_1 }}{% elif test_before_trust_page.uploaded_video_1 %}{{ test_before_trust_page.uploaded_video_1.url }}{% endif %}">
@@ -507,19 +346,15 @@
                 <span class="preview-btn-text">▶ Preview</span>
             </button>
         </div>
-        {% endif %}
         {% else %}
         <div class="row justify-content-center mb-5">
             <div class="col-lg-10 text-center">
                 <div class="ai-description-card">
                     <div class="ai-desc-accent"></div>
-                    <p class="system-highlight line-1">👉 First highlight line for Test Before You Trust section</p>
-                    <p class="system-highlight line-2">👉 Second highlight line for Test Before You Trust section</p>
-                    <p class="system-highlight line-3">👉 Third highlight line for Test Before You Trust section</p>
-                    <p class="system-highlight line-4">👉 Fourth highlight line for Test Before You Trust section</p>
                 </div>
             </div>
         </div>
+        {% endif %}
         {% endif %}
     </div>
 </section>

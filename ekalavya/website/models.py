@@ -6,26 +6,11 @@ class HeroImage(models.Model):
 
     image = models.ImageField(upload_to="hero/")
 
-    main_heading = models.CharField(
-        max_length=300,
-        default="Ekalavya Mission: From Zer0 to Industry-Ready — a Complete Self-Transformation."
-    )
-
-    button_text = models.CharField(
-        max_length=200,
-        default="▶ Start with a 5-minute overview of what this system delivers"
-    )
-
-    subtitle = models.CharField(
-        max_length=300,
-        default="👉 Discover the All-in-One Skillset through a Single, Structured System before you Start."
-    )
-
-    secondary_subtitle = models.CharField(
-        max_length=300,
-        default="Your Journey - Specially Designed for the AI Era.",
+    hero_interstitial_image = models.ImageField(
+        upload_to="hero/interstitial/",
         blank=True,
-        help_text="Additional subtitle text displayed below the main subtitle in the hero section"
+        null=True,
+        help_text="Image to display between hero section and home video section"
     )
 
     active = models.BooleanField(default=True)
@@ -69,6 +54,8 @@ class HomeVideo(models.Model):
 
     created_at = models.DateTimeField(auto_now_add=True)
 
+    updated_at = models.DateTimeField(auto_now=True)
+
     class Meta:
         verbose_name = "1) Home video"
         verbose_name_plural = "1) Home video"
@@ -87,16 +74,11 @@ class AIAdvantage(models.Model):
 
     title = models.CharField(max_length=200, default="AI Fear vs AI Advantage")
 
-    highlight_1 = models.CharField(
-        max_length=300,
-        default="👉 Industry-ready Training is different from Exam-ready Learning.",
-        help_text="First highlight line in the description card"
-    )
-
-    highlight_2 = models.CharField(
-        max_length=300,
-        default="👉 The WINdianized Organic Learning System is built exactly for that transformation.",
-        help_text="Second highlight line in the description card"
+    header_image = models.ImageField(
+        upload_to="ai_advantage/",
+        help_text="Header image displayed above the video section",
+        blank=True,
+        null=True
     )
 
     video_title = models.CharField(max_length=200, default="Who Controls AI?")
@@ -148,23 +130,11 @@ class TheSystem(models.Model):
 
     title = models.CharField(max_length=200, default="The System")
 
-    highlight_1 = models.CharField(
-        max_length=300,
-        default="👉 Industry-ready Training is different from Exam-ready Learning.",
-        help_text="First highlight line in the description card"
-    )
-
-    highlight_2 = models.CharField(
-        max_length=300,
-        default="👉 The WINdianized Organic Learning System is built exactly for that transformation.",
-        help_text="Second highlight line in the description card"
-    )
-
-    highlight_3 = models.CharField(
-        max_length=300,
-        default="👉 Discover the Core Capabilities required for IT Industry-Readiness",
+    header_image = models.ImageField(
+        upload_to="the_system/",
+        help_text="Header image displayed above the video section",
         blank=True,
-        help_text="Third highlight line in the description card (optional)"
+        null=True
     )
 
     video_title = models.CharField(max_length=200, default="Watch Now")
@@ -216,22 +186,11 @@ class ConceptualCommunication(models.Model):
 
     title = models.CharField(max_length=200, default="Conceptual Communication")
 
-    line_1 = models.CharField(
-        max_length=300,
-        default="👉 First highlight line for skill test section",
-        help_text="First highlight line in the card box"
-    )
-
-    line_2 = models.CharField(
-        max_length=300,
-        default="👉 Second highlight line for skill test section",
-        help_text="Second highlight line in the card box"
-    )
-
-    line_3 = models.CharField(
-        max_length=300,
-        default="👉 Third highlight line for skill test section",
-        help_text="Third highlight line in the card box"
+    header_image = models.ImageField(
+        upload_to="conceptual_communication/",
+        help_text="Header image displayed above the video section",
+        blank=True,
+        null=True
     )
 
     video_title = models.CharField(max_length=200, default="Watch Now")
@@ -283,28 +242,11 @@ class ITAspirant(models.Model):
 
     title = models.CharField(max_length=200, default="IT Aspirant")
 
-    line_1 = models.CharField(
-        max_length=300,
-        default="👉 First highlight line for IT Aspirant section",
-        help_text="First highlight line in the card box"
-    )
-
-    line_2 = models.CharField(
-        max_length=300,
-        default="👉 Second highlight line for IT Aspirant section",
-        help_text="Second highlight line in the card box"
-    )
-
-    line_3 = models.CharField(
-        max_length=300,
-        default="👉 Third highlight line for IT Aspirant section",
-        help_text="Third highlight line in the card box"
-    )
-
-    line_4 = models.CharField(
-        max_length=300,
-        default="👉 Over 90% of Candidates fail in job interviews not due to lack of knowledge, but inability to express what they know.",
-        help_text="Fourth highlight line in the card box"
+    header_image = models.ImageField(
+        upload_to="it_aspirant/",
+        help_text="Header image displayed above the video section",
+        blank=True,
+        null=True
     )
 
     video_title = models.CharField(max_length=200, default="Watch Now")
@@ -356,40 +298,11 @@ class ZeroToIndustry(models.Model):
 
     title = models.CharField(max_length=200, default="From Zero to Industry Ready")
 
-    line_1 = models.CharField(
-        max_length=300,
-        default="👉 First highlight line for Career Capsules section",
-        help_text="First highlight line in the card box"
-    )
-
-    line_2 = models.CharField(
-        max_length=300,
-        default="👉 Second highlight line for Career Capsules section",
-        help_text="Second highlight line in the card box"
-    )
-
-    line_3 = models.CharField(
-        max_length=300,
-        default="👉 Third highlight line for Career Capsules section",
-        help_text="Third highlight line in the card box"
-    )
-
-    line_4 = models.CharField(
-        max_length=300,
-        default="👉 Fourth highlight line for Career Capsules section",
-        help_text="Fourth highlight line in the card box"
-    )
-
-    line_5 = models.CharField(
-        max_length=300,
-        default="👉 Fifth highlight line for Career Capsules section",
-        help_text="Fifth highlight line in the card box"
-    )
-
-    line_6 = models.CharField(
-        max_length=300,
-        default="👉 Sixth highlight line for Career Capsules section",
-        help_text="Sixth highlight line in the card box"
+    header_image = models.ImageField(
+        upload_to="zero_to_industry/",
+        help_text="Header image displayed above the video section",
+        blank=True,
+        null=True
     )
 
     image = models.ImageField(
@@ -447,22 +360,11 @@ class ThirtyMinutes(models.Model):
 
     title = models.CharField(max_length=200, default="30 Minutes a day")
 
-    line_1 = models.CharField(
-        max_length=300,
-        default="👉 First highlight line for Learning System section",
-        help_text="First highlight line in the card box"
-    )
-
-    line_2 = models.CharField(
-        max_length=300,
-        default="👉 Second highlight line for Learning System section",
-        help_text="Second highlight line in the card box"
-    )
-
-    line_3 = models.CharField(
-        max_length=300,
-        default="👉 Introducing 30-minute - Bite-sized learning —Minimum one Focused Step a Day consistently.",
-        help_text="Third highlight line in the card box"
+    header_image = models.ImageField(
+        upload_to="thirty_minutes/",
+        help_text="Header image displayed above the video section",
+        blank=True,
+        null=True
     )
 
     image = models.ImageField(
@@ -519,40 +421,11 @@ class CareerPaths(models.Model):
 
     title = models.CharField(max_length=200, default="3 Career Paths")
 
-    line_1 = models.CharField(
-        max_length=300,
-        default="👉 First highlight line for 3 Career Paths section",
-        help_text="First highlight line in the card box"
-    )
-
-    line_2 = models.CharField(
-        max_length=300,
-        default="👉 Second highlight line for 3 Career Paths section",
-        help_text="Second highlight line in the card box"
-    )
-
-    line_3 = models.CharField(
-        max_length=300,
-        default="👉 Third highlight line for 3 Career Paths section",
-        help_text="Third highlight line in the card box"
-    )
-
-    line_4 = models.CharField(
-        max_length=300,
-        default="👉 Fourth highlight line for 3 Career Paths section",
-        help_text="Fourth highlight line in the card box"
-    )
-
-    line_5 = models.CharField(
-        max_length=300,
-        default="👉 Fifth highlight line for 3 Career Paths section",
-        help_text="Fifth highlight line in the card box"
-    )
-
-    line_6 = models.CharField(
-        max_length=300,
-        default="👉 Sixth highlight line for 3 Career Paths section",
-        help_text="Sixth highlight line in the card box"
+    header_image = models.ImageField(
+        upload_to="career_paths/",
+        help_text="Header image displayed above the video section",
+        blank=True,
+        null=True
     )
 
     image = models.ImageField(
@@ -636,22 +509,11 @@ class ReadyForTestPage(models.Model):
 
     title = models.CharField(max_length=200, default="Ready for Test")
 
-    line_1 = models.CharField(
-        max_length=300,
-        default="👉 First highlight line for Ready for Test section",
-        help_text="First highlight line in the card box"
-    )
-
-    line_2 = models.CharField(
-        max_length=300,
-        default="👉 Second highlight line for Ready for Test section",
-        help_text="Second highlight line in the card box"
-    )
-
-    line_3 = models.CharField(
-        max_length=300,
-        default="👉 Third highlight line for Ready for Test section",
-        help_text="Third highlight line in the card box"
+    header_image = models.ImageField(
+        upload_to="ready_for_test/",
+        help_text="Header image displayed above the video section",
+        blank=True,
+        null=True
     )
 
     image = models.ImageField(
@@ -708,28 +570,11 @@ class TestBeforeTrustPage(models.Model):
 
     title = models.CharField(max_length=200, default="Test Before You Trust")
 
-    line_1 = models.CharField(
-        max_length=300,
-        default="👉 First highlight line for Test Before You Trust section",
-        help_text="First highlight line in the card box"
-    )
-
-    line_2 = models.CharField(
-        max_length=300,
-        default="👉 Second highlight line for Test Before You Trust section",
-        help_text="Second highlight line in the card box"
-    )
-
-    line_3 = models.CharField(
-        max_length=300,
-        default="👉 Third highlight line for Test Before You Trust section",
-        help_text="Third highlight line in the card box"
-    )
-
-    line_4 = models.CharField(
-        max_length=300,
-        default="👉 Fourth highlight line for Test Before You Trust section",
-        help_text="Fourth highlight line in the card box"
+    header_image = models.ImageField(
+        upload_to="test_before_trust/",
+        help_text="Header image displayed above the video section",
+        blank=True,
+        null=True
     )
 
     image = models.ImageField(

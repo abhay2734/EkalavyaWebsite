@@ -6,11 +6,12 @@ class HeroImageAdmin(admin.ModelAdmin):
     list_display = ["active", "created_at"]
     list_filter = ["active"]
     fieldsets = (
-        ("Image", {
+        ("Hero Image", {
             "fields": ("image",)
         }),
-        ("Hero Text Content", {
-            "fields": ("main_heading", "button_text", "subtitle", "secondary_subtitle")
+        ("Interstitial Image", {
+            "fields": ("hero_interstitial_image",),
+            "description": "This image will be displayed between the hero section and the home video section."
         }),
         ("Status", {
             "fields": ("active",)
@@ -25,7 +26,7 @@ class HeroImageAdmin(admin.ModelAdmin):
 
 @admin.register(HomeVideo)
 class HomeVideoAdmin(admin.ModelAdmin):
-    list_display = ["video_type", "active", "created_at"]
+    list_display = ["video_type", "active", "created_at", "updated_at"]
     list_filter = ["active", "video_type"]
     fieldsets = (
         ("Video Thumbnail", {
@@ -50,11 +51,8 @@ class AIAdvantageAdmin(admin.ModelAdmin):
     list_display = ["video_title", "active", "updated_at"]
     list_filter = ["active"]
     fieldsets = (
-        ("Section Content", {
-            "fields": ()
-        }),
-        ("Highlight Lines (Card Box)", {
-            "fields": ("highlight_1", "highlight_2")
+        ("Header Image", {
+            "fields": ("header_image",)
         }),
         ("Video Section", {
             "fields": ("video_thumbnail", "video_title", "video_type", "youtube_url", "uploaded_video")
@@ -78,8 +76,8 @@ class TheSystemAdmin(admin.ModelAdmin):
     list_display = ["video_title", "active", "updated_at"]
     list_filter = ["active"]
     fieldsets = (
-        ("Highlight Lines (Card Box)", {
-            "fields": ("highlight_1", "highlight_2", "highlight_3")
+        ("Header Image", {
+            "fields": ("header_image",)
         }),
         ("Video Section", {
             "fields": ("video_thumbnail", "video_title", "video_type", "youtube_url", "uploaded_video")
@@ -103,8 +101,8 @@ class ConceptualCommunicationAdmin(admin.ModelAdmin):
     list_display = ["video_title", "active", "updated_at"]
     list_filter = ["active"]
     fieldsets = (
-        ("Highlight Lines (Card Box)", {
-            "fields": ("line_1", "line_2", "line_3")
+        ("Header Image", {
+            "fields": ("header_image",)
         }),
         ("Video Section", {
             "fields": ("video_thumbnail", "video_title", "video_type", "youtube_url", "uploaded_video")
@@ -128,8 +126,8 @@ class ThirtyMinutesAdmin(admin.ModelAdmin):
     list_display = ["video_title", "active", "updated_at"]
     list_filter = ["active"]
     fieldsets = (
-        ("Highlight Lines (Card Box)", {
-            "fields": ("line_1", "line_2", "line_3")
+        ("Header Image", {
+            "fields": ("header_image",)
         }),
         ("Video Section", {
             "fields": ("video_thumbnail", "video_title", "video_type", "youtube_url", "uploaded_video")
@@ -153,8 +151,8 @@ class ITAspirantAdmin(admin.ModelAdmin):
     list_display = ["video_title", "active", "updated_at"]
     list_filter = ["active"]
     fieldsets = (
-        ("Highlight Lines (Card Box)", {
-            "fields": ("line_1", "line_2", "line_3", "line_4")
+        ("Header Image", {
+            "fields": ("header_image",)
         }),
         ("Video Section", {
             "fields": ("video_thumbnail", "video_title", "video_type", "youtube_url", "uploaded_video")
@@ -178,8 +176,8 @@ class ZeroToIndustryAdmin(admin.ModelAdmin):
     list_display = ["video_title", "active", "updated_at"]
     list_filter = ["active"]
     fieldsets = (
-        ("Highlight Lines (Card Box)", {
-            "fields": ("line_1", "line_2", "line_3", "line_4", "line_5", "line_6")
+        ("Header Image", {
+            "fields": ("header_image",)
         }),
         ("Video Section", {
             "fields": ("video_thumbnail", "video_title", "video_type", "youtube_url", "uploaded_video")
@@ -203,8 +201,8 @@ class CareerPathsAdmin(admin.ModelAdmin):
     list_display = ["active", "updated_at"]
     list_filter = ["active"]
     fieldsets = (
-        ("Highlight Lines (Card Box)", {
-            "fields": ("line_1", "line_2", "line_3", "line_4", "line_5", "line_6")
+        ("Header Image", {
+            "fields": ("header_image",)
         }),
         ("Video Section", {
             "fields": ("video_thumbnail", "video_title", "video_type")
@@ -240,8 +238,8 @@ class ReadyForTestPageAdmin(admin.ModelAdmin):
     list_display = ["video_title", "active", "updated_at"]
     list_filter = ["active"]
     fieldsets = (
-        ("Highlight Lines (Card Box)", {
-            "fields": ("line_1", "line_2", "line_3")
+        ("Header Image", {
+            "fields": ("header_image",)
         }),
         ("Video Section", {
             "fields": ("video_thumbnail", "video_title", "video_type", "youtube_url", "uploaded_video")
@@ -265,8 +263,8 @@ class TestBeforeTrustPageAdmin(admin.ModelAdmin):
     list_display = ["video_title", "active", "updated_at"]
     list_filter = ["active"]
     fieldsets = (
-        ("Highlight Lines (Card Box)", {
-            "fields": ("line_1", "line_2", "line_3", "line_4")
+        ("Header Image", {
+            "fields": ("header_image",)
         }),
         ("Video Section", {
             "fields": ("video_thumbnail", "video_title", "video_type")
