@@ -166,8 +166,7 @@ img {
 .hero-image {
     width: 100%;
     height: auto;
-    max-height: 500px;
-    object-fit: contain; /* Show full image without cropping */
+    object-fit: contain;
     object-position: center;
     background-color: #3B2F2F;
 }
@@ -185,8 +184,7 @@ img {
     .hero-image {
         width: 100%;
         height: auto;
-        max-height: 180px;
-        object-fit: fill;
+        object-fit: contain;
         object-position: center;
     }
 }
@@ -268,7 +266,6 @@ img {
     border: 2px solid #E6A93C;
     box-shadow: 0 0 60px rgba(230, 169, 60, 0.3);
     transition: all 0.3s ease;
-    height: 650px; /* Match hero video height */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -286,19 +283,21 @@ img {
     transform: scale(0.98);
 }
 
-/* VIDEO THUMB - Fill container */
+/* VIDEO THUMB - Full width, preserve aspect ratio */
 .video-thumb,
 .ai-video-thumbnail img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;
+    object-fit: contain;
     object-position: center;
+    display: block;
 }
 
 /* VIDEO CARD A4 SIZE - Full image without cropping */
 .video-card-a4 {
     position: relative;
-    max-width: 850px;
+    max-width: 950px;
+    width: 100%;
     margin: auto;
     cursor: pointer;
     border-radius: 8px;
@@ -308,27 +307,20 @@ img {
     transition: all 0.3s ease;
 }
 
-/* A4 aspect ratio (210:297) */
-.video-card-a4::before {
-    content: '';
-    display: block;
-    padding-top: 141.43%; /* A4 ratio */
-}
 
 .video-card-a4:hover {
     transform: scale(1.02);
     box-shadow: 0 0 50px rgba(230, 169, 60, 0.4);
 }
 
-/* VIDEO THUMB A4 - Contain to show full image */
+/* VIDEO THUMB A4 - Preserve original image without cropping */
 .video-thumb-a4 {
-    position: absolute;
-    top: 0;
-    left: 0;
+    position: relative;
     width: 100%;
-    height: 100%;
+    height: auto;
     object-fit: contain;
     object-position: center;
+    display: block;
 }
 
 /* PLAY BUTTON A4 - Centered on A4 card */
@@ -417,6 +409,12 @@ img {
 }
 
 @media (max-width: 768px) {
+    .video-card-a4 .preview-btn {
+        opacity: 1;
+        visibility: visible;
+        box-shadow: 0 4px 20px rgba(229, 57, 53, 0.45);
+    }
+
     .preview-btn-left {
         top: 85%;
         left: 22%;
@@ -595,7 +593,6 @@ img {
     overflow: hidden;
     border: 2px solid #E6A93C;
     box-shadow: 0 0 60px rgba(230, 169, 60, 0.3);
-    height: 400px; /* Reduced height for header image */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -606,8 +603,8 @@ img {
 
 .header-image-card img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;
+    object-fit: contain;
     object-position: center;
     transition: opacity 0.4s ease; /* Only opacity transition, no transform */
 }
@@ -745,12 +742,35 @@ img {
 #careerCapsulesVideoContainer,
 #languageBarrierVideoContainer,
 #readyForTestVideoContainer,
-#testBeforeTrustVideoContainer {
+#testBeforeTrustVideoContainer,
+#conceptualCommunicationVideoContainer,
+#thirtyMinutesVideoContainer,
+#itAspirantVideoContainer,
+#zeroToIndustryVideoContainer,
+#careerPathsVideoContainer {
     width: 100%;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
+    min-width: 0;
+}
+
+#conceptualCommunicationVideoContainer video,
+#conceptualCommunicationVideoContainer iframe,
+#thirtyMinutesVideoContainer video,
+#thirtyMinutesVideoContainer iframe,
+#itAspirantVideoContainer video,
+#itAspirantVideoContainer iframe,
+#zeroToIndustryVideoContainer video,
+#zeroToIndustryVideoContainer iframe,
+#careerPathsVideoContainer video,
+#careerPathsVideoContainer iframe {
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    max-height: 70vh;
+    object-fit: contain;
 }
 
 /* VIDEO CONTAINER - Ensure video is visible */
@@ -1209,7 +1229,7 @@ img {
 .ai-advantage-video {
     width: 100%;
     height: auto;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 /* AI SIDE BY SIDE LAYOUT */
@@ -1702,8 +1722,8 @@ img {
 
 .skill-card-media img {
     width: 100%;
-    height: 300px;
-    object-fit: cover;
+    height: auto;
+    object-fit: contain;
     transition: transform 0.5s ease;
 }
 
@@ -2296,6 +2316,23 @@ img {
         margin: 0 auto;
     }
 
+    /* Header image cards and career path images should also fill mobile width */
+    .header-image-card,
+    .career-paths-image-wrapper {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: auto !important;
+        border-radius: 12px;
+        margin: 0 auto 20px auto;
+    }
+
+    .header-image-card img,
+    .career-paths-image {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+    }
+
     /* Match text card box width to video card width on mobile */
     .ai-description-card,
     .skill-desc-box,
@@ -2334,7 +2371,8 @@ img {
     .video-card-a4 .video-thumb-a4 {
         width: 100%;
         height: auto;
-        object-fit: cover;
+        object-fit: contain;
+        display: block;
     }
     
     .play-button-a4 {
@@ -2501,7 +2539,12 @@ img {
     #careerCapsulesVideoContainer,
     #languageBarrierVideoContainer,
     #readyForTestVideoContainer,
-    #testBeforeTrustVideoContainer {
+    #testBeforeTrustVideoContainer,
+    #conceptualCommunicationVideoContainer,
+    #thirtyMinutesVideoContainer,
+    #itAspirantVideoContainer,
+    #zeroToIndustryVideoContainer,
+    #careerPathsVideoContainer {
         height: auto;
     }
     
@@ -2512,4 +2555,17 @@ img {
         height: 35px;
         font-size: 18px;
     }
+}
+
+#hero,
+#the-system,
+#ai-advantage,
+#skill-test,
+#learning-system,
+#career-roadmap,
+#career-capsules,
+#language-barrier,
+#ready-for-test,
+#test-before-trust {
+    scroll-margin-top: 450px;
 }
