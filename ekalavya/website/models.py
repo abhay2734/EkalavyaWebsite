@@ -57,8 +57,8 @@ class HomeVideo(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        verbose_name = "1) Home video"
-        verbose_name_plural = "1) Home video"
+        verbose_name = "1)The System"
+        verbose_name_plural = "1)The System"
 
     def __str__(self):
         if self.title:
@@ -174,8 +174,8 @@ class TheSystem(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        verbose_name = "2)The System"
-        verbose_name_plural = "2)The System"
+        verbose_name = "2)Truth of AI"
+        verbose_name_plural = "2)Truth of AI"
 
     def __str__(self):
         return self.title

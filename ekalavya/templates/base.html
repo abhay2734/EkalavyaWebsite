@@ -27,43 +27,55 @@
 
 <!-- TOP BANNER (Fixed) -->
 <div class="top-banner">
-<img src="{% static 'images/Top Banner.jpeg' %}" class="banner-image" alt="Ekalavya Universys">
+<img src="{% static 'images/Top Banner.png' %}" class="banner-image" alt="Ekalavya Universys">
 </div>
 
 <!-- NAVBAR -->
 
-<nav class="main-navbar">
+<nav class="main-navbar navbar navbar-expand-lg">
+    <div class="container navbar-inner">
 
-<div class="container navbar-inner">
+        <div class="logo">
 
-<div class="logo">
+            <div class="logo-box">
+                <img src="{% static 'images/Logo.png' %}" class="logo-image" alt="Ekalavya">
+            </div>
 
-<div class="logo-box">
-<img src="{% static 'images/Logo.png' %}" class="logo-image" alt="Ekalavya">
-</div>
-
-<span class="logo-text">Ekalavya Universys</span>
-
-</div>
-
-        <div class="nav-menu">
-
-        <a href="/#hero">Home</a>
-        <a href="/#the-system">The System</a>
-        <a href="/#ai-advantage">AI Advantage</a>
-        <a href="/#skill-test">Conceptual Communication</a>
-        <a href="/#learning-system">30Minutes</a>
-        <a href="/#career-roadmap">IT Aspirant</a>
-        <a href="/#career-capsules">Ready for Test Page</a>
-        <a href="/#language-barrier">Zero to Industry</a>
-        <a href="/#ready-for-test">3 Career Paths</a>
-        <a href="/#test-before-trust">Test Before You Trust Page</a>
+            <span class="logo-text">Ekalavya Universys</span>
 
         </div>
 
-</div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-<div class="nav-border"></div>
+        <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+            <div class="text-center">
+
+                <!-- ROW 1 -->
+                <div class="d-flex justify-content-center gap-3 mb-2">
+                    <a class="nav-link" href="#home">Home</a>
+                    <a class="nav-link" href="#the-system">The System</a>
+                    <a class="nav-link" href="#truth-of-ai">Truth of AI</a>
+                    <a class="nav-link" href="#ai-advantage">AI Advantage</a>
+                    <a class="nav-link" href="#conceptual-communication">Conceptual Communication</a>
+                </div>
+
+                <!-- ROW 2 -->
+                <div class="d-flex justify-content-center gap-3">
+                    <a class="nav-link" href="#thirty-minutes">30 Minutes</a>
+                    <a class="nav-link" href="#it-aspirant">IT Aspirant</a>
+                    <a class="nav-link" href="#ready-for-test">Ready for Test</a>
+                    <a class="nav-link" href="#zero-to-industry">Zero to Industry</a>
+                    <a class="nav-link" href="#career-paths">3 Career Paths</a>
+                    <a class="nav-link" href="#test-before-trust">Test Before You Trust</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="nav-border"></div>
 
 </nav>
 
